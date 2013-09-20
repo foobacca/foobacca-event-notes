@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Ansible &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="PyCon UK 2013" href="index.html" />
+    <link rel="next" title="Test Automation" href="test-automation.html" />
+    <link rel="prev" title="A smorgasbord of testing" href="testing-smorgasbord.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="test-automation.html" title="Test Automation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="testing-smorgasbord.html" title="A smorgasbord of testing"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">PyCon UK 2013</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ansible">
+<h1>Ansible<a class="headerlink" href="#ansible" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>ad hoc task execution</li>
+<li>config mgt</li>
+<li>deployment and orchestration</li>
+<li>ssh based, daemonless</li>
+<li>built with python</li>
+</ul>
+<div class="section" id="command-line">
+<h2>command line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><pre>ansible all -i inventory -u root -m ping -vvv
+# inventory, user root, module ping, very verbose
+# copies file to server, exec file (with python), report result
+
+ansible all -m apt -a "pkg=dead-parrot state=present"
+# idempotent, run multiple times
+# success reported along with {"changed": false} (or true)</pre>
+</div>
+<p>All Ansible modules are idempotent, so they don&#8217;t make changes on a second application when not necessary</p>
+</div>
+<div class="section" id="playbook">
+<h2>Playbook<a class="headerlink" href="#playbook" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-yaml"><div class="highlight"><pre><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">all</span>
+  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
+
+  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">install nginx</span>
+      <span class="l-Scalar-Plain">apt</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">pkg=nginx state=latest</span>
+
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">The home page is configured</span>
+      <span class="l-Scalar-Plain">copy</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">src=... dest=/var/share/nginx/www/index.html</span>
+</pre></div>
+</div>
+<p>A set of Ansible instructions is called a &#8220;playbook&#8221;, where this contains a hostname, username and tasks in YAML format</p>
+<ul class="simple">
+<li>fabric - run commands only over ssh - not designed for idempotency</li>
+<li>salt - have to install daemons, tasks follow dependencies</li>
+<li>puppet, chef - daemon based, DSL</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Ansible</a><ul>
+<li><a class="reference internal" href="#command-line">command line</a></li>
+<li><a class="reference internal" href="#playbook">Playbook</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="testing-smorgasbord.html"
+                        title="previous chapter">A smorgasbord of testing</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="test-automation.html"
+                        title="next chapter">Test Automation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/PyConUK2013/ansible.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="test-automation.html" title="Test Automation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="testing-smorgasbord.html" title="A smorgasbord of testing"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >PyCon UK 2013</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

@@ -177,6 +177,7 @@ pseudoxml:
 	@echo
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
 
+# nicked from http://blog.nikhilism.com/2012/08/automatic-github-pages-generation-from.html
 gh-pages:
 	git checkout gh-pages
 	rm -rf _build _sources _static

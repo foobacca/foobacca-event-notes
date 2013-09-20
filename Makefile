@@ -2,11 +2,11 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-PAPER         =
-BUILDDIR      = _build
-GH_PAGES_SOURCE = Makefile index.rst PyConUK2013
+SPHINXOPTS       =
+SPHINXBUILD      = sphinx-build
+PAPER            =
+BUILDDIR         = _build
+GH_PAGES_SOURCES = Makefile index.rst PyConUK2013
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)

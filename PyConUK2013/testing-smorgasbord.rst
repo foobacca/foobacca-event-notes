@@ -5,6 +5,7 @@ A smorgasbord of testing
 * David Winterbottom
 * tangentlabs
 * django-oscar
+* slides at https://speakerdeck.com/codeinthehole/a-smorgasbord-of-testing
 
 kent beck - "my philosophy is to test as little as possible to reach a given level of confidence"
 

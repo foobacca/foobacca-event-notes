@@ -25,21 +25,21 @@ feature
 -------
 
 * custom test runner - turn things on and off
-* `--with-specplugin` - BDD-style output
+* ``--with-specplugin`` - BDD-style output
 
 refactor a feature
 ------------------
 
-* `--attr=shipping` - explicit decorators
-* `--select-tests=shipping` - more automatic
+* ``--attr=shipping`` - explicit decorators
+* ``--select-tests=shipping`` - more automatic
 
 fix failing tests
 -----------------
 
 * fail fast
-* editor friendly paths `--with-progressive` - give vim line to open at line
+* editor friendly paths ``--with-progressive`` - give vim line to open at line
 * no plugins
-* parallelise `--processes=8` and tox -> detox
+* parallelise ``--processes=8`` and tox -> detox
 
 Speed
 =====
@@ -55,7 +55,7 @@ split tests into 3 directories
 they changed from 400 tests in 50 seconds to 700 tests in 12 seconds
 
 * use fast (md5) password hasher in tests
-* `--processes=8`
+* ``--processes=8``
 
 Readability
 ===========
@@ -70,7 +70,7 @@ Book: xUnit Test Patterns
 
 Useful libraries
 
-* PyHamcrest - `assert_that(shipping.charge, is_(equal_to(D('4.99))))`
-* should_dsl - `user.email |should| contain("@")`
+* PyHamcrest - ``assert_that(shipping.charge, is_(equal_to(D('4.99))))``
+* should_dsl - ``user.email |should| contain("@")``
 * https://wiki.python.org/moin/PythonTestingToolsTaxonomy
 

@@ -6,12 +6,20 @@
 Welcome to Foobacca Event Notes's documentation!
 ================================================
 
+I'm starting collecting event notes, inspired by (or just plain copying) pydanny-event-notes
+
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+
+   PyConUK2013/index
 
 
+Credits
+=======
+
+* Danny Greenfeld for creating http://pydanny-event-notes.rtfd.org/
 
 Indices and tables
 ==================

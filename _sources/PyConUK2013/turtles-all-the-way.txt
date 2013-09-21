@@ -5,6 +5,9 @@ Turtles all the way down
 * Simon Davy
 * @bloodearnest ...
 
+Background
+==========
+
 Want to be able to:
 
 * traffic simulation with many turtles
@@ -16,7 +19,8 @@ Inspired by last year's education track
 * core mechanic
 * computer science
 
-Let's try
+What I've done
+==============
 
 * 50 turtles doing a random walk - too much CPU
 * https://github.com/AllTheWayDown/TurGLES - use GPU - can now do 1000 easily, can handle 50000 on a modern powerful laptop!
@@ -28,6 +32,7 @@ Let's try
 * don't want to have to teach classes for students
 
 Plans
+=====
 
 * TurGLES - better ES2 renderer, drawing, borders, undo
 * NinjaTurtle - more tests, faster maths

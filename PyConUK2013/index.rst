@@ -22,6 +22,7 @@ PyCon UK
    turtles-all-the-way
    history-of-censorship
    teaching-data-science
+   social-media-text-analysis
 
 ============
 

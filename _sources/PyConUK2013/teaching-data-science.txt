@@ -44,7 +44,9 @@ Series of challenges, getting more difficult
 
 Built on flask - easy to get going, good docs, fast development ...
 
-Flask megatutorial was excellent
+Flask megatutorial_ was excellent
+
+.. _megatutorial: http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
 Solutions:
 

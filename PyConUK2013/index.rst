@@ -20,6 +20,7 @@ PyCon UK
    education
    physical-turtle
    turtles-all-the-way
+   history-of-censorship
 
 ============
 

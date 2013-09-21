@@ -11,7 +11,7 @@ Ansible
 command line
 ============
 
-.. code-block:: shell
+.. code-block:: sh
 
     ansible all -i inventory -u root -m ping -vvv
     # inventory, user root, module ping, very verbose

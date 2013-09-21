@@ -20,7 +20,7 @@ What is Ansible
 
 * more procedural, script, python
 
-.. code-block:: shell
+.. code-block:: sh
 
     ansible -a 'uname -n' -o -u iweb -s 'b*web1'
 

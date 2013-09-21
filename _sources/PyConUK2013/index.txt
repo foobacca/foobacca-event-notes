@@ -17,6 +17,7 @@ PyCon UK
    config-management
    bytecode
    mining-software
+   education
 
 ============
 

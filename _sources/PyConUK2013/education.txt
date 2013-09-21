@@ -16,7 +16,7 @@ Leave behind your opinions on details, just help to get it working
 - talk - http://www.youtube.com/watch?v=csyL9EC0S0c
 - http://programmingisterrible.com/ - good blog
 
-Teachers aren't getting much in the way of training to implement the new cirriculum - they need help.  Often get a 1 day course in Python and then expected to teach it, and teach others.
+Teachers aren't getting much in the way of training to implement the new cirriculum - they need help.  Often get a 1 day course in Python and then expected to teach it, and teach others.  Lots of teachers frightened by stuff they don't know.
 
 Many schools don't have computer rooms any more.  Instead:
 
@@ -29,3 +29,5 @@ Code camps?
 - hard to get *lots* of teachers at a weekend
 - weekday CPD (continuing professional development) easier to do
 - code camp in holiday, teachers can bring kids
+
+Secondary national cirriculum computing - key stages - https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study

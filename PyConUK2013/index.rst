@@ -16,8 +16,8 @@ PyCon UK
    test-automation
    config-management
    bytecode
+   mining-software
 
-Other Slides
 ============
 
 Some people posted links to slide on twitter for talks I didn't go to, so I've collected them here:

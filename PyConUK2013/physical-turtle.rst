@@ -4,13 +4,14 @@ Physical Turtle for Education
 
 * Mike Sandford
 * http://www.mikedeplume.com
-* http://www.mikedeplume.com/2013/02/20/a-physical-turtle/
+* Presentation - https://bitbucket.org/mikedeplume/turtle_presentation (*and it's written with the turtle module!*)
+* Blog article - http://www.mikedeplume.com/2013/02/20/a-physical-turtle/
 * https://pypi.python.org/pypi/PhysicalTurtle
-* https://bitbucket.org/mikedeplume/physical-turtle
+* Software https://bitbucket.org/mikedeplume/physical-turtle
 
 .. code-block:: sh
 
-    pip install physical-turtle
+    pip install physicalturtle
 
 Draw an obstacle
 ================
@@ -39,3 +40,9 @@ Simple outline following
 ========================
 
 test if barrier still there, move forward a bit, test again ...
+
+* go round entire object
+* go round object until going back in original direction - though the simplistic version (``totalturn % 360 == 0``) can lead to loops
+* learning - think about object, what's possible
+* thinking about how to draw the maze can be more interesting than navigating the maze
+* lots of things that teachers can talk about

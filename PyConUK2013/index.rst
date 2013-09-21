@@ -21,6 +21,7 @@ PyCon UK
    physical-turtle
    turtles-all-the-way
    history-of-censorship
+   teaching-data-science
 
 ============
 

@@ -19,6 +19,7 @@ PyCon UK
    mining-software
    education
    physical-turtle
+   turtles-all-the-way
 
 ============
 

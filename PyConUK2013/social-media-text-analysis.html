@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Detecting the right Apples and Oranges &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="PyCon UK 2013" href="index.html" />
+    <link rel="prev" title="Teaching Data Science With Really Scrapable Web App" href="teaching-data-science.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="teaching-data-science.html" title="Teaching Data Science With Really Scrapable Web App"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">PyCon UK 2013</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="detecting-the-right-apples-and-oranges">
+<h1>Detecting the right Apples and Oranges<a class="headerlink" href="#detecting-the-right-apples-and-oranges" title="Permalink to this headline">¶</a></h1>
+<p>Social media text analysis with scikit-learn and NLTK</p>
+<ul class="simple">
+<li>Ian Ozsvald</li>
+<li>&#64;IanOzsvald</li>
+<li>applying parallel/NLP/ML in industry</li>
+<li>morconsulting.com</li>
+<li>showmedo.com</li>
+<li>ianozsvald.com - blog with articles about this</li>
+<li>annotate.io</li>
+<li><a class="reference external" href="https://github.com/ianozsvald/social_media_brand_disambiguator">https://github.com/ianozsvald/social_media_brand_disambiguator</a></li>
+</ul>
+<div class="section" id="disambiguation-is-hard">
+<h2>disambiguation is hard<a class="headerlink" href="#disambiguation-is-hard" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>apple, orange</li>
+<li>homeland, lost, defiance</li>
+<li>elite, valve</li>
+<li>cold, stuffy</li>
+</ul>
+</div>
+<div class="section" id="why">
+<h2>Why?<a class="headerlink" href="#why" title="Permalink to this headline">¶</a></h2>
+<p>current</p>
+<ul class="simple">
+<li>400 million tweets per day</li>
+<li>not trained on social media (long texts, proper grammar, punctuation)</li>
+<li>doesn&#8217;t take into account links</li>
+<li>rule building often &#8220;by hand&#8221;</li>
+</ul>
+<p>Can we build auto-updating ... disambiguator</p>
+</div>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<p>Scikit-learn example</p>
+<ul class="simple">
+<li>apple (computers) or not for tweets that have text &#8220;apple&#8221; in them - 1 or 0</li>
+<li>matrix y=&#8221;tweet index&#8221; x=&#8221;unigram features&#8221;</li>
+<li>very sparse - have to learn from vast array of 0 texts to spot the few 1s</li>
+<li>Gold standard - 2014 tweets classified by hand (5 hours!)</li>
+<li>2/3 is-brand, 1/3 not-brand (684)</li>
+<li>test/train, 584 each</li>
+<li>validation set, 100 of each</li>
+</ul>
+</div>
+<div class="section" id="results">
+<h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>first pass - LogisticRegression - fit to data, score test examples</li>
+<li>test against OpenCalais (92.5% precision (true -ve) (2 wrong)), 25% recall (true +ve))</li>
+<li>new tool (100% precision, 51% recall)</li>
+<li>not generalised - still working on it</li>
+<li>all on github</li>
+<li>blogged about it</li>
+</ul>
+</div>
+<div class="section" id="future">
+<h2>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>add link following</li>
+<li>add temporal factors - tweets during apple keynote</li>
+<li>hash tags ...</li>
+<li>NLP meet in London</li>
+<li>bootstrap to larger data</li>
+<li>...</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Detecting the right Apples and Oranges</a><ul>
+<li><a class="reference internal" href="#disambiguation-is-hard">disambiguation is hard</a></li>
+<li><a class="reference internal" href="#why">Why?</a></li>
+<li><a class="reference internal" href="#data">Data</a></li>
+<li><a class="reference internal" href="#results">Results</a></li>
+<li><a class="reference internal" href="#future">Future</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="teaching-data-science.html"
+                        title="previous chapter">Teaching Data Science With Really Scrapable Web App</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/PyConUK2013/social-media-text-analysis.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="teaching-data-science.html" title="Teaching Data Science With Really Scrapable Web App"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >PyCon UK 2013</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

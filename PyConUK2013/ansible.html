@@ -62,13 +62,14 @@
 </ul>
 <div class="section" id="command-line">
 <h2>command line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-shell"><pre>ansible all -i inventory -u root -m ping -vvv
-# inventory, user root, module ping, very verbose
-# copies file to server, exec file (with python), report result
+<div class="highlight-sh"><div class="highlight"><pre>ansible all -i inventory -u root -m ping -vvv
+<span class="c"># inventory, user root, module ping, very verbose</span>
+<span class="c"># copies file to server, exec file (with python), report result</span>
 
-ansible all -m apt -a "pkg=dead-parrot state=present"
-# idempotent, run multiple times
-# success reported along with {"changed": false} (or true)</pre>
+ansible all -m apt -a <span class="s2">&quot;pkg=dead-parrot state=present&quot;</span>
+<span class="c"># idempotent, run multiple times</span>
+<span class="c"># success reported along with {&quot;changed&quot;: false} (or true)</span>
+</pre></div>
 </div>
 <p>All Ansible modules are idempotent, so they don&#8217;t make changes on a second application when not necessary</p>
 </div>

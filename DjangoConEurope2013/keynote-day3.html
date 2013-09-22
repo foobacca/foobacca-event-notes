@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Mock your database &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>Keynote &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
-    <link rel="next" title="AJAX and Django" href="ajax.html" />
-    <link rel="prev" title="Growing Open Source Seeds" href="seeds.html" /> 
+    <link rel="next" title="Class Based Views - untangling the mess" href="CBVs.html" />
+    <link rel="prev" title="Lightning talks" href="lightning-day2.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="CBVs.html" title="Class Based Views - untangling the mess"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="lightning-day2.html" title="Lightning talks"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
@@ -51,54 +51,70 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="mock-your-database">
-<h1>Mock your database<a class="headerlink" href="#mock-your-database" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="keynote">
+<h1>Keynote<a class="headerlink" href="#keynote" title="Permalink to this headline">¶</a></h1>
+<p>&#64;pydanny</p>
+<p>traditional to rant about django in keynote</p>
+<p>more +ve</p>
 <ul class="simple">
-<li>your database is slow</li>
-<li>why do I care - speed - faster unit tests</li>
+<li>pull requests</li>
+<li>running events</li>
+<li>writing books</li>
 </ul>
-<p>naive test - create objects, get stuff from query, 8 database queries</p>
-<ul class="simple">
-<li>5.2 seconds for 1000 tests on Postgres</li>
-<li>3.9 seconds for 1000 tests on sqlite</li>
+<p>this talk is about why &#8220;Django is awesome&#8221;</p>
+<ol class="arabic">
+<li><p class="first">django is everywhere</p>
+</li>
+<li><p class="first">python has a style guide (and the zen of python)</p>
+</li>
+<li><dl class="first docutils">
+<dt>awesome API - understandable, conventions (though boring)</dt>
+<dd><ul class="first last simple">
+<li>pro-tip: while Fat Models are great, they can become obese -&gt; break code into helper functions</li>
+<li>api conventions encourage clean design</li>
+<li>we don&#8217;t fight about architecture, get things done</li>
 </ul>
-<p>factoryboy doesn&#8217;t make like quicker (but does make code simpler)</p>
-<p>factoryboy build() - create but not save - but m2m fields cause trouble - got to 4 queries</p>
-<p>prefetch - factory build, give pk, build other, set _result_cache
-_prefeteched_objects_cache ... Down to 1 second, 0 database queries!
-but ugly code, and only works with all()</p>
-<ul class="simple">
-<li>mock library - patch class, assign pk</li>
-<li>1.2 seconds, 0 database queries</li>
+</dd>
+</dl>
+</li>
+<li><p class="first">django views are functions</p>
+</li>
+<li><dl class="first docutils">
+<dt>awesome longevity</dt>
+<dd><ul class="first last simple">
+<li>slow deprecation</li>
 </ul>
-<p>Avoiding the database is faster - much bigger difference than between postgres and sqlite</p>
-<div class="section" id="a-better-way">
-<h2>A better way<a class="headerlink" href="#a-better-way" title="Permalink to this headline">¶</a></h2>
-<p>Carl Meyer - &#8220;Mocking the database usually isn&#8217;t worth it&#8221; (from testing
-Django talk)</p>
-<p>mock redis in python (using dict) -&gt; partly due to nice api, queryset</p>
-<p><a class="reference external" href="https://github.com/mjtamlyn/django-test-db">https://github.com/mjtamlyn/django-test-db</a></p>
-<ul class="simple">
-<li>not db at all</li>
-<li>patch queryset to provide api, but not hit db</li>
-<li>run your local tests fast, then use production db for CI</li>
-<li>prototype! do not bet granny on it</li>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>awesome features</dt>
+<dd><ul class="first last simple">
+<li>admin ...</li>
+<li>pro-tip: django.contrib.admin + NoSQL - DON&#8217;T DO IT - write from scratch</li>
 </ul>
-<p>Now we try the naive test again -&gt; 0 database queries, 0.7 seconds</p>
-<p>issues</p>
-<ul class="simple">
-<li>some things don&#8217;t go through queryset</li>
-<li>auto patching</li>
-<li>more filter lookups</li>
-<li>extensibility</li>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Django&#8217;s full stack is awesome</dt>
+<dd><ul class="first last simple">
+<li>dominates hackathons</li>
+<li>lots of companies just use stock Django/python and nothing else</li>
 </ul>
-<p>future</p>
-<ul class="simple">
-<li>write code and tests naively</li>
-<li>use test-db locally for fast testing cycle</li>
-<li>deploy to CI and run same code against real DB</li>
-</ul>
-</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">3rd party package ecosystem</p>
+</li>
+<li><p class="first">awesome documentation</p>
+</li>
+<li><p class="first">django is humble
+- critical talks, shape the code, shape the community</p>
+</li>
+<li><p class="first">generosity</p>
+</li>
+</ol>
 </div>
 
 
@@ -107,23 +123,15 @@ Django talk)</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Mock your database</a><ul>
-<li><a class="reference internal" href="#a-better-way">A better way</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="seeds.html"
-                        title="previous chapter">Growing Open Source Seeds</a></p>
+  <p class="topless"><a href="lightning-day2.html"
+                        title="previous chapter">Lightning talks</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="ajax.html"
-                        title="next chapter">AJAX and Django</a></p>
+  <p class="topless"><a href="CBVs.html"
+                        title="next chapter">Class Based Views - untangling the mess</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2013/mock_your_database.txt"
+    <li><a href="../_sources/DjangoConEurope2013/keynote-day3.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -150,10 +158,10 @@ Django talk)</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="CBVs.html" title="Class Based Views - untangling the mess"
              >next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="lightning-day2.html" title="Lightning talks"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 

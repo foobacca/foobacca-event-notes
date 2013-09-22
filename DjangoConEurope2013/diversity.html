@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Mock your database &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>The advantages of diversity &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
-    <link rel="next" title="AJAX and Django" href="ajax.html" />
-    <link rel="prev" title="Growing Open Source Seeds" href="seeds.html" /> 
+    <link rel="next" title="Principle Philosophy" href="philosophy.html" />
+    <link rel="prev" title="Class Based Views - untangling the mess" href="CBVs.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="philosophy.html" title="Principle Philosophy"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="CBVs.html" title="Class Based Views - untangling the mess"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
@@ -51,54 +51,50 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="mock-your-database">
-<h1>Mock your database<a class="headerlink" href="#mock-your-database" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="the-advantages-of-diversity">
+<h1>The advantages of diversity<a class="headerlink" href="#the-advantages-of-diversity" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li>your database is slow</li>
-<li>why do I care - speed - faster unit tests</li>
+<li>communities - watched what works well and doesn&#8217;t over many years</li>
+<li>open source is great - building amazing software infrastructure</li>
 </ul>
-<p>naive test - create objects, get stuff from query, 8 database queries</p>
+<p>live in a multi-dimensional world</p>
 <ul class="simple">
-<li>5.2 seconds for 1000 tests on Postgres</li>
-<li>3.9 seconds for 1000 tests on sqlite</li>
+<li>often define line and put people along it</li>
+<li>but ultimately hard to ignore</li>
 </ul>
-<p>factoryboy doesn&#8217;t make like quicker (but does make code simpler)</p>
-<p>factoryboy build() - create but not save - but m2m fields cause trouble - got to 4 queries</p>
-<p>prefetch - factory build, give pk, build other, set _result_cache
-_prefeteched_objects_cache ... Down to 1 second, 0 database queries!
-but ugly code, and only works with all()</p>
+<p>good/bad, republican/democrat, python/ruby, friend/stranger, native/foreigner ...</p>
+<p>&#8220;you always know where you are with a bigot&#8221;</p>
+<p>issue is polarisation</p>
 <ul class="simple">
-<li>mock library - patch class, assign pk</li>
-<li>1.2 seconds, 0 database queries</li>
+<li>good = preferred value</li>
+<li>bad = any other value</li>
 </ul>
-<p>Avoiding the database is faster - much bigger difference than between postgres and sqlite</p>
-<div class="section" id="a-better-way">
-<h2>A better way<a class="headerlink" href="#a-better-way" title="Permalink to this headline">¶</a></h2>
-<p>Carl Meyer - &#8220;Mocking the database usually isn&#8217;t worth it&#8221; (from testing
-Django talk)</p>
-<p>mock redis in python (using dict) -&gt; partly due to nice api, queryset</p>
-<p><a class="reference external" href="https://github.com/mjtamlyn/django-test-db">https://github.com/mjtamlyn/django-test-db</a></p>
+<p>Venn-diagram world view - still either inside or outside</p>
+<p>tolerance</p>
 <ul class="simple">
-<li>not db at all</li>
-<li>patch queryset to provide api, but not hit db</li>
-<li>run your local tests fast, then use production db for CI</li>
-<li>prototype! do not bet granny on it</li>
+<li>requires respect for others point of view</li>
+<li>value range of opinions</li>
+<li>&#8220;you tell me your truth and I&#8217;ll tell you mine&#8221; Bevan</li>
+<li>admit we might be wrong occasionally</li>
 </ul>
-<p>Now we try the naive test again -&gt; 0 database queries, 0.7 seconds</p>
-<p>issues</p>
+<p>open source not representative</p>
 <ul class="simple">
-<li>some things don&#8217;t go through queryset</li>
-<li>auto patching</li>
-<li>more filter lookups</li>
-<li>extensibility</li>
+<li>even of tech industry</li>
+<li>some feel this is fine, more comfortable</li>
+<li>yet ignores huge swathes of people who could help</li>
+<li>a project&#8217;s single greatest asset is its people</li>
 </ul>
-<p>future</p>
+<p>if we&#8217;re not welcoming, we&#8217;re exclusionary</p>
+<p>we&#8217;re all limited, danger of groupthink</p>
+<p>programmers tend to ignore roles outside of s/w dev and design</p>
 <ul class="simple">
-<li>write code and tests naively</li>
-<li>use test-db locally for fast testing cycle</li>
-<li>deploy to CI and run same code against real DB</li>
+<li>docs - django stands out, even python docs could be a lot better</li>
+<li>plenty of other important roles to round out large tech projects</li>
+<li>expand diversity to help us fill the roles</li>
 </ul>
-</div>
+<p>open source projects are generally not professionally run</p>
+<p>python website update coming - make it easier for contributors to update the sections they contribute to</p>
+<p>we do have a good community, but need to avoid being smug and complacent</p>
 </div>
 
 
@@ -107,23 +103,15 @@ Django talk)</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Mock your database</a><ul>
-<li><a class="reference internal" href="#a-better-way">A better way</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="seeds.html"
-                        title="previous chapter">Growing Open Source Seeds</a></p>
+  <p class="topless"><a href="CBVs.html"
+                        title="previous chapter">Class Based Views - untangling the mess</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="ajax.html"
-                        title="next chapter">AJAX and Django</a></p>
+  <p class="topless"><a href="philosophy.html"
+                        title="next chapter">Principle Philosophy</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2013/mock_your_database.txt"
+    <li><a href="../_sources/DjangoConEurope2013/diversity.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -150,10 +138,10 @@ Django talk)</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="philosophy.html" title="Principle Philosophy"
              >next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="CBVs.html" title="Class Based Views - untangling the mess"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 

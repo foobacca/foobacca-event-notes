@@ -43,7 +43,7 @@ Day 2
    rapid-prototyping
    advanced_python
    seeds
-   mock_your_dtabase
+   mock_your_database
    ajax
    lightning-day2
 
@@ -53,6 +53,11 @@ Day 3
 .. toctree::
    :maxdepth: 2
 
+   keynote-day3
    CBVs
+   diversity
+   philosophy
+   continuous_integration
+   scale
    dynamic_models
-   prehistoric_python
+   lightning-day3

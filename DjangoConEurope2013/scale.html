@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Does your stuff scale &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
+    <link rel="next" title="Dynamic Models in Django" href="dynamic_models.html" />
+    <link rel="prev" title="continuous integration" href="continuous_integration.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="dynamic_models.html" title="Dynamic Models in Django"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="continuous_integration.html" title="continuous integration"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="does-your-stuff-scale">
+<h1>Does your stuff scale<a class="headerlink" href="#does-your-stuff-scale" title="Permalink to this headline">¶</a></h1>
+<p>p.ota.to grew from 1 developer to 70 - with django and google app engine</p>
+<p>scalability</p>
+<ul class="simple">
+<li>load</li>
+<li>functional - add more features without too much effort</li>
+<li>organisational - do more, hire better people</li>
+<li>geographic</li>
+</ul>
+<div class="section" id="django-and-google-app-engine">
+<h2>django and google app engine<a class="headerlink" href="#django-and-google-app-engine" title="Permalink to this headline">¶</a></h2>
+<p>why?</p>
+<ul class="simple">
+<li>auto-scaling</li>
+<li>services and APIs</li>
+<li>no sys admin</li>
+</ul>
+<p>caveats</p>
+<ul class="simple">
+<li>sandbox - can&#8217;t run <cite>pip install</cite></li>
+<li>file system - block store, but no traditional fs</li>
+<li>portability - lock in?</li>
+</ul>
+<p>options for g a e</p>
+<ul>
+<li><dl class="first docutils">
+<dt>django-nonrel - django fork with nosql back end</dt>
+<dd><ul class="first last simple">
+<li>shallow learning curve, more reusable</li>
+<li>BUT familiarity can be misleading, can feel &#8216;heavy&#8217;/kludgy</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>djappengine</dt>
+<dd><ul class="first last simple">
+<li>built in to app engine, use appengine data store directly</li>
+<li>&#8220;best of both worlds&#8221;, use NDB</li>
+<li>learning curve steeper, not portable</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>app engine + cloud sql</dt>
+<dd><ul class="first last simple">
+<li>google&#8217;s version of django</li>
+<li>fully supported django</li>
+<li>relational database</li>
+<li>more set up, not as scalable as other options</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="technical-scaling">
+<h2>technical scaling<a class="headerlink" href="#technical-scaling" title="Permalink to this headline">¶</a></h2>
+<p>load</p>
+<ul class="simple">
+<li>planning</li>
+<li>caching</li>
+<li>offline tasks</li>
+<li>preparation - load tests, profiling</li>
+</ul>
+<p>functional</p>
+<ul>
+<li><p class="first">django!</p>
+</li>
+<li><dl class="first docutils">
+<dt>app engine</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>services/apis</dt>
+<dd><ul class="first last simple">
+<li>memcache, email, search, images ...</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>versioning</dt>
+<dd><ul class="first last simple">
+<li>10 testable versions per app</li>
+<li>A/B testing, traffic splitting</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">sdk</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="scaling-organisation-and-culture">
+<h2>scaling organisation and culture<a class="headerlink" href="#scaling-organisation-and-culture" title="Permalink to this headline">¶</a></h2>
+<p>organisational</p>
+<ul class="simple">
+<li>be a minimalist</li>
+<li>remove bottlenecks and overhead</li>
+<li>autonomy</li>
+<li>build lots of small apps internally - just do it</li>
+<li>&#8220;just make good things&#8221;</li>
+</ul>
+<p>geographic</p>
+<ul class="simple">
+<li>build and deploy from anywhere - trains, pubs, beaches</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Does your stuff scale</a><ul>
+<li><a class="reference internal" href="#django-and-google-app-engine">django and google app engine</a></li>
+<li><a class="reference internal" href="#technical-scaling">technical scaling</a></li>
+<li><a class="reference internal" href="#scaling-organisation-and-culture">scaling organisation and culture</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="continuous_integration.html"
+                        title="previous chapter">continuous integration</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dynamic_models.html"
+                        title="next chapter">Dynamic Models in Django</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2013/scale.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="dynamic_models.html" title="Dynamic Models in Django"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="continuous_integration.html" title="continuous integration"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Mock your database &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>Dynamic Models in Django &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
-    <link rel="next" title="AJAX and Django" href="ajax.html" />
-    <link rel="prev" title="Growing Open Source Seeds" href="seeds.html" /> 
+    <link rel="next" title="Lightning Talks" href="lightning-day3.html" />
+    <link rel="prev" title="Does your stuff scale" href="scale.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="lightning-day3.html" title="Lightning Talks"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="scale.html" title="Does your stuff scale"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
@@ -51,54 +51,61 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="mock-your-database">
-<h1>Mock your database<a class="headerlink" href="#mock-your-database" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dynamic-models-in-django">
+<h1>Dynamic Models in Django<a class="headerlink" href="#dynamic-models-in-django" title="Permalink to this headline">¶</a></h1>
+<p>classic - models defined in development - inflexible</p>
+<p>use cases</p>
 <ul class="simple">
-<li>your database is slow</li>
-<li>why do I care - speed - faster unit tests</li>
+<li>custom content types for CMS eg. add end date</li>
+<li>customised products for an ecommerce shop</li>
+<li>clinical research forms</li>
+<li>config by domain experts is better than code customisation by developers</li>
+<li>dynamic models reduce the number of deployment cycles</li>
 </ul>
-<p>naive test - create objects, get stuff from query, 8 database queries</p>
+<p>As a user I</p>
 <ul class="simple">
-<li>5.2 seconds for 1000 tests on Postgres</li>
-<li>3.9 seconds for 1000 tests on sqlite</li>
+<li>want to maintain my dynamic models easily with understanding django</li>
+<li>don&#8217;t want to care what is static or dynamic</li>
+<li>search across both</li>
 </ul>
-<p>factoryboy doesn&#8217;t make like quicker (but does make code simpler)</p>
-<p>factoryboy build() - create but not save - but m2m fields cause trouble - got to 4 queries</p>
-<p>prefetch - factory build, give pk, build other, set _result_cache
-_prefeteched_objects_cache ... Down to 1 second, 0 database queries!
-but ugly code, and only works with all()</p>
+<p>As a developer</p>
 <ul class="simple">
-<li>mock library - patch class, assign pk</li>
-<li>1.2 seconds, 0 database queries</li>
+<li>want dynamic models to be integrated (admin, migrations, reversion ...)</li>
+<li>want to apply same API as for static</li>
+<li>any db</li>
+<li>customisable front end</li>
 </ul>
-<p>Avoiding the database is faster - much bigger difference than between postgres and sqlite</p>
-<div class="section" id="a-better-way">
-<h2>A better way<a class="headerlink" href="#a-better-way" title="Permalink to this headline">¶</a></h2>
-<p>Carl Meyer - &#8220;Mocking the database usually isn&#8217;t worth it&#8221; (from testing
-Django talk)</p>
-<p>mock redis in python (using dict) -&gt; partly due to nice api, queryset</p>
-<p><a class="reference external" href="https://github.com/mjtamlyn/django-test-db">https://github.com/mjtamlyn/django-test-db</a></p>
+<p>criteria</p>
 <ul class="simple">
-<li>not db at all</li>
-<li>patch queryset to provide api, but not hit db</li>
-<li>run your local tests fast, then use production db for CI</li>
-<li>prototype! do not bet granny on it</li>
+<li>performance</li>
+<li>query-bility</li>
+<li>standard tools</li>
+<li>suuprted backend</li>
+<li>complexity/maintainability</li>
 </ul>
-<p>Now we try the naive test again -&gt; 0 database queries, 0.7 seconds</p>
-<p>issues</p>
+<p>EAV</p>
 <ul class="simple">
-<li>some things don&#8217;t go through queryset</li>
-<li>auto patching</li>
-<li>more filter lookups</li>
-<li>extensibility</li>
+<li>put attribute pairs in rows</li>
+<li>django-eav and eav-django</li>
+<li>not great performance</li>
 </ul>
-<p>future</p>
+<p>serialise dictionaries</p>
 <ul class="simple">
-<li>write code and tests naively</li>
-<li>use test-db locally for fast testing cycle</li>
-<li>deploy to CI and run same code against real DB</li>
+<li>django-djsonfield</li>
+<li>django-picklefield</li>
+<li>django-dynamic-model</li>
 </ul>
-</div>
+<p>runtime schema updates</p>
+<ul class="simple">
+<li>use south etc</li>
+<li>dynamic-models, django-dymo, django-dynamo - all proof of concept really</li>
+<li>django-mutant - most mature currently</li>
+</ul>
+<p>database specific</p>
+<ul class="simple">
+<li>hstore</li>
+<li>nosql</li>
+</ul>
 </div>
 
 
@@ -107,23 +114,15 @@ Django talk)</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Mock your database</a><ul>
-<li><a class="reference internal" href="#a-better-way">A better way</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="seeds.html"
-                        title="previous chapter">Growing Open Source Seeds</a></p>
+  <p class="topless"><a href="scale.html"
+                        title="previous chapter">Does your stuff scale</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="ajax.html"
-                        title="next chapter">AJAX and Django</a></p>
+  <p class="topless"><a href="lightning-day3.html"
+                        title="next chapter">Lightning Talks</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2013/mock_your_database.txt"
+    <li><a href="../_sources/DjangoConEurope2013/dynamic_models.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -150,10 +149,10 @@ Django talk)</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="lightning-day3.html" title="Lightning Talks"
              >next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="scale.html" title="Does your stuff scale"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 

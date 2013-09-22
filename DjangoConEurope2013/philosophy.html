@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Mock your database &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>Principle Philosophy &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
-    <link rel="next" title="AJAX and Django" href="ajax.html" />
-    <link rel="prev" title="Growing Open Source Seeds" href="seeds.html" /> 
+    <link rel="next" title="continuous integration" href="continuous_integration.html" />
+    <link rel="prev" title="The advantages of diversity" href="diversity.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="continuous_integration.html" title="continuous integration"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="diversity.html" title="The advantages of diversity"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
@@ -51,54 +51,70 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="mock-your-database">
-<h1>Mock your database<a class="headerlink" href="#mock-your-database" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="principle-philosophy">
+<h1>Principle Philosophy<a class="headerlink" href="#principle-philosophy" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li>your database is slow</li>
-<li>why do I care - speed - faster unit tests</li>
+<li>thoughts about the rules or belief governing one&#8217;s behaviour</li>
+<li>how can I be a good person?</li>
+<li>how can I be a good programmer?</li>
+<li>logic?</li>
+<li>black and white rules?</li>
 </ul>
-<p>naive test - create objects, get stuff from query, 8 database queries</p>
+<p>Immanuel Kant</p>
+<ul>
+<li><p class="first">reason vs instinct</p>
+</li>
+<li><dl class="first docutils">
+<dt>moral obligations</dt>
+<dd><ul class="first last simple">
+<li>duty</li>
+<li>the goal / volition</li>
+<li>universal lawfulness</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>priori vs posteriori (principles vs experience)</p>
+<p>we are the sum of our experiences</p>
 <ul class="simple">
-<li>5.2 seconds for 1000 tests on Postgres</li>
-<li>3.9 seconds for 1000 tests on sqlite</li>
+<li>so add to our experiences</li>
+<li>network experiences - shared by others eg at DjangoCon</li>
+<li>&#8220;everything looks different from the trenches&#8221;</li>
 </ul>
-<p>factoryboy doesn&#8217;t make like quicker (but does make code simpler)</p>
-<p>factoryboy build() - create but not save - but m2m fields cause trouble - got to 4 queries</p>
-<p>prefetch - factory build, give pk, build other, set _result_cache
-_prefeteched_objects_cache ... Down to 1 second, 0 database queries!
-but ugly code, and only works with all()</p>
+<p>story</p>
 <ul class="simple">
-<li>mock library - patch class, assign pk</li>
-<li>1.2 seconds, 0 database queries</li>
+<li>hated little league baseball, crap at it</li>
+<li>parents said had to play</li>
+<li>monetary incentive - home run = money</li>
+<li>worked out was doing it to keep parent&#8217;s happy - duty - not entirely bad thing</li>
 </ul>
-<p>Avoiding the database is faster - much bigger difference than between postgres and sqlite</p>
-<div class="section" id="a-better-way">
-<h2>A better way<a class="headerlink" href="#a-better-way" title="Permalink to this headline">¶</a></h2>
-<p>Carl Meyer - &#8220;Mocking the database usually isn&#8217;t worth it&#8221; (from testing
-Django talk)</p>
-<p>mock redis in python (using dict) -&gt; partly due to nice api, queryset</p>
-<p><a class="reference external" href="https://github.com/mjtamlyn/django-test-db">https://github.com/mjtamlyn/django-test-db</a></p>
-<ul class="simple">
-<li>not db at all</li>
-<li>patch queryset to provide api, but not hit db</li>
-<li>run your local tests fast, then use production db for CI</li>
-<li>prototype! do not bet granny on it</li>
+<p>lesson learned</p>
+<ul>
+<li><dl class="first docutils">
+<dt>swing for the fences</dt>
+<dd><ul class="first last simple">
+<li>big vision/dream, motivated, big risks</li>
+<li>hacker league</li>
 </ul>
-<p>Now we try the naive test again -&gt; 0 database queries, 0.7 seconds</p>
-<p>issues</p>
-<ul class="simple">
-<li>some things don&#8217;t go through queryset</li>
-<li>auto patching</li>
-<li>more filter lookups</li>
-<li>extensibility</li>
+</dd>
+</dl>
+</li>
+<li><p class="first">set reasonable goals along the way</p>
+</li>
+<li><p class="first">you suck ... and that&#8217;s totally OK</p>
+</li>
+<li><p class="first">quitting is easy - I&#8217;ve done it thousands of times - who the hell knows -&gt; at least try your best before giving up. persistence is a good thing</p>
+</li>
+<li><p class="first">build principles</p>
+</li>
+<li><p class="first">one size doesn&#8217;t fit all</p>
+</li>
+<li><p class="first">learn from experiences and share them</p>
+</li>
+<li><p class="first">...</p>
+</li>
 </ul>
-<p>future</p>
-<ul class="simple">
-<li>write code and tests naively</li>
-<li>use test-db locally for fast testing cycle</li>
-<li>deploy to CI and run same code against real DB</li>
-</ul>
-</div>
 </div>
 
 
@@ -107,23 +123,15 @@ Django talk)</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Mock your database</a><ul>
-<li><a class="reference internal" href="#a-better-way">A better way</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="seeds.html"
-                        title="previous chapter">Growing Open Source Seeds</a></p>
+  <p class="topless"><a href="diversity.html"
+                        title="previous chapter">The advantages of diversity</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="ajax.html"
-                        title="next chapter">AJAX and Django</a></p>
+  <p class="topless"><a href="continuous_integration.html"
+                        title="next chapter">continuous integration</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2013/mock_your_database.txt"
+    <li><a href="../_sources/DjangoConEurope2013/philosophy.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -150,10 +158,10 @@ Django talk)</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="continuous_integration.html" title="continuous integration"
              >next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="diversity.html" title="The advantages of diversity"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 

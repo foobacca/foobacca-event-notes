@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Class Based Views - untangling the mess &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
+    <link rel="next" title="The advantages of diversity" href="diversity.html" />
+    <link rel="prev" title="Keynote" href="keynote-day3.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="diversity.html" title="The advantages of diversity"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="keynote-day3.html" title="Keynote"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="class-based-views-untangling-the-mess">
+<h1>Class Based Views - untangling the mess<a class="headerlink" href="#class-based-views-untangling-the-mess" title="Permalink to this headline">¶</a></h1>
+<p>history</p>
+<ul class="simple">
+<li>lots of common patterns in view</li>
+<li>generic views - template, single object, list of objects, forms ...</li>
+<li>but generic views don&#8217;t allow logic insertion, limited config options ...</li>
+<li>so let&#8217;s go class based (released in Django 1.3, talked about since 1.0)</li>
+</ul>
+<p>why bad reaction?</p>
+<ul class="simple">
+<li>confusion over purpose</li>
+<li>confusion over implementation choices - complexity necessary, but not obvious why</li>
+<li>ravioli code - nicely packaged, but internals opaque, steep learning curve</li>
+<li>bad docs</li>
+</ul>
+<p>Purpose - 2 distinct but connected bodies of work</p>
+<ul>
+<li><dl class="first docutils">
+<dt>class based views</dt>
+<dd><ul class="first last simple">
+<li>class based analog of view</li>
+<li>http verb based methods</li>
+<li>get automatic code for free - OPTIONS, HEAD, HTTP 405 ...</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>class based generic views</dt>
+<dd><ul class="first last simple">
+<li>built on top of class based views</li>
+<li>analogs of the old generic views</li>
+<li>address limits of functional approach</li>
+<li>requires learning to know how and where to extend</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Implementation Choices</p>
+<ul>
+<li><p class="first">django wiki page on Class Based Views - lots of discussion archived here</p>
+</li>
+<li><dl class="first docutils">
+<dt>what does class view mean?</dt>
+<dd><ul class="first last simple">
+<li>(btw, admin is a class based view)</li>
+<li>factory classmethod, returns function that invokes dispatch()</li>
+<li>(could have done, urls.py could be either callable or class - but wanted to keep urls.py contract clear, as other things use that. trade off)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Ravioli</p>
+<ul>
+<li><p class="first">goal: replace function-based generics with class-based generic</p>
+</li>
+<li><dl class="first docutils">
+<dt>end point - series of mixins</dt>
+<dd><ul class="first last simple">
+<li>basic update view has 9 classes! wtf</li>
+<li>but then create view reuses almost all of that</li>
+<li>another single class change creates a JSON response instead of a template response</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">allows for maximum reuse</p>
+</li>
+<li><p class="first">very flexible</p>
+</li>
+<li><p class="first">easy to add mixins</p>
+</li>
+<li><p class="first">BUT you need to grok it</p>
+</li>
+<li><p class="first">bad docs originally, but much better now, and need to decide about best practice</p>
+</li>
+</ul>
+<p>Next</p>
+<ul class="simple">
+<li>better docs</li>
+<li>decide on standard way of eg login required</li>
+<li>extend</li>
+<li>experiment with API - django&#8217;s admin?</li>
+</ul>
+<p>Have we solved the wrong problem?</p>
+<ul class="simple">
+<li>multiple forms and formsets (see bug #18830 about FormCollection )</li>
+<li>conditional forms</li>
+<li>continuous scrolling, not pagination</li>
+<li>ajax support (eg in place editing)</li>
+<li>pjax</li>
+<li>multiple &#8220;actions&#8221; per page</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="keynote-day3.html"
+                        title="previous chapter">Keynote</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="diversity.html"
+                        title="next chapter">The advantages of diversity</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2013/CBVs.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="diversity.html" title="The advantages of diversity"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="keynote-day3.html" title="Keynote"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

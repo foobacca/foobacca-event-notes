@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Mock your database &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>continuous integration &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
-    <link rel="next" title="AJAX and Django" href="ajax.html" />
-    <link rel="prev" title="Growing Open Source Seeds" href="seeds.html" /> 
+    <link rel="next" title="Does your stuff scale" href="scale.html" />
+    <link rel="prev" title="Principle Philosophy" href="philosophy.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="scale.html" title="Does your stuff scale"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="philosophy.html" title="Principle Philosophy"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
@@ -51,54 +51,84 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="mock-your-database">
-<h1>Mock your database<a class="headerlink" href="#mock-your-database" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="continuous-integration">
+<h1>continuous integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h1>
+<p>lion taming / code taming</p>
+<p>old way</p>
 <ul class="simple">
-<li>your database is slow</li>
-<li>why do I care - speed - faster unit tests</li>
+<li>deploy by hand</li>
+<li>hack till it works</li>
+<li>confusion - <em>special</em> decisions</li>
 </ul>
-<p>naive test - create objects, get stuff from query, 8 database queries</p>
+<p>lion taming - understand, conditioning, behaviour -&gt; response trust</p>
 <ul class="simple">
-<li>5.2 seconds for 1000 tests on Postgres</li>
-<li>3.9 seconds for 1000 tests on sqlite</li>
+<li>understand -&gt; deploy hard</li>
+<li>conditioning -&gt; CI</li>
+<li>push -&gt; test-&gt; green</li>
+<li>happy</li>
+<li>trust - it works in live</li>
 </ul>
-<p>factoryboy doesn&#8217;t make like quicker (but does make code simpler)</p>
-<p>factoryboy build() - create but not save - but m2m fields cause trouble - got to 4 queries</p>
-<p>prefetch - factory build, give pk, build other, set _result_cache
-_prefeteched_objects_cache ... Down to 1 second, 0 database queries!
-but ugly code, and only works with all()</p>
+<p>team</p>
 <ul class="simple">
-<li>mock library - patch class, assign pk</li>
-<li>1.2 seconds, 0 database queries</li>
+<li>committed to quality</li>
+<li>everyone deploys</li>
+<li>identical environments</li>
+<li>everyone is responsible</li>
 </ul>
-<p>Avoiding the database is faster - much bigger difference than between postgres and sqlite</p>
-<div class="section" id="a-better-way">
-<h2>A better way<a class="headerlink" href="#a-better-way" title="Permalink to this headline">¶</a></h2>
-<p>Carl Meyer - &#8220;Mocking the database usually isn&#8217;t worth it&#8221; (from testing
-Django talk)</p>
-<p>mock redis in python (using dict) -&gt; partly due to nice api, queryset</p>
-<p><a class="reference external" href="https://github.com/mjtamlyn/django-test-db">https://github.com/mjtamlyn/django-test-db</a></p>
+<p>working code</p>
+<ul>
+<li><dl class="first docutils">
+<dt>tests</dt>
+<dd><ul class="first last simple">
+<li>unit, acceptance (user&#8217;s viewpoint)</li>
+<li>quick, reliable</li>
+<li>slow tests -&gt; fail</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">no pylint fail</p>
+</li>
+<li><p class="first">commit often, rollback</p>
+</li>
+<li><p class="first">both dev + qa responsible</p>
+</li>
+<li><p class="first">don&#8217;t let tests rot</p>
+</li>
+<li><p class="first">break tests - triage: right now vs asap</p>
+</li>
+</ul>
+<p>repeatable build</p>
 <ul class="simple">
-<li>not db at all</li>
-<li>patch queryset to provide api, but not hit db</li>
-<li>run your local tests fast, then use production db for CI</li>
-<li>prototype! do not bet granny on it</li>
+<li>automated</li>
+<li>no manual changes</li>
 </ul>
-<p>Now we try the naive test again -&gt; 0 database queries, 0.7 seconds</p>
-<p>issues</p>
+<p>deploy</p>
 <ul class="simple">
-<li>some things don&#8217;t go through queryset</li>
-<li>auto patching</li>
-<li>more filter lookups</li>
-<li>extensibility</li>
+<li>script &lt;env&gt; &lt;version&gt;</li>
+<li>not just code - config infrastructure</li>
+<li>always follow the pipeline - even in emergencies</li>
 </ul>
-<p>future</p>
+<p>rollback</p>
 <ul class="simple">
-<li>write code and tests naively</li>
-<li>use test-db locally for fast testing cycle</li>
-<li>deploy to CI and run same code against real DB</li>
+<li>you will break stuff!</li>
+<li>blue is the new green (blue is working on live)</li>
+<li>canary servers</li>
+<li>databasea - keep backwards compatible</li>
 </ul>
-</div>
+<p>release</p>
+<ul class="simple">
+<li>last step - automatic</li>
+<li>small changes, frequent, get experience, less risk - maybe, maybe just to staging server</li>
+</ul>
+<p>tips</p>
+<ul class="simple">
+<li>split in components</li>
+<li>rehearse releases - get very good at them</li>
+<li>manage and test infrastructure - eg test email sending</li>
+<li>all environments equal (vagrant)</li>
+<li>automate everything, if really not possible then document, but will drift</li>
+</ul>
 </div>
 
 
@@ -107,23 +137,15 @@ Django talk)</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Mock your database</a><ul>
-<li><a class="reference internal" href="#a-better-way">A better way</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="seeds.html"
-                        title="previous chapter">Growing Open Source Seeds</a></p>
+  <p class="topless"><a href="philosophy.html"
+                        title="previous chapter">Principle Philosophy</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="ajax.html"
-                        title="next chapter">AJAX and Django</a></p>
+  <p class="topless"><a href="scale.html"
+                        title="next chapter">Does your stuff scale</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2013/mock_your_database.txt"
+    <li><a href="../_sources/DjangoConEurope2013/continuous_integration.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -150,10 +172,10 @@ Django talk)</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ajax.html" title="AJAX and Django"
+          <a href="scale.html" title="Does your stuff scale"
              >next</a> |</li>
         <li class="right" >
-          <a href="seeds.html" title="Growing Open Source Seeds"
+          <a href="philosophy.html" title="Principle Philosophy"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 

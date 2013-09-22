@@ -35,6 +35,8 @@ Slides for other talks
 Some people posted links to slide on twitter for talks I didn't go to, so I've collected them here:
 
 * `Minecraft in 500 lines with pyglet`_
+* `Breaking things for money`_
+* `What we've learnt from serving 1/3 million in-browser Python consoles with Tornado`_
 * `Adventures in start up land`_ Rachel Wilmer
 * `Validated documents on mongodb with ming`_
 * `Test driven madness - video from Europython`_
@@ -44,6 +46,8 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 And the slides and notes for my talk `reducing django page sizes`_
 
 .. _`minecraft in 500 lines with pyglet`: http://www.slideshare.net/rdonkin/minecraft-in-500-lines-with-pyglet-pycon-uk
+.. _`Breaking things for money`: https://github.com/tonysimpson/pyconuk-talk-ttp
+.. _`What we've learnt from serving 1/3 million in-browser Python consoles with Tornado`: https://docs.google.com/a/aptivate.org/presentation/d/1GkidJa6KD_05krMvCgmjK3FxO9O4HyqaPJVpUp5JPQM/edit#slide=id.p
 .. _`Adventures in start up land`: http://www.slideshare.net/mobile/rwillmer/py-2013
 .. _`validated documents on mongodb with ming`: http://www.slideshare.net/__amol__/py-conuk-2013-validated-documents-on-mongodb-with-ming
 .. _`Test driven madness - video from Europython`: http://www.youtube.com/watch?v=Nj4nwh_VrPM

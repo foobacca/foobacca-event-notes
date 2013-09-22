@@ -156,7 +156,7 @@ Daniele Procide
 Orionrobots - Inspired by PyCon
 ===============================
 
-Danny Staple (?)
+Danny Watkins
 
 Inspired by PyCon UK 2012. Always been a robot nut. Now make a cheap robot and have a robot shop, sold 20 of them.
 

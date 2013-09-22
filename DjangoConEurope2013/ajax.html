@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>AJAX and Django &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
+    <link rel="next" title="Lightning talks" href="lightning-day2.html" />
+    <link rel="prev" title="Growing Open Source Seeds" href="seeds.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning talks"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="seeds.html" title="Growing Open Source Seeds"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ajax-and-django">
+<h1>AJAX and Django<a class="headerlink" href="#ajax-and-django" title="Permalink to this headline">¶</a></h1>
+<p>problems</p>
+<ul class="simple">
+<li>browser history</li>
+<li>deep linking - every page needs URL</li>
+<li>crawler visibility -&gt; SEO indexing</li>
+</ul>
+<p>hash fragment - <tt class="docutils literal"><span class="pre">domain.com/#/foo/bar/</span></tt></p>
+<ul class="simple">
+<li><ul class="first">
+<li>easy to implement</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>easy for webapps</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>bad for search engines</li>
+</ul>
+</li>
+</ul>
+<p>hash fragment - <tt class="docutils literal"><span class="pre">domain.com/#!/foo/bar/</span></tt></p>
+<ul class="simple">
+<li><ul class="first">
+<li>google replaces #! -&gt; <tt class="docutils literal"><span class="pre">?_escaped_fragment_=</span></tt>  - ajax-crawling</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>works for all browsers</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>deep links load first page and then load deeper page</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>multiple URLS for every page</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>maintain legacy urls</li>
+</ul>
+</li>
+<li>o have to use #! in your sitemap.xml</li>
+</ul>
+<p>pushstate</p>
+<ul class="simple">
+<li><ul class="first">
+<li>already done in back end, reuse URL in front end</li>
+</ul>
+</li>
+<li><ul class="first">
+<li>harder to implement on front end (browser support - but graceful degradation)</li>
+</ul>
+</li>
+</ul>
+<p>PJAX PushState Ajax</p>
+<ul class="simple">
+<li>fetch whole page source (or parts)</li>
+<li>extract specified div and update content and title</li>
+<li>push URL</li>
+</ul>
+<p>used</p>
+<ul class="simple">
+<li>django - template inheritance and filters, middleware</li>
+<li>backbone.js - router ...</li>
+</ul>
+<p>conditionally extend base.html or base_pjax.html (which is a json template)</p>
+<p>backbone handles link clicks and form submits</p>
+<p>pitfalls</p>
+<ul class="simple">
+<li>caching - json/html come from same URL -&gt; confuse browser -&gt; cache-control set vary: x-requested-with</li>
+<li>safari (and until recently chrome) ignore vary: header - workaround to put <cite>/_pjax/</cite> at start of URL</li>
+<li>redirecting</li>
+<li>handled transparently wrt XMLHttpRequest - no chance to intercept</li>
+<li>middleware to catch redirect for ajax and return code</li>
+</ul>
+<p>client side templates</p>
+<ul class="simple">
+<li>reuse server side templates if possible</li>
+<li>plate-js library can use django templates - but doesn&#8217;t have full context</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="seeds.html"
+                        title="previous chapter">Growing Open Source Seeds</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lightning-day2.html"
+                        title="next chapter">Lightning talks</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2013/ajax.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning talks"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="seeds.html" title="Growing Open Source Seeds"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

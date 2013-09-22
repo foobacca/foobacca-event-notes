@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django for rapid prototyping &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
+    <link rel="next" title="Advanced Python - metaclasses" href="advanced_python.html" />
+    <link rel="prev" title="Web of stuff" href="web_of_stuff.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="advanced_python.html" title="Advanced Python - metaclasses"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="web_of_stuff.html" title="Web of stuff"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="django-for-rapid-prototyping">
+<h1>Django for rapid prototyping<a class="headerlink" href="#django-for-rapid-prototyping" title="Permalink to this headline">¶</a></h1>
+<p>from twilio</p>
+<p>A little history</p>
+<ul class="simple">
+<li>naval battles in the American Civil War</li>
+<li>drove boats through (old) mine field in Battle of Mobile(?) Bay</li>
+<li>&#8220;damn the torpedos&#8221;</li>
+<li>sometimes the best thing to do is grit your teeth and go full speed ahead</li>
+<li>take part in lots of hackathons</li>
+<li>feed junk food and caffiene to developers and see what happens</li>
+<li>learnt a lot about prototyping (and django in that role)</li>
+<li>&#8220;throw away code&#8221; to get stuff going - but weird, we don&#8217;t normally throw code away</li>
+<li>do try to avoid &#8220;proto-duction&#8221;</li>
+</ul>
+<p>django is good for prototyping is good because:</p>
+<ul class="simple">
+<li>pedigree (built for newsroom) good for rapid getting stuff done</li>
+<li>flexible</li>
+<li>foreman is useful tool - make file</li>
+<li>two scoops project - good basic layout</li>
+<li>plato (from mozilla) - good for security, but django 1.3, uses jinja templating</li>
+</ul>
+<p>static files - django.contrib.staticfiles is good - look inside both project and application folders</p>
+<p>heroku good to get up and running quickly</p>
+<p>config management really pays off</p>
+<ul class="simple">
+<li>chef recipes for django on ubuntu precise - nginx, gunicorn, ...</li>
+<li>salt also good</li>
+</ul>
+<p>REST API</p>
+<ul>
+<li><p class="first">tasty pie</p>
+</li>
+<li><dl class="first docutils">
+<dt>django rest framework</dt>
+<dd><ul class="first last simple">
+<li>more tightly coupled</li>
+<li>bit more time to set up, but lets you work with Django Views</li>
+<li>easy browsable interface</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>social auth</p>
+<ul class="simple">
+<li>rats nest - lots of options</li>
+<li>django-social-auth seems to be the best option currently, bit of set up required</li>
+<li>django-allauth also a decent option, good for facebook</li>
+</ul>
+<p>south migrations</p>
+<p>celery as task queue is really good part of django ecosystem</p>
+<ul class="simple">
+<li>can use db as back end for small instances, rabbitmq later</li>
+<li>config mgt helps</li>
+</ul>
+<p>testing</p>
+<ul class="simple">
+<li>still need to do testing - the mistakes you make twice are the ones that kill you</li>
+<li>nose and django test client</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="web_of_stuff.html"
+                        title="previous chapter">Web of stuff</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="advanced_python.html"
+                        title="next chapter">Advanced Python - metaclasses</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2013/rapid-prototyping.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="advanced_python.html" title="Advanced Python - metaclasses"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="web_of_stuff.html" title="Web of stuff"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

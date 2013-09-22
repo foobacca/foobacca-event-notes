@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Fractal Architectures &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
+    <link rel="next" title="Getting past Django ORM limits with Postgres" href="django_orm.html" />
+    <link rel="prev" title="Play nice" href="play-nice.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="django_orm.html" title="Getting past Django ORM limits with Postgres"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="play-nice.html" title="Play nice"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="fractal-architectures">
+<h1>Fractal Architectures<a class="headerlink" href="#fractal-architectures" title="Permalink to this headline">¶</a></h1>
+<p>twitter: &#64;lvh email: <tt class="docutils literal"><span class="pre">_&#64;lvh.io</span></tt></p>
+<p>web apps without centralised data stores</p>
+<p>fractal</p>
+<ul class="simple">
+<li>app that has everything required to deal with requests</li>
+<li>server has multiple instances of app</li>
+<li>multiple servers</li>
+</ul>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">n*k</span></tt> databases!</li>
+<li>don&#8217;t we want to avoid sharding?</li>
+<li>well - if we plan to architect this way, we can work with it and it has advantages</li>
+<li>helps if most users are working with own data - eg email web UI</li>
+<li>practicality beats purity - so leave SMTP as external service (eg mailgun)</li>
+<li>persistence - use sqlite for short term instance (or axiom - object store built on top of sqlite)</li>
+<li>aside - axiom is really nice, simple, sqlite only, does migrations</li>
+<li>lvh/axiombook - docs</li>
+<li>alternatives - redis, postgres (each instance has own db) ...</li>
+<li>long term storage - need it for backup, load spreading, etc - S3 etc - dropbox?!?</li>
+<li>manhole - ssh to server, python shell with access to full server objects</li>
+<li>using twisted for async (single threaded) as axiom blocks - but sqlite is really fast</li>
+<li>local - really low latency</li>
+<li>computation is rarely the bottleneck - getting data to right place at right time is</li>
+</ul>
+<p>problems</p>
+<ul>
+<li><dl class="first docutils">
+<dt>some of my data doesn&#8217;t fit</dt>
+<dd><ul class="first last">
+<li><p class="first">aggregate data across many users</p>
+</li>
+<li><p class="first">world data used by many users</p>
+</li>
+<li><dl class="first docutils">
+<dt>solutions:</dt>
+<dd><ul class="first last simple">
+<li>duplication (for small-ish things that don&#8217;t change too much)</li>
+<li>delegation (sharded across local instance, but tight coupling)</li>
+<li>separation (have separate stores that aren&#8217;t users)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>querying across stores is hard</dt>
+<dd><ul class="first last">
+<li><p class="first">analytics -&gt; use separation</p>
+</li>
+<li><p class="first">big data -&gt; specialised tools</p>
+</li>
+<li><dl class="first docutils">
+<dt>transactions -&gt;</dt>
+<dd><ul class="first last simple">
+<li>dblink, some tools,</li>
+<li>paxos,</li>
+<li>raft (distributed algorithm)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="play-nice.html"
+                        title="previous chapter">Play nice</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="django_orm.html"
+                        title="next chapter">Getting past Django ORM limits with Postgres</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2013/fractal_architectures.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="django_orm.html" title="Getting past Django ORM limits with Postgres"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="play-nice.html" title="Play nice"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

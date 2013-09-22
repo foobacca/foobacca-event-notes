@@ -12,6 +12,9 @@ DjangoCon Europe 2013
 Django Circus
 =============
 
+Day 1
+-----
+
 .. toctree::
    :maxdepth: 2
 
@@ -25,6 +28,14 @@ Django Circus
    thread_profiling
    migrations
    pony
+   lightning-day1
+
+Day 2
+-----
+
+.. toctree::
+   :maxdepth: 2
+
    fractal_architectures
    django_orm
    web_of_stuff

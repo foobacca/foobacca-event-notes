@@ -26,6 +26,7 @@ These are the notes I've taken during the talks.  If the speaker gave a link to 
    teaching-data-science
    social-media-text-analysis
    behave
+   web-sig
 
 Slides for other talks
 ----------------------
@@ -37,5 +38,6 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * http://www.slideshare.net/__amol__/py-conuk-2013-validated-documents-on-mongodb-with-ming
 * Test driven madness has also been done at Europython - http://www.youtube.com/watch?v=Nj4nwh_VrPM
 * https://speakerdeck.com/pramttl/virtualization-with-ganeti-setting-up-your-private-cluster-on-commodity-hardware
+* Photos of flipcharts from python/js SIG - https://plus.google.com/114082814026245184396/posts/VcWhsxqr1bg
 
 And the slides and notes for my talk are at https://github.com/foobacca/reduce-django-page-size

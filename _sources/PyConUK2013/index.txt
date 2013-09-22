@@ -27,6 +27,7 @@ These are the notes I've taken during the talks.  If the speaker gave a link to 
    social-media-text-analysis
    behave
    web-sig
+   lightning
 
 Slides for other talks
 ----------------------

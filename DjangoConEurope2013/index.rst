@@ -36,6 +36,7 @@ Day 2
 .. toctree::
    :maxdepth: 2
 
+   play-nice
    fractal_architectures
    django_orm
    web_of_stuff

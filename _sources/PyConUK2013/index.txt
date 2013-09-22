@@ -33,5 +33,6 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * http://www.slideshare.net/mobile/rwillmer/py-2013 (adventures in start up land)
 * http://www.slideshare.net/__amol__/py-conuk-2013-validated-documents-on-mongodb-with-ming
 * Test driven madness has also been done at Europython - http://www.youtube.com/watch?v=Nj4nwh_VrPM
+* https://speakerdeck.com/pramttl/virtualization-with-ganeti-setting-up-your-private-cluster-on-commodity-hardware
 
 And my slides and notes are at https://github.com/foobacca/reduce-django-page-size

@@ -3,6 +3,7 @@ Mining Python Software
 ======================
 
 * Sarah Mount
+* http://www.slideshare.net/snim2/mining-pythonsoftwarepyconuk13
 
 What do we know about software?
 ===============================

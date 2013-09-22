@@ -182,7 +182,8 @@ http://stackoverflow.com/questions/17259232/how-do-i-programmatically-find-the-p
 Enumerated data types in Python
 ===============================
 
-Simon Sapin, @SimonSapin
+* Simon Sapin, @SimonSapin
+* http://exyr.org/2013/algebraic-sum-types-python/slides.pdf
 
 types:
 

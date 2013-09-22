@@ -40,10 +40,19 @@ Day 2
    fractal_architectures
    django_orm
    web_of_stuff
-   bleed_for_speed
+   rapid-prototyping
    advanced_python
    seeds
    mock_your_dtabase
+   ajax
+   lightning-day2
+
+Day 3
+-----
+
+.. toctree::
+   :maxdepth: 2
+
    CBVs
    dynamic_models
    prehistoric_python

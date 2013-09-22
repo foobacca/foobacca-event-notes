@@ -33,11 +33,20 @@ Slides for other talks
 
 Some people posted links to slide on twitter for talks I didn't go to, so I've collected them here:
 
-* http://www.slideshare.net/rdonkin/minecraft-in-500-lines-with-pyglet-pycon-uk
-* http://www.slideshare.net/mobile/rwillmer/py-2013 (adventures in start up land)
-* http://www.slideshare.net/__amol__/py-conuk-2013-validated-documents-on-mongodb-with-ming
-* Test driven madness has also been done at Europython - http://www.youtube.com/watch?v=Nj4nwh_VrPM
-* https://speakerdeck.com/pramttl/virtualization-with-ganeti-setting-up-your-private-cluster-on-commodity-hardware
-* Photos of flipcharts from python/js SIG - https://plus.google.com/114082814026245184396/posts/VcWhsxqr1bg
+* `Minecraft in 500 lines with pyglet`_
+* `Adventures in start up land`_ Rachel Wilmer
+* `Validated documents on mongodb with ming`_
+* `Test driven madness - video from Europython`_
+* `virtualization with ganeti setting up your private cluster on commodity hardware`_
+* `Photos of flipcharts from python/js SIG`_
 
-And the slides and notes for my talk are at https://github.com/foobacca/reduce-django-page-size
+And the slides and notes for my talk `reducing django page sizes`_
+
+.. _`minecraft in 500 lines with pyglet`: http://www.slideshare.net/rdonkin/minecraft-in-500-lines-with-pyglet-pycon-uk
+.. _`Adventures in start up land`: http://www.slideshare.net/mobile/rwillmer/py-2013
+.. _`validated documents on mongodb with ming`: http://www.slideshare.net/__amol__/py-conuk-2013-validated-documents-on-mongodb-with-ming
+.. _`Test driven madness - video from Europython`: http://www.youtube.com/watch?v=Nj4nwh_VrPM
+.. _`virtualization with ganeti setting up your private cluster on commodity hardware`: https://speakerdeck.com/pramttl/virtualization-with-ganeti-setting-up-your-private-cluster-on-commodity-hardware
+.. _`Photos of flipcharts from python/js SIG`: https://plus.google.com/114082814026245184396/posts/VcWhsxqr1bg
+
+.. _`reducing django page sizes`: https://github.com/foobacca/reduce-django-page-size

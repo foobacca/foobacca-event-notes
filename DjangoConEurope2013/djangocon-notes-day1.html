@@ -1,0 +1,334 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django Circus Notes (Day 1) &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="django-circus-notes-day-1">
+<h1>Django Circus Notes (Day 1)<a class="headerlink" href="#django-circus-notes-day-1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="kopernik">
+<h2>Kopernik<a class="headerlink" href="#kopernik" title="Permalink to this headline">¶</a></h2>
+<p>(&#64;brandon_rhodes ...)</p>
+<p>change your perspective, change the centre of your universe</p>
+<ul class="simple">
+<li>revolve around functional core, not around I/O - cf Gary Bernhardt
+&#8220;Boundaries&#8221;, &#8220;The Clean Architecture&#8221;, &#8220;Faux O&#8221; etc</li>
+<li>docopt - revolve around the doc string for your cmd line options</li>
+<li>django - revolve around business logic, not webserver logic</li>
+</ul>
+</div>
+<div class="section" id="circus">
+<h2>Circus<a class="headerlink" href="#circus" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://blog.ziade.org/slides/djangocon2012/circus.html">http://blog.ziade.org/slides/djangocon2012/circus.html</a></p>
+<p>(mozilla guy, tarek, site <a class="reference external" href="http://circus.io/">http://circus.io/</a> )</p>
+<p>typical set up - nginx, gunicorn, django, celery Supervision tools -
+supervisord but missing features -&gt; circus built on - psutil - nice lib
+- zeromq, PyZMQ (inc event loop from tornado) - ... we can replace
+gunicorn with circus, using <a class="reference external" href="http://chausette.readthedocs.org">http://chausette.readthedocs.org</a> - circus
+manages tcp socket binding, wsgi and django processes directly -
+benchmark to faaster than gunicorn + gevent</p>
+</div>
+<div class="section" id="processing-payments">
+<h2>Processing Payments<a class="headerlink" href="#processing-payments" title="Permalink to this headline">¶</a></h2>
+<p>Threats: - XSS - Phishing - SQL injection - remote execution - ourselves</p>
+<p>OWASP - detection points - good checklist of things to think about</p>
+<p>XSS - Content Security Policy - whitelist where js will be executed -
+Moz DN docs navigator.mozPay -&gt; web standards database, problem of
+anonymising data -&gt; second database encrypt some fields -
+django-aesfield proxy manages credentials, solitude manages database,
+provides API to Marketplace which manages transaction data proxy is SOAP
+proxy that uses lxml to parse xml and insert credentials</p>
+<p>don&#8217;t use http request directly and then have to deal with HTTP in
+business logic curling - wrapper around slumber</p>
+<p>django-paranoia - allow everything to go through, but tell &#8220;security&#8221; -
+ParanoidForm - check if extra form fields -&gt; log - check if fewer form
+fields -&gt; log - check if form contains ascii character less than 32
+(except ) - changes during session - user agent - ip address (can be
+legit, eg mobile -&gt; reverse geo ip look up)</p>
+</div>
+<div class="section" id="the-imaginative-programmer">
+<h2>The Imaginative Programmer<a class="headerlink" href="#the-imaginative-programmer" title="Permalink to this headline">¶</a></h2>
+<p>Zed Shaw</p>
+<p>stories design education is broken (funny) rants about not being taken
+seriously in one area because of something else he does (often
+programming)</p>
+<p>I propose we hack creativity and make it worthless</p>
+<p>4 types no imagination, technique - stereotype of nerd programmer
+imagination, no technique - biz dreamer no imagination, no technique -
+doesn&#8217;t exist imagination, technique - the goal</p>
+<p>Process 1. imagine - problem, &#8220;itch&#8221; 2. establish a concept - some form
+of constraint 3. research technologies and tools - do research or you&#8217;ll
+pay later 4. Regine the Concept Through Composition - mark what&#8217;s in and
+what&#8217;s out 5. Explore through prototype - work on paper, throw away code
+6. Make it Real</p>
+<p>We are programmers, everything is recursize &#8216;top down&#8217; v &#8216;bottom up&#8217; is
+really &#8216;concept&#8217; v &#8216;technique&#8217;</p>
+<ul class="simple">
+<li>take a notebook with you (email ideas to yourself)</li>
+<li>fear of failure is the biggest killer of new ideas</li>
+<li>create a &#8216;place&#8217; or a trigger that gives you permission to fail</li>
+<li>beginning of critical thinking in composition, definite after
+prototype</li>
+<li>talk to others about your ideas help, solitude best for dev ideas</li>
+</ul>
+</div>
+<div class="section" id="advanced-postgresql">
+<h2>Advanced PostgreSQL<a class="headerlink" href="#advanced-postgresql" title="Permalink to this headline">¶</a></h2>
+<p>database agnosticim is expensive enjoy your database</p>
+<p>custom types - many built in types - eg case insensitive text -&gt; citext
+- attributes you want to add occasionally (sparse) -&gt; hstore (dict-like)
+- do queries etc - json type - validated going in, more features coming
+in 9.3 - UUID - good for index if merging in data from other sources -
+ipv4 and ipv6 addresses - cidr comparisons - interval - store time
+intervals directly in db - define your own types! and then have custom
+indexes! - easy to integrate into Django - psycopg2, Field class,
+formfield and widget</p>
+<p>custom indexes - partial index - index subset of rows - eg most rows
+archived, only index active rows -&gt; smaller faster index - multicolumn
+index - expression index - eg index on just year of date field</p>
+<p>custom SQL -lso add python version check bootstrap_requirements.py
+customuse .sql inclusion mechanism -&gt; requires each statement be on one
+lien - use south</p>
+<p>custom constraints - foreign key constraints implemented in ORM - push
+constraints into DB where possible - blocks bad data ... - add
+constraints with south - exclusion constraints - eg non-intersecting
+time ranges and same room</p>
+<p>raw SQL - joining more than three tables -&gt; use raw SQL - don&#8217;t fall
+back into multiple query sets and iteration - django can still return
+model objects - full text search, geometric searches - complex joins
+that return a subset of lots of objects for view purposes - put SQL in
+the manager or the model - stored procedures (added by south)</p>
+</div>
+<div class="section" id="recommendations">
+<h2>Recommendations<a class="headerlink" href="#recommendations" title="Permalink to this headline">¶</a></h2>
+<p>slides - <a class="reference external" href="http://aniav.github.io/circus">http://aniav.github.io/circus</a></p>
+<p>-&gt; estimating ratings/preferences for items not seen by that user
+collabarative recommendations - similar users content based
+recommendations - similar content hybrid methods</p>
+</div>
+<div class="section" id="combine-js-and-django">
+<h2>Combine JS and Django<a class="headerlink" href="#combine-js-and-django" title="Permalink to this headline">¶</a></h2>
+<p>use JS frameworks - app structure, testability, productivity</p>
+<p>why not backbone? - lack of bindings - no reusable views - models are
+poor</p>
+<p>trying angular and ember instead, not sure which will win</p>
+<p>requireJS gives - easy Coffeescript integration - modular code - builder
+- uglifier</p>
+<p>django-require gives coffeescript integration (similar to
+django-pipeline) django-rest-framework good django-storages - static
+files</p>
+</div>
+<div class="section" id="profiling">
+<h2>Profiling<a class="headerlink" href="#profiling" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://speakerdeck.com/amjith/thread-profiling-in-python">https://speakerdeck.com/amjith/thread-profiling-in-python</a></p>
+<p>cprofile is easy to use run snake run - visualise cprofile output but in
+production, cprofile is too slow (100% overhead) in production, do
+targeted profiling - pick particular functions New Relic do this for
+django, flask, bottle - view handlers, sql calls - but can end up with
+&#8220;Application code&#8221; being it all</p>
+<p>statistical profiler interrupt -&gt; inquire -&gt; collate interrupt - see
+what function is being run when you interrupt inquire - get stack trace
+collate - store and then generate reports</p>
+<p>INTERRUPT by unix signals OR background thread</p>
+<p>unix socket + v accurate - unix only - ignored in mod_wsgi - can&#8217;t
+interrupt C extensions</p>
+<p>threads + cross platform + mod_wsgi compatible - inaccurate for CPU
+heavy tasks - can&#8217;t interrupt C extension</p>
+<p>** talk - how the GIL works in python by ???</p>
+<p>COLLATE</p>
+<p>dictionary - key is tuple of file, line no, function - no context call
+tree - preserve context</p>
+<p>existing tools - statprof - signals, cli - PLOP - signals, D3 call graph
+- New Relic - threads, GUI</p>
+</div>
+<div class="section" id="migrating-the-future">
+<h2>Migrating the Future<a class="headerlink" href="#migrating-the-future" title="Permalink to this headline">¶</a></h2>
+<p>Andrew Godwin, South, <a class="reference external" href="mailto:andrew&#37;&#52;&#48;aeracode&#46;org">andrew<span>&#64;</span>aeracode<span>&#46;</span>org</a> (slides have lots of good
+diagrams) - <a class="reference external" href="http://speakerdeck.com/andrewgodwin/migrating-the-future">http://speakerdeck.com/andrewgodwin/migrating-the-future</a>
+<a class="reference external" href="https://github.com/andrewgodwin/django/tree/schema-alteration/">https://github.com/andrewgodwin/django/tree/schema-alteration/</a> blog
+aeracode.org/category/django-diaries/</p>
+<p>Why replace south? - 5 years of learning - poor vcs branching, and
+merging - huge migration file size - migrations sets get too large</p>
+<p>south -&gt; - django.db.migrations - migration commands etc -
+django.db.backends.schema - SQL generation, db abstraction</p>
+<p>Changes: - new migration format - declarative - so work out state from
+previous migrations - dependencies - so if two migrations are created on
+parallel branches, it still works - dependencies explicitly stated in
+files - create merge migration, or ask - squashing (of many old
+migrations) - complications with dependencies between apps</p>
+<p>Field API changes coming up - might be backwards incompatible ...</p>
+</div>
+<div class="section" id="having-your-pony-and-committing-it-too">
+<h2>Having your pony and committing it too<a class="headerlink" href="#having-your-pony-and-committing-it-too" title="Permalink to this headline">¶</a></h2>
+<p>Jacob Burch Basically, getting commits accepted into core django</p>
+<p>&#8216;Max Weber describes politics as &#8220;the slow boring of hard boards&#8221;. Open
+Source is the same.&#8217;</p>
+<p>passion and perspective be on top of things and be patient confident and
+humble</p>
+<p>First: - fork <a class="reference external" href="https://github.com/django/django/">https://github.com/django/django/</a> - git clone -
+./runtests.py &#8211;settings=test_sqlite - Do not pass GO until tests run</p>
+<p>bug fix: - start with a test case - very important - test against
+regressions - not necessarily free from discussion</p>
+<p>major contributions (and tbh, minor additions) - search trac - search
+django-developers - become familiar with the code in the area you&#8217;re
+changing</p>
+<p>proposing a change - be humble - expect it to take a while - respect the
+coding style - have tests</p>
+<p>Review - your ego is <em>not</em> on the line - humility - no really - you are
+not your code - patience - pro-active - send polite, friendly follow up
+messages often</p>
+</div>
+<div class="section" id="lightning-talks">
+<h2>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="geek-girls-carrots">
+<h3>geek girls carrots<a class="headerlink" href="#geek-girls-carrots" title="Permalink to this headline">¶</a></h3>
+<p>11 cities, 4 special meetings, 1 sprint, 5 kinds of workshops using
+facebook promote women in new tech educate women in programming etc
+workshop - 10 mentors, 23 participants competitions why django -
+community in Warsaw</p>
+</div>
+<div class="section" id="don-t-be-afraid-to-commit">
+<h3>Don&#8217;t be afraid to commit<a class="headerlink" href="#don-t-be-afraid-to-commit" title="Permalink to this headline">¶</a></h3>
+<p>dont-be-afraid-to-commit.rtfd.com</p>
+<p>People have great ideas but often don&#8217;t work efficiently, lack expertise
+and/or confidence workspace set up -&gt; virtualenv code -&gt; version control
+&#8220;needs test and docs&#8221; -&gt; learn confidence -&gt; having a way in</p>
+<p>so come to workshop at start of the sprints - 11am Saturday</p>
+</div>
+<div class="section" id="elasticsearch">
+<h3>Elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h3>
+<p>full text search, optional structured faceting percolator - akin to a
+trigger, if document added matches stored query, trigger action</p>
+</div>
+<div class="section" id="stop-writing-settings-files">
+<h3>stop writing settings files<a class="headerlink" href="#stop-writing-settings-files" title="Permalink to this headline">¶</a></h3>
+<p>&#64;brutasse <a class="reference external" href="https://speakerdeck.com/brutasse/stop-writing-settings-files">https://speakerdeck.com/brutasse/stop-writing-settings-files</a></p>
+<p>local_settings - can be limiting multiple settings file import from
+base_settings.py (or settings/base.py) and use
+<tt class="docutils literal"><span class="pre">./manage.py</span> <span class="pre">--settings=settings/staging.py</span></tt> 12factor.net - no
+settings in code derive settings from environment variables - 13
+settings daemontools envdir - help manage env variables in development
+environment - files in version control with env settings envdir in your
+manage.py also possible</p>
+</div>
+<div class="section" id="teaching-2-0">
+<h3>Teaching 2.0<a class="headerlink" href="#teaching-2-0" title="Permalink to this headline">¶</a></h3>
+<p>now - pdf next - use github, text etc in .rst files - students have
+added pull requests</p>
+<p>big idea - see students as partners in collaborative engagement -
+learning from each other - like open source!</p>
+</div>
+<div class="section" id="configuring-python-environments-with-puppet">
+<h3>Configuring Python environments with Puppet<a class="headerlink" href="#configuring-python-environments-with-puppet" title="Permalink to this headline">¶</a></h3>
+<p>test pycharm on different environments
+<a class="reference external" href="https://github.com/traff/python.pp">https://github.com/traff/python.pp</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django Circus Notes (Day 1)</a><ul>
+<li><a class="reference internal" href="#kopernik">Kopernik</a></li>
+<li><a class="reference internal" href="#circus">Circus</a></li>
+<li><a class="reference internal" href="#processing-payments">Processing Payments</a></li>
+<li><a class="reference internal" href="#the-imaginative-programmer">The Imaginative Programmer</a></li>
+<li><a class="reference internal" href="#advanced-postgresql">Advanced PostgreSQL</a></li>
+<li><a class="reference internal" href="#recommendations">Recommendations</a></li>
+<li><a class="reference internal" href="#combine-js-and-django">Combine JS and Django</a></li>
+<li><a class="reference internal" href="#profiling">Profiling</a></li>
+<li><a class="reference internal" href="#migrating-the-future">Migrating the Future</a></li>
+<li><a class="reference internal" href="#having-your-pony-and-committing-it-too">Having your pony and committing it too</a></li>
+<li><a class="reference internal" href="#lightning-talks">Lightning Talks</a><ul>
+<li><a class="reference internal" href="#geek-girls-carrots">geek girls carrots</a></li>
+<li><a class="reference internal" href="#don-t-be-afraid-to-commit">Don&#8217;t be afraid to commit</a></li>
+<li><a class="reference internal" href="#elasticsearch">Elasticsearch</a></li>
+<li><a class="reference internal" href="#stop-writing-settings-files">stop writing settings files</a></li>
+<li><a class="reference internal" href="#teaching-2-0">Teaching 2.0</a></li>
+<li><a class="reference internal" href="#configuring-python-environments-with-puppet">Configuring Python environments with Puppet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2013/djangocon-notes-day1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

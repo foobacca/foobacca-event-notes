@@ -1,0 +1,361 @@
+djangocon day 3
+===============
+
+Keynote
+-------
+
+@pydanny
+
+traditional to rant about django in keynote
+
+more +ve - pull requests - running events - writing books
+
+this talk is about why "Django is awesome"
+
+1. django is everywhere
+2. python has a style guide (and the zen of python)
+3. awesome API - understandable, conventions (though boring)
+
+-  pro-tip: while Fat Models are great, they can become obese -> break
+   code into helper functions
+-  api conventions encourage clean design
+-  we don't fight about architecture, get things done
+
+4. django views are functions
+5. awesome longevity
+
+-  slow deprecation
+
+6. awesome features
+
+-  admin ...
+-  pro-tip: django.contrib.admin + NoSQL - DON'T DO IT - write from
+   scratch
+
+7. Django's full stack is awesome
+
+-  dominates hackathons
+-  lots of companies just use stock Django/python and nothing else
+
+8. 3rd party package ecosystem
+9. awesome documentation 10 django is humble
+
+-  critical talks, shape the code, shape the community 11 generosity
+
+Class Based Views - untangling the mess
+---------------------------------------
+
+history - lots of common patterns in view - generic views - template,
+single object, list of objects, forms ... - but generic views don't
+allow logic insertion, limited config options ... - so let's go class
+based (released in Django 1.3, talked about since 1.0)
+
+why bad reaction? - confusion over purpose - confusion over
+implementation choices - complexity necessary, but not obvious why -
+ravioli code - nicely packaged, but internals opaque, steep learning
+curve - bad docs
+
+Purpose - 2 distinct but connected bodies of work - class based views -
+class based analog of view - http verb based methods - get automatic
+code for free - OPTIONS, HEAD, HTTP 405 ... - class based generic views
+- built on top of class based views - analogs of the old generic views -
+address limits of functional approach - requires learning to know how
+and where to extend
+
+Implementation Choices - django wiki page on Class Based Views - lots of
+discussion archived here - what does class view mean? - (btw, admin is a
+class based view) - factory classmethod, returns function that invokes
+dispatch() - (could have done, urls.py could be either callable or class
+- but wanted to keep urls.py contract clear, as other things use that.
+trade off)
+
+Ravioli - goal: replace function-based generics with class-based generic
+- end point - series of mixins - basic update view has 9 classes! wtf -
+but then create view reuses almost all of that - another single class
+change creates a JSON response instead of a template response - allows
+for maximum reuse - very flexible - easy to add mixins - BUT you need to
+grok it - bad docs originally, but much better now, and need to decide
+about best practice
+
+Next - better docs - decide on standard way of eg login required -
+extend - experiment with API - django's admin?
+
+Have we solved the wrong problem? - multiple forms and formsets (see bug
+#18830 about FormCollection ) - conditional forms - continuous
+scrolling, not pagination - ajax support (eg in place editing) - pjax -
+multiple "actions" per page
+
+================== Morning Break =================
+
+The advantages of diversity
+---------------------------
+
+communities - watched what works well and doesn't over many years open
+source is great - building amazing software infrastructure
+
+live in a multi-dimensional world - often define line and put people
+along it - but ultimately hard to ignore
+
+good/bad, republican/democrat, python/ruby, friend/stranger,
+native/foreigner ...
+
+"you always know where you are with a bigot"
+
+issue is polarisation - good = preferred value - bad = any other value
+
+Venn-diagram world view - still either inside or outside
+
+tolerance - requires respect for others point of view - value range of
+opinions - "you tell me your truth and I'll tell you mine" Bevan - admit
+we might be wrong occasionally
+
+open source not representative - even of tech industry - some feel this
+is fine, more comfortable - yet ignores huge swathes of people who could
+help - a project's single greatest asset is its people
+
+if we're not welcoming, we're exclusionary
+
+we're all limited, danger of groupthink
+
+programmers tend to ignore roles outside of s/w dev and design - docs -
+django stands out, even python docs could be a lot better - plenty of
+other important roles to round out large tech projects - expand
+diversity to help us fill the roles
+
+open source projects are generally not professionally run
+
+python website update coming - make it easier for contributors to update
+the sections they contribute to
+
+we do have a good community, but need to avoid being smug and complacent
+
+Principle Philosophy
+--------------------
+
+thoughts about the rules or belief governing one's behaviour how can I
+be a good person? how can I be a good programmer?
+
+logic? black and white rules?
+
+Immanuel Kant reason vs instinct moral obligations - duty - the goal /
+volition - universal lawfulness
+
+priori vs posteriori (principles vs experience)
+
+we are the sum of our experiences - so add to our experiences - network
+experiences - shared by others eg at DjangoCon - "everything looks
+different from the trenches"
+
+story - hated little league baseball, crap at it - parents said had to
+play - monetary incentive - home run = money - worked out was doing it
+to keep parent's happy - duty - not entirely bad thing
+
+lesson learned
+
+-  swing for the fences
+-  big vision/dream, motivated, big risks
+-  hacker league
+-  set reasonable goals along the way
+-  you suck ... and that's totally OK
+-  quitting is easy - I've done it thousands of times - who the hell
+   knows -> at least try your best before giving up. persistence is a
+   good thing
+
+-  build principles
+-  one size doesn't fit all
+-  learn from experiences and share them
+-  ...
+
+====== LUNCH =======
+
+continuous integration
+----------------------
+
+lion taming / code taming
+
+old way
+
+-  deploy by hand
+-  hack till it works
+-  confusion - *special* decisions
+
+lion taming - understand, conditioning, behaviour -> response trust
+
+-  understand -> deploy hard
+-  conditioning -> CI
+-  push -> test-> green
+-  happy
+-  trust - it works in live
+
+team - committed to quality - everyone deploys - identical environments
+- everyone is responsible
+
+working code - tests - unit, acceptance (user's viewpoint) - quick,
+reliable - slow tests -> fail - no pylint fail - commit often, rollback
+- both dev + qa responsible - don't let tests rot - break tests -
+triage: right now vs asap
+
+repeatable build - automated - no manual changes
+
+deploy - script - not just code - config infrastructure - always follow
+the pipeline - even in emergencies
+
+rollback - you will break stuff! - blue is the new green (blue is
+working on live) - canary servers - databasea - keep backwards
+compatible
+
+release - last step - automatic - small changes, frequent, get
+experience, less risk - maybe, maybe just to staging server
+
+tips - split in components - rehearse releases - get very good at them -
+manage and test infrastructure - eg test email sending - all
+environments equal (vagrant) - automate everything, if really not
+possible then document, but will drift
+
+Does your stuff scale
+---------------------
+
+p.ota.to grew from 1 developer to 70 - with django and google app engine
+
+scalability - load - functional - add more features without too much
+effort - organisational - do more, hire better people - geographic
+
+django and google app engine
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+why? - auto-scaling - services and APIs - no sys admin
+
+caveats - sandbox - can't run ``pip install`` - file system - block
+store, but no traditional fs - portability - lock in?
+
+options for g a e - django-nonrel - django fork with nosql back end -
+shallow learning curve, more reusable - BUT familiarity can be
+misleading, can feel 'heavy'/kludgy - djappengine - built in to app
+engine, use appengine data store directly - "best of both worlds", use
+NDB - learning curve steeper, not portable - app engine + cloud sql -
+google's version of django - fully supported django - relational
+database - more set up, not as scalable as other options
+
+technical scaling
+~~~~~~~~~~~~~~~~~
+
+load - planning - caching - offline tasks - preparation - load tests,
+profiling
+
+functional - django! - app engine - services/apis - memcache, email,
+search, images ... - versioning - 10 testable versions per app - A/B
+testing, traffic splitting - sdk
+
+scaling organisation and culture
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  organisational
+-  be a minimalist
+-  remove bottlenecks and overhead
+-  autonomy
+-  build lots of small apps internally - just do it
+-  "just make good things"
+
+-  geographic
+-  build and deploy from anywhere - trains, pubs, beaches
+
+Dynamic Models in Django
+------------------------
+
+classic - models defined in development - inflexible
+
+use cases - custom content types for CMS eg. add end date - customised
+products for an ecommerce shop - clinical research forms
+
+config by domain experts is better than code customisation by developers
+dynamic models reduce the number of deployment cycles
+
+As a user I - want to maintain my dynamic models easily with
+understanding django - don't want to care what is static or dynamic -
+search across both
+
+As a developer - want dynamic models to be integrated (admin,
+migrations, reversion ...) - want to apply same API as for static - any
+db - customisable front end
+
+criteria - performance - query-bility - standard tools - suuprted
+backend - complexity/maintainability
+
+EAV - put attribute pairs in rows - django-eav and eav-django - not
+great performance
+
+serialise dictionaries - django-djsonfield - django-picklefield -
+django-dynamic-model
+
+runtime schema updates - use south etc - dynamic-models, django-dymo,
+django-dynamo - all proof of concept really - django-mutant - most
+mature currently
+
+database specific - hstore - nosql
+
+Lightning Talks
+---------------
+
+html5lib
+~~~~~~~~
+
+Now at version 1.0, supports python 3
+
+scrapy
+~~~~~~
+
+-  screen scraping library
+-  built on twisted
+-  parses badly formed html nicely for you
+-  batteries included, good docs ...
+-  makes web spiders dead easy to write
+
+Get kids to learn online
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+started by offering money - counterproductive extrinsic vs intrinsic try
+doing both? 3 groups - control - reward every time - 10% less quantity,
+lower quality - random rewards, might help a bit
+
+django-fluent-pages
+~~~~~~~~~~~~~~~~~~~
+
+django-fluent.org
+
+deploy tools
+~~~~~~~~~~~~
+
+mana, git-deploy, capistrano
+
+invisible and intentional mgt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+care about people - push to be best they can - keep them excited reward
+team work be invisible autonomy - give freedom and responsibility to
+share status and ... experiment find your team
+
+mini-lightning talks
+~~~~~~~~~~~~~~~~~~~~
+
+relationships - you are not with the perfect person - commit to the
+person and make it good - same goes for software
+
+evildmp/django-inspector - ./manage.py follow\_all\_links -> report
+
+SPDY
+~~~~
+
+django over spdy put it in jython - use java container that already
+supports SPDY much faster for many small items
+
+make site load faster
+~~~~~~~~~~~~~~~~~~~~~
+
+connection pooling (db) cache templates (django-crispy-forms uses lots
+of template fragments) - use template loaders pjax - jquery-pjax and
+django-easy-pjax
+
+salt stack
+~~~~~~~~~~
+
+minions command line and files

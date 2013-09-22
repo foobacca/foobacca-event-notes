@@ -13,6 +13,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   DjangoConEurope2013/index
    PyConUK2013/index
 
 

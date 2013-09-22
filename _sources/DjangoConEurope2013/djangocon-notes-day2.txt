@@ -1,0 +1,475 @@
+Djangocon day 2
+===============
+
+Play nice
+---------
+
+How to write reusable apps
+
+use model inheritance make sure you display your models properly
+
+::
+
+    def render(obj, template_name, ...):
+        template_list = (
+          '%s/%s' % (obj._meta, template_name),
+          template_name
+        )
+
+pip install app\_data app\_data.AppDataField - json, register namespaces
+in json dicts app\_data.MultiForm, app\_data...
+
+keep defaults sane
+
+Fractal Architectures
+---------------------
+
+twitter: @lvh email: ``_@lvh.io``
+
+web apps without centralised data stores
+
+fractal - app that has everything required to deal with requests -
+server has multiple instances of app - multiple servers
+
+``n*k`` databases! don't we want to avoid sharding? well - if we plan to
+architect this way, we can work with it and it has advantages helps if
+most users are working with own data - eg email web UI practicality
+beats purity - so leave SMTP as external service (eg mailgun)
+persistence - use sqlite for short term instance (or axiom - object
+store built on top of sqlite)
+
+aside - axiom is really nice, simple, sqlite only, does migrations
+lvh/axiombook - docs alternatives - redis, postgres (each instance has
+own db) ...
+
+long term storage - need it for backup, load spreading, etc - S3 etc -
+dropbox?!? manhole - ssh to server, python shell with access to full
+server objects using twisted for async (single threaded) as axiom blocks
+- but sqlite is really fast local - really low latency computation is
+rarely the bottleneck - getting data to right place at right time is
+
+problems - some of my data doesn't fit - aggregate data across many
+users - world data used by many users -> solutions: - duplication (for
+small-ish things that don't change too much) - delegation (sharded
+across local instance, but tight coupling) - separation (have separate
+stores that aren't users)
+
+-  querying across stores is hard
+-  analytics -> use separation
+-  big data -> specialised tools
+-  transactions ->
+
+   -  dblink, some tools,
+   -  paxos,
+   -  raft (distributed algorithm)
+
+Getting past Django ORM limits with Postgres
+--------------------------------------------
+
+"postgres is the emacs of databases"
+
+postgres has many many data types - but django does least common
+denominator across supported dbs Indexes - lots of variety - CREATE
+INDEX CONCURRENTLY array type - eg good for tags
+
+pip install djorm-ext-pgarray djorm-ext-expressions user ArrayField,
+SqlExpression
+
+extensions - dblink - link between db instances - citext - case
+insensitive - fuzzy string matching - hstore - key/value store within
+postgres - create as column - django\_hstore support it -
+hstore.Manager(), hstore.DictField() ... - json - pg 9.2 can use PLV8 -
+pg 9.3 more powerful - ... (many more)
+
+queueing - celery can kill database - pg has pub/sub queue - celery
+backend - trunk - uses pg queue stuff
+
+text search - pg has rich full text search - import djorm\_pgfulltext -
+SearchManager, VectorField ... mymodel.objects.search(...)
+
+indexes - btree, generalised inverted index (GIN), generalised search
+tree (GIST), k nearest neighbours (KNN), space partitioned GIST
+(SP-GIST) ... !! - btree as default - GIN - multiple values in one
+column (array/hstore) - GIST - full text, shapes, GIS
+
+geospatial - shape types - geodjango
+
+read only - flip site into read only mode - do migrations! -
+django-db-tools - dbtools.middleware.ReadOnlyMiddleware,
+settings.READ\_ONLY\_MODE (or from environment variable ...) - null user
+session, disable database ...
+
+connections - psycopg2:connect - no persistent connections until 1.6 -
+can use pg bouncer - django-postgrespool, djorm-ext-pool, django-db-pool
+
+Web of stuff
+------------
+
+@zackwurst
+
+Possibilities
+~~~~~~~~~~~~~
+
+li'l data - the teensy - $19, board with 32 bit ARM chip, tiny analogy
+with body - sensors interating with world, feeding data into cloud how
+to bridge the gap? (otherwise your app is a "brain in a tank") eg
+bergcloud - small thermal printer that talks to cloud and prints your
+info for the day twilio - send information by SMS
+
+demo - chips - arduino, gsm modem, rfid reader - connect to laptop using
+USB - read rfid, send tag id over SMS - go via twilio to django app -
+django sends message to foursquare
+
+personal development
+~~~~~~~~~~~~~~~~~~~~
+
+-  everyone thinks that they are "above average" (doning/kruger effect
+   (mis spelt))
+-  confidence drops as you get better - "shit, there is so much to
+   learn, I know nothing"
+-  "Burnout is caused when you repeatedly make large amounts of
+   sacrifice and or effort into high-risk problems that fail. It's the
+   result of a negative prediction error in the nucleus accumbens. You
+   effectively condition your brain to associate work with failure." -
+   Isaac Yonemoto
+
+gap between tutorials and reference material can hit the wall when
+getting to intermediate leveI learn how to help people past the middle
+level
+
+Django for rapid prototyping
+----------------------------
+
+from twilio
+
+A little history - naval battles in the American Civil War - drove boats
+through (old) mine field in Battle of Mobile(?) Bay - "damn the
+torpedos" -> sometimes the best thing to do is grit your teeth and go
+full speed ahead
+
+take part in lots of hackathons feed junk food and caffiene to
+developers and see what happens learnt a lot about prototyping (and
+django in that role) "throw away code" to get stuff going - but weird,
+we don't normally throw code away do try to avoid "proto-duction"
+
+django is good for prototyping is good because: - pedigree (built for
+newsroom) good for rapid getting stuff done - flexible
+
+foreman is useful tool - make file two scoops project - good basic
+layout plato (from mozilla) - good for security, but django 1.3, uses
+jinja templating
+
+static files - django.contrib.staticfiles is good - look inside both
+project and application folders
+
+heroku good to get up and running quickly
+
+config management really pays off - chef recipes for django on ubuntu
+precise - nginx, gunicorn, ... - salt also good
+
+REST API - tasty pie - django rest framework - more tightly coupled -
+bit more time to set up, but lets you work with Django Views - easy
+browsable interface
+
+social auth - rats nest - lots of options - django-social-auth seems to
+be the best option currently, bit of set up required - django-allauth
+also a decent option, good for facebook
+
+south migrations
+
+celery as task queue is really good part of django ecosystem - can use
+db as back end for small instances, rabbitmq later - config mgt helps
+
+testing - still need to do testing - the mistakes you make twice are the
+ones that kill you - nose and django test client
+
+LUNCH TIME
+==========
+
+Advanced prog - metaclasses
+---------------------------
+
+github.com/ingleby/prescons
+
+metaclass
+
+Examples: - add base\_fields attribute to Django models - class Meta:
+abstrac = True -> meta class throws error - ForeignKey -> add xyz\_set
+manager object
+
+classes recap: - isinstance, type - create classes dynamically
+
+::
+
+    name = 'ExampleClass'
+    bases = (object,)
+    attrs = {
+        '__init__': lambda self: print('hello from __init__')
+    }
+    ExampleClass = type(name, bases, attrs)
+
+    def create_class(name, bases, attrs):
+        # ...
+        return type(name, bases, attrs)
+
+can add to attrs, bases etc
+
+Q: what is type? type is a class classes are factories for creating
+objects
+
+we can subclass type
+
+::
+
+    class FormType(type):
+        def __new__(cls, name, bases, attrs):
+        fields = {k: v for k, v in attrs.items() if isinstance(v, forms.Field)}
+        attrs['base_fields'] = fields
+        return type.__new__(cls, name, bases, attrs)
+
+    PonyForm = FormType(name, bases, attrs)
+
+in Django - search for **metaclass** - see ModelBase in
+django/db/models.py for lots of big/hairy metaclass stuff
+
+Python 3
+
+::
+
+    class Form(metaclass=FormType):
+        ...
+
+For supporting both 2.x and 3.x, see library called six.
+
+key points:
+
+-  classes are factories for creating objects
+-  metaclasses are factories for creating classes
+-  (missed the last one)
+
+Growing Open Source Seeds
+-------------------------
+
+Facebook SDK for python - stopped getting updates - broke completely,
+bad press, for a while deleted issue tracker (now fixed)
+
+This is not open source, it is *public source*
+
+-  slap an open source license on the code and throw it over the wall
+-  abandoned due to lack of interest etc
+
+other end of spectrum
+
+-  gittip
+-  open source to the extreme - everything open
+-  github issue for everything
+-  major decisions voted for on github
+-  interviews with journalists are live streamed
+-  all formal discussions with other companies are publicly documented
+   and shared
+
+"I'm not building gittip, I'm building the community that is building
+gittip"
+
+call these "Shared Investment Projects"
+
+-  shared ownership
+-  extreme transparency
+-  new contributors get involved by following a documented process
+-  low risk - high bus-factor
+-  see also: python, django, firefox, jquery ...
+
+Requests - http for human - one of most installed PyPi packages - zero
+of project's decisions made by community - all made by "me"
+
+Dictatorship Projects - bdfl owns all - dictator responsible for all
+decisions - community feedback encouraged, but no expectation it will be
+followed - allows for quick decisions and iterations - bus factor,
+burnout risk, BDFL lose sight -> project ruined
+
+lessons - be cordial or be on your way - open source provides
+opportunity for trifecta of purpose, mastery and autonomy - learn to do
+less - trusted people who help out - learn to say no - people will ask
+for crazy features - accept as few lines of code as possible - less code
+is good
+
+Mock your database
+------------------
+
+your database is slow why do I care - speed - faster unit tests
+
+naive test - create objects, get stuff from query, 8 database queries ->
+5.2 seconds for 1000 tests on Postgres -> 3.9 seconds for 1000 tests on
+sqlite
+
+factoryboy doesn't make like quicker (but does make code simpler)
+
+factoryboy build() - create but not save - but m2m fields cause trouble
+- got to 4 queries
+
+prefetch - factory build, give pk, build other, set \_result\_cache
+\_prefeteched\_objects\_cache ... Down to 1 second, 0 database queries!
+but ugly code, and only works with all()
+
+mock library - patch class, assign pk 1.2 seconds, 0 database queries
+
+Avoiding the database is faster - much bigger difference than between
+postgres and sqlite
+
+A better way
+~~~~~~~~~~~~
+
+Carl Meyer - "Mocking the database usually isn't worth it" (from testing
+Django talk)
+
+mock redis in python (using dict) -> partly due to nice api, queryset
+
+github.com/mjtamlyn/django-test-db - not db at all - patch queryset to
+provide api, but not hit db - run your local tests fast, then use
+production db for CI - prototype! do not bet granny on it
+
+Now we try the naive test again -> 0 database queries, 0.7 seconds
+
+issues - some things don't go through queryset - auto patching - more
+filter lookups - extensibility
+
+future - write code and tests naively - use test-db locally for fast
+testing cycle - deploy to CI and run same code against real DB
+
+AJAX and Django
+---------------
+
+problems - browser history - deep linking - every page needs URL -
+crawler visibility -> SEO indexing
+
+hash fragment - domain.com/#/foo/bar/ + easy to implement + easy for
+webapps - bad for search engines
+
+hash fragment - domain.com/#!/foo/bar/ + google replaces #! ->
+``?_escaped_fragment_=`` - ajax-crawling + works for all browsers - deep
+links load first page and then load deeper page - multiple URLS for
+every page - maintain legacy urls o have to use #! in your sitemap.xml
+
+pushstate + already done in back end, reuse URL in front end - harder to
+implement on front end (browser support - but graceful degradation)
+
+PJAX PushState Ajax - fetch whole page source (or parts) - extract
+specified div and update content and title - push URL
+
+used - django - template inheritance and filters, middleware -
+backbone.js - router ...
+
+conditionally extend base.html or base\_pjax.html (which is a json
+template)
+
+backbone handles link clicks and form submits
+
+pitfalls - caching - json/html come from same URL -> confuse browser ->
+cache-control set vary: x-requested-with - safari (and until recently
+chrome) ignore vary: header - workaround to put ``/_pjax/`` at start of
+URL - redirecting - handled transparently wrt XMLHttpRequest - no chance
+to intercept - middleware to catch redirect for ajax and return code
+
+client side templates - reuse server side templates if possible -
+plate-js library can use django templates - but doesn't have full
+context
+
+Lightning talks
+---------------
+
+single page application
+~~~~~~~~~~~~~~~~~~~~~~~
+
+django + extjs django - json api extjs - store (from json api) -> model
+-> controller -> view (and back again)
+
+Don't Trust - Check
+~~~~~~~~~~~~~~~~~~~
+
+memcachier by Heroku - check shows memcache on EC2 3x faster
+django-tastypie - some pages 1.3s with tastypie, 34ms with django
+template
+
+YOU NEED TO EXPERIMENT
+
+djangotune.com askthepony.com
+
+django rest framework
+~~~~~~~~~~~~~~~~~~~~~
+
+Tom Christie
+
+learning from project with over 100 contributors
+
+be negative - aim to be a net negative contributor it's your fault - you
+haven't made it happen yet - don't defer/wait for others forget about
+DRY - goals are simplicity, maintainability ... hyperlink all the things
+deprecation policy makes changes easier no such thing as a core dev
+
+django-downloadview
+~~~~~~~~~~~~~~~~~~~
+
+static file view filefield in a model -> ObjectDownloadView django not
+meant to stream files -> use reverse proxy to web server
+
+django home pages - DHP
+~~~~~~~~~~~~~~~~~~~~~~~
+
+like PHP joke actually built it in Django so you can put python code in
+the template
+
+pony checker
+~~~~~~~~~~~~
+
+http://www.ponycheckup.com
+
+run security checks remotely -> produce report analyzed 3703 websites ->
+"oh the humanity" almost no perfect sites - 7% in debug mode - 97& no
+clickjack (1 line in 1.4) - 83% no HTTPOnly session (default in 1.4)
+
+what's new in Django-CMS 3.0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ben - Divio
+
+2011 - first release with front end editing
+
+can add front end editing to your own app keep end user out of admin
+don't interfere with your markup let the content editors play with the
+content, without fear -> undo easily keep developer friendly
+
+improved layout when editing mode, draft and then publish
+
+Localisation 2.0 - L20n
+~~~~~~~~~~~~~~~~~~~~~~~
+
+http://l20n.org/
+
+Content localn vs UI localn - UI is focus for now
+
+problems with old approach - english centric - one-to-one strings -
+plurals (if you're lucky)
+
+do-able now, but makes code messy and horrible
+
+-  Isolated
+-  Many-to-many
+-  grammar-agnostic
+
+managing mail in django apps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+django-mail-factory - create your mail and defined params - register
+mail - allows for review(?)
+
+python-deployer
+~~~~~~~~~~~~~~~
+
+more declarative than fabric start interactive shell with
+``./client.py`` interactive shell quite powerful run commands on
+multiple servers
+
+60 second django project set up
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+have a project skeleton 2 scoops project layout

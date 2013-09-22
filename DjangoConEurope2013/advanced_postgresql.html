@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Advanced PostgreSQL &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2013" href="index.html" />
+    <link rel="next" title="Recommendations" href="recommendations.html" />
+    <link rel="prev" title="The Imaginative Programmer" href="imaginative_programmer.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="recommendations.html" title="Recommendations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="imaginative_programmer.html" title="The Imaginative Programmer"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="advanced-postgresql">
+<h1>Advanced PostgreSQL<a class="headerlink" href="#advanced-postgresql" title="Permalink to this headline">¶</a></h1>
+<p>database agnosticim is expensive</p>
+<p>enjoy your database</p>
+<p>custom types</p>
+<ul class="simple">
+<li>many built in types</li>
+<li>eg case insensitive text -&gt; citext</li>
+<li>attributes you want to add occasionally (sparse) -&gt; hstore (dict-like) - do queries etc</li>
+<li>json type - validated going in, more features coming in 9.3</li>
+<li>UUID - good for index if merging in data from other sources</li>
+<li>ipv4 and ipv6 addresses - cidr comparisons</li>
+<li>interval - store time intervals directly in db</li>
+<li>define your own types! and then have custom indexes!</li>
+<li>easy to integrate into Django - psycopg2, Field class, formfield and widget</li>
+</ul>
+<p>custom indexes</p>
+<ul class="simple">
+<li>partial index - index subset of rows - eg most rows archived, only index active rows -&gt; smaller faster index</li>
+<li>multicolumn index</li>
+<li>expression index - eg index on just year of date field</li>
+</ul>
+<p>custom SQL</p>
+<ul class="simple">
+<li>-lso add python version check</li>
+<li>bootstrap_requirements.py</li>
+<li>custom use .sql inclusion mechanism -&gt; requires each statement be on one line</li>
+<li>use south</li>
+</ul>
+<p>custom constraints</p>
+<ul class="simple">
+<li>foreign key constraints implemented in ORM</li>
+<li>push constraints into DB where possible</li>
+<li>blocks bad data ...</li>
+<li>add constraints with south</li>
+<li>exclusion constraints - eg non-intersecting time ranges and same room</li>
+</ul>
+<p>raw SQL</p>
+<ul class="simple">
+<li>joining more than three tables -&gt; use raw SQL</li>
+<li>don&#8217;t fall back into multiple query sets and iteration</li>
+<li>django can still return model objects</li>
+<li>full text search, geometric searches</li>
+<li>complex joins that return a subset of lots of objects for view purposes</li>
+<li>put SQL in the manager or the model</li>
+<li>stored procedures (added by south)</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="imaginative_programmer.html"
+                        title="previous chapter">The Imaginative Programmer</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="recommendations.html"
+                        title="next chapter">Recommendations</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2013/advanced_postgresql.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="recommendations.html" title="Recommendations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="imaginative_programmer.html" title="The Imaginative Programmer"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2013</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

@@ -5,8 +5,10 @@ PyCon UK 2013
 * Location: Coventry, UK
 * URL: http://pyconuk.org/
 
-PyCon UK
-========
+Notes from talks
+----------------
+
+These are the notes I've taken during the talks.  If the speaker gave a link to the slides or talk notes, the link is included.
 
 .. toctree::
    :maxdepth: 2
@@ -25,7 +27,8 @@ PyCon UK
    social-media-text-analysis
    behave
 
-============
+Slides for other talks
+----------------------
 
 Some people posted links to slide on twitter for talks I didn't go to, so I've collected them here:
 
@@ -35,4 +38,4 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * Test driven madness has also been done at Europython - http://www.youtube.com/watch?v=Nj4nwh_VrPM
 * https://speakerdeck.com/pramttl/virtualization-with-ganeti-setting-up-your-private-cluster-on-commodity-hardware
 
-And my slides and notes are at https://github.com/foobacca/reduce-django-page-size
+And the slides and notes for my talk are at https://github.com/foobacca/reduce-django-page-size

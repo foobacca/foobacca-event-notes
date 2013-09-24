@@ -32,6 +32,8 @@ These are the notes I've taken during the talks.  If the speaker gave a link to 
 Slides for other talks
 ----------------------
 
+Many slides have been posted at http://pyconuk.net/PostConf
+
 Some people posted links to slide on twitter for talks I didn't go to, so I've collected them here:
 
 * `Minecraft in 500 lines with pyglet`_
@@ -42,6 +44,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `Test driven madness - video from Europython`_
 * `virtualization with ganeti setting up your private cluster on commodity hardware`_
 * `Photos of flipcharts from python/js SIG`_
+* `Don't be afraid to commit`_ workshop by Daniele Procida
 
 And the slides and notes for my talk `reducing django page sizes`_
 
@@ -53,5 +56,6 @@ And the slides and notes for my talk `reducing django page sizes`_
 .. _`Test driven madness - video from Europython`: http://www.youtube.com/watch?v=Nj4nwh_VrPM
 .. _`virtualization with ganeti setting up your private cluster on commodity hardware`: https://speakerdeck.com/pramttl/virtualization-with-ganeti-setting-up-your-private-cluster-on-commodity-hardware
 .. _`Photos of flipcharts from python/js SIG`: https://plus.google.com/114082814026245184396/posts/VcWhsxqr1bg
+.. _`Don't be afraid to commit`: http://dont-be-afraid-to-commit.readthedocs.org/en/latest/
 
 .. _`reducing django page sizes`: https://github.com/foobacca/reduce-django-page-size

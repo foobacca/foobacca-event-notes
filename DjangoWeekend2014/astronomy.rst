@@ -4,10 +4,14 @@ Python in Astronomy
 * Dr Haley Gomez
 * @astrofairy
 
+History
+
 * astronomy then - look through a telescope and sketch what you see on paper
 * astronomy now - have digital photos, colour, hubble ... - also x-ray, radio spectrums
 * 1970 - FITS format - 1st successful cross-platform sharing - metadata and long term data storage
 * problems: big data, rich data - survey astronomy (lots of telescopes - 1 exabyte/day)
+
+Python and astronomy
 
 * 4 years ago still teaching fortran
 * now moving to python

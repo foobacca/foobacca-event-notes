@@ -6,7 +6,7 @@ DjangoWeekend 2014
 * URL: http://djangoweekend.org
 
 Django Weekend
-=============
+==============
 
 Friday
 ------

@@ -1,7 +1,8 @@
 Moving Targets
 ==============
 
-(@brandon\_rhodes ...)
+- @brandon\_rhodes
+- slides http://rhodesmill.org/brandon/slides/2014-02-cardiff/
 
 * wolf/coyote/fox - the two ends of the spectrum ignore each other, but close things fight
 * Similarly, the biggest rivalries will be between the most similar technologies (eg vi/emacs or vi/visual studio)

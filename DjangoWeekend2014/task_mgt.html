@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Task Management with Celery &amp; Django &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoWeekend 2014" href="index.html" />
+    <link rel="prev" title="Cheating at Rock, Paper, Scissors" href="meta_programming.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="meta_programming.html" title="Cheating at Rock, Paper, Scissors"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoWeekend 2014</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="task-management-with-celery-django">
+<h1>Task Management with Celery &amp; Django<a class="headerlink" href="#task-management-with-celery-django" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Claire Gowler</li>
+<li>&#64;kitation</li>
+<li><a class="reference external" href="https://github.com/kitation">https://github.com/kitation</a></li>
+<li>slides <a class="reference external" href="https://github.com/kitation/celery-talk">https://github.com/kitation/celery-talk</a></li>
+</ul>
+<div class="section" id="why-celery">
+<h2>Why Celery?<a class="headerlink" href="#why-celery" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>When add user stories - add team design task, design review task ... sub tasks ...</li>
+<li>This can take 10 minutes for a form to reload - NOT GOOD</li>
+</ul>
+</div>
+<div class="section" id="what-is-celery">
+<h2>What is Celery?<a class="headerlink" href="#what-is-celery" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>task mgt system written in python</li>
+<li>can offload tasks to workers</li>
+<li>support many messaging brokers, result backends ...</li>
+<li>lots of features</li>
+<li>lots of stuff from django-celery library is now in core celery</li>
+</ul>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>How Claire did it</p>
+<ul class="simple">
+<li>complex diagram with lots of arrows ...</li>
+<li>django puts task into redis, celery task picks up task, posts result to redis, django gets result</li>
+</ul>
+<p>configure celery - celery.py</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="s">&#39;celery_est&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config_from_object</span><span class="p">(</span><span class="s">&#39;settings&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">autodiscover_tasks</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>define task - tasks.py</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">make_things</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c"># does stuff</span>
+</pre></div>
+</div>
+<p>use tasks</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">make_things</span><span class="o">.</span><span class="n">delay</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">make_things</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">task_id</span><span class="o">=...</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">make_things</span><span class="o">.</span><span class="n">apply_async</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">callback</span><span class="p">)</span>
+
+<span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span><span class="n">make_things</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">group_result</span> <span class="o">=</span> <span class="n">group</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span><span class="o">.</span><span class="n">apply_async</span><span class="p">()</span>
+
+<span class="n">result</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">ready</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="n">group_result</span><span class="o">.</span><span class="n">completed_count</span><span class="p">()</span>
+<span class="n">group_result</span><span class="o">.</span><span class="n">waiting</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tips-and-tricks">
+<h2>Tips and Tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>check out Flower - 3rd party monitoring webapp (and lots of other 3rd party apps)</li>
+<li>serialization defaults to Pickle (deprecated in 3.2) - change to JSON</li>
+<li><tt class="docutils literal"><span class="pre">--autoreload</span></tt> is unreliable - restart your workers after code deploy</li>
+<li>everything is pending, but you know your IDs</li>
+<li>result retrieval has inconsistent API</li>
+<li>point Celery to the app with settings.py if you have old-school Django layout</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Task Management with Celery &amp; Django</a><ul>
+<li><a class="reference internal" href="#why-celery">Why Celery?</a></li>
+<li><a class="reference internal" href="#what-is-celery">What is Celery?</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#tips-and-tricks">Tips and Tricks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="meta_programming.html"
+                        title="previous chapter">Cheating at Rock, Paper, Scissors</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoWeekend2014/task_mgt.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="meta_programming.html" title="Cheating at Rock, Paper, Scissors"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoWeekend 2014</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

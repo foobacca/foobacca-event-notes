@@ -2,6 +2,7 @@ Infrastructure of Modern Web Applications
 =========================================
 
 - Sergey Kopylov
+- slides http://www.slideshare.net/sergeykopylov1/talk-30978260
 
 Design and UX
 -------------

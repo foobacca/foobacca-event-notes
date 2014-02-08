@@ -49,6 +49,182 @@
             
   <div class="section" id="lightning-talks">
 <h1>Lightning Talks<a class="headerlink" href="#lightning-talks" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="improved-postgresql-support-for-django">
+<h2>Improved PostgreSQL support for Django<a class="headerlink" href="#improved-postgresql-support-for-django" title="Permalink to this headline">¶</a></h2>
+<p>Marc Tamlyn</p>
+<ul class="simple">
+<li>he will write django.contrib.postgres - some will land in 1.8, more in 1.9</li>
+<li>hstore, json, arrays, money, range</li>
+<li>maybe - date based lookup (year__lte), custom indexes, views and materialised views</li>
+<li>funded by kickstarter</li>
+<li><a class="reference external" href="http://postgres.mjtamlyn.co.uk">http://postgres.mjtamlyn.co.uk</a></li>
+</ul>
+</div>
+<div class="section" id="django-1-7-in-a-nutshell">
+<h2>Django 1.7 in a nutshell<a class="headerlink" href="#django-1-7-in-a-nutshell" title="Permalink to this headline">¶</a></h2>
+<p>Andrew Godwin</p>
+<p>hopefully released May 15, beta set for March 6.  5 major features</p>
+<ul class="simple">
+<li>migrations - refactored South put into core</li>
+<li>custom prefetch - prefetch related</li>
+<li>startup refactor</li>
+<li>custom lookups - the <tt class="docutils literal"><span class="pre">__icontains</span></tt> type stuff</li>
+<li>checks framework - extensible stuff to enforce stuff on models etc</li>
+</ul>
+<p>smaller features</p>
+<ul class="simple">
+<li>form.clean</li>
+<li>update_or_create on queryset</li>
+<li>form error list/dict - as_json and as_text</li>
+</ul>
+<p>Try it! test it! report bugs! give feedback!</p>
+<p>Google Summer of Code coming</p>
+</div>
+<div class="section" id="django-settings-with-django-configurations">
+<h2>Django settings with django-configurations<a class="headerlink" href="#django-settings-with-django-configurations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Janis</li>
+<li>&#64;jezdez</li>
+<li><a class="reference external" href="http://django-configurations.rtfd.org">http://django-configurations.rtfd.org</a></li>
+</ul>
+<p>django-configurations</p>
+<p>bridge between module settings system and class based configs</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">configurations</span> <span class="kn">import</span> <span class="n">Configuration</span>
+
+<span class="k">class</span> <span class="nc">Dev</span><span class="p">(</span><span class="n">Configuration</span><span class="p">):</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>Applies the config to settings</p>
+<p>it&#8217;s a hack, but uses PEP 302.  Mixins, facades, values, ...</p>
+</div>
+<div class="section" id="decorators">
+<h2>Decorators<a class="headerlink" href="#decorators" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Harry Percival</li>
+<li>&#64;hjwp</li>
+</ul>
+<p>Talk</p>
+<ul class="simple">
+<li>example - decorator to check permissions for Django view</li>
+<li>... but - testing - need to write tests for every single view</li>
+<li>how about the decorator &#8220;marks&#8221; the view - by setting a random attribute</li>
+<li>then tests can just check the attribute is set</li>
+<li><tt class="docutils literal"><span class="pre">&#64;baroque</span></tt> - a decorator that decorates decorators</li>
+<li>the decorator has a test suite of course<ul>
+<li>test attr is set,</li>
+<li>test multiple decorators,</li>
+<li>class based decorators,</li>
+<li>decorators takes arguments,</li>
+<li>check the decorated decorator still works</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="djangovillage">
+<h2>DjangoVillage<a class="headerlink" href="#djangovillage" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>yakapo (sp?)</li>
+<li>June 13-15 2014</li>
+<li>Orvieto</li>
+</ul>
+<p>django conference, child care, medieval feast!</p>
+<p>call for papers soon</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.djangovillage.it">http://www.djangovillage.it</a></li>
+<li><a class="reference external" href="mailto:info&#37;&#52;&#48;djangovillage&#46;it">info<span>&#64;</span>djangovillage<span>&#46;</span>it</a></li>
+<li>&#64;DjangoVillage</li>
+</ul>
+</div>
+<div class="section" id="sage">
+<h2>Sage<a class="headerlink" href="#sage" title="Permalink to this headline">¶</a></h2>
+<p>Vincent Knight (?) school of maths</p>
+<ul class="simple">
+<li>sage is like matlab, but is open source</li>
+<li>sage notebook - like ipython notebook</li>
+<li>scipy, numpy etc under the hood</li>
+<li>nextgen - <a class="reference external" href="https://cloud.sagemath.com/">https://cloud.sagemath.com/</a> - hosted in the cloud</li>
+<li>nice cloud based latex editor</li>
+<li>can also use ipython notebook - but with two people typing (like google docs)</li>
+<li>means you don&#8217;t need to install anything on your machine (or on your student&#8217;s machines :)</li>
+<li>though does not act as server</li>
+</ul>
+</div>
+<div class="section" id="zc-buildout-for-builds-and-profit">
+<h2>zc.buildout for builds and profit<a class="headerlink" href="#zc-buildout-for-builds-and-profit" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Wes Mason</li>
+<li>&#64;1stvamp</li>
+</ul>
+<p>What?</p>
+<ul class="simple">
+<li>buildout.org</li>
+<li>buildtool (like make, rake ...)</li>
+<li>originally zope/plone build tool (but don&#8217;t let that put you off)</li>
+<li>config files, based on ini files</li>
+<li>plenty of examples for Django</li>
+<li>could do sandboxing (like virtualenv) but no longer 2.x</li>
+<li>can be bootstrapped</li>
+<li>many &#8220;recipes&#8221; out there</li>
+<li>can install non-python stuff with buildout</li>
+<li>wrap scripts in a sandboxed bin/ dir</li>
+</ul>
+</div>
+<div class="section" id="tips-for-better-pull-requests">
+<h2>Tips for better pull requests<a class="headerlink" href="#tips-for-better-pull-requests" title="Permalink to this headline">¶</a></h2>
+<p>Luke Plant</p>
+<p>2 examples:</p>
+<p>django-mailer:</p>
+<ul class="simple">
+<li>puts email on a queue</li>
+<li>wanted python 3 compatibility</li>
+<li>1st patch was reasonable test suite</li>
+<li>2nd patch was tox.ini (to test on multiple environments)</li>
+<li>3rd patch was python 3 support</li>
+<li>the first two patches were easy to merge - wouldn&#8217;t break anything, built trust</li>
+</ul>
+<p>django-wiki:</p>
+<ul class="simple">
+<li>1st patch - convert README into proper docs</li>
+<li>2nd patch was feature</li>
+</ul>
+<p>principle</p>
+<ul class="simple">
+<li>patches which are easy to merge</li>
+<li>what would project maintainer like to receive as a patch</li>
+<li>become a project maintainer and review others code - you will be a better coder and a better contributor</li>
+</ul>
+</div>
+<div class="section" id="computing-should-have-a-bigger-role-in-education">
+<h2>Computing should have a bigger role in education<a class="headerlink" href="#computing-should-have-a-bigger-role-in-education" title="Permalink to this headline">¶</a></h2>
+<p>Matt Lun(?)</p>
+<ul class="simple">
+<li>first time this year, computing is compulsory</li>
+<li>started with python - hello world, search algorithms, OOP - in a few weeks</li>
+<li>then moved on to Sage (see above)</li>
+<li>computing coursework - report on maths and computing</li>
+<li>been really helpful - why did I have to wait for Uni to learn this</li>
+</ul>
+</div>
+<div class="section" id="one-simple-way-to-make-django-better">
+<h2>One simple way to make Django better<a class="headerlink" href="#one-simple-way-to-make-django-better" title="Permalink to this headline">¶</a></h2>
+<p>Peter Inglesby</p>
+<ul class="simple">
+<li>test alpha and beta releases</li>
+<li>upgrade django and run your tests!</li>
+</ul>
+</div>
+<div class="section" id="what-next">
+<h2>What next<a class="headerlink" href="#what-next" title="Permalink to this headline">¶</a></h2>
+<p>Daniele Procida</p>
+<ul class="simple">
+<li>next year&#8217;s DjangoWeekend :)</li>
+<li>DjangoCon Europe - 13-17 May <a class="reference external" href="http://djangocon.eu">http://djangocon.eu</a></li>
+<li>pycon UK - 19-22 Sept <a class="reference external" href="http://pyconuk.org">http://pyconuk.org</a></li>
+<li>DjangoVillage (see above)</li>
+<li>Cardiff events</li>
+</ul>
+</div>
 </div>
 
 
@@ -57,6 +233,24 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lightning Talks</a><ul>
+<li><a class="reference internal" href="#improved-postgresql-support-for-django">Improved PostgreSQL support for Django</a></li>
+<li><a class="reference internal" href="#django-1-7-in-a-nutshell">Django 1.7 in a nutshell</a></li>
+<li><a class="reference internal" href="#django-settings-with-django-configurations">Django settings with django-configurations</a></li>
+<li><a class="reference internal" href="#decorators">Decorators</a></li>
+<li><a class="reference internal" href="#djangovillage">DjangoVillage</a></li>
+<li><a class="reference internal" href="#sage">Sage</a></li>
+<li><a class="reference internal" href="#zc-buildout-for-builds-and-profit">zc.buildout for builds and profit</a></li>
+<li><a class="reference internal" href="#tips-for-better-pull-requests">Tips for better pull requests</a></li>
+<li><a class="reference internal" href="#computing-should-have-a-bigger-role-in-education">Computing should have a bigger role in education</a></li>
+<li><a class="reference internal" href="#one-simple-way-to-make-django-better">One simple way to make Django better</a></li>
+<li><a class="reference internal" href="#what-next">What next</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="wagtail.html"
                         title="previous chapter">Introducing Wagtail</a></p>

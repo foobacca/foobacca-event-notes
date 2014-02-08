@@ -30,6 +30,7 @@ Stateless
 ~~~~~~~~~
 
 * web browsers aren't stateless - cookies
+* REST auth could use token in headers, OAuth
 
 HATEOAS
 ~~~~~~~
@@ -59,3 +60,4 @@ Webhooks
 * eg pokemon text - text character name to number, get response
 * web: request -> service -> response
 * webhook: action -> external service -> HTTP POST to your own service
+* webhook example: mandrill receive email on your behalf and hit a URL on your website with JSON representing the received email

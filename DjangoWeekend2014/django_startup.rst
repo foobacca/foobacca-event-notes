@@ -4,6 +4,7 @@ How does Django start?
 - Marc Tamlyn
 - @mjtamlyn
 - github.com/mjtamlyn
+- slides https://speakerdeck.com/mjtamlyn/how-does-django-start
 
 The old days
 ------------

@@ -38,7 +38,6 @@ Saturday
    infrastructure
    game_theory
    opendevelop
-   scripting
    geodjango
    wagtail
    lightning

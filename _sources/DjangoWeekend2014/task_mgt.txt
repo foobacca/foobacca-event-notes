@@ -4,7 +4,7 @@ Task Management with Celery & Django
 - Claire Gowler
 - @kitation
 - https://github.com/kitation
-- slides https://github.com/kitation/celery-talk
+- slides http://kitation.github.io/celery-talk/#/ (source at https://github.com/kitation/celery-talk )
 
 Why Celery?
 -----------

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>APIs are Awesome &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoWeekend 2014" href="index.html" />
+    <link rel="prev" title="Python in Astronomy" href="astronomy.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="astronomy.html" title="Python in Astronomy"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoWeekend 2014</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="apis-are-awesome">
+<h1>APIs are Awesome<a class="headerlink" href="#apis-are-awesome" title="Permalink to this headline">¶</a></h1>
+<p>Paul Hallett &#64;phalt_ <a class="reference external" href="http://phalt.co">http://phalt.co</a> - working at hubbub (crowdfunding stuff)</p>
+<ul class="simple">
+<li>eg google, twitter, facebook, linkedin</li>
+<li>Marvel Comics! pokeapi.co (pokemon) !</li>
+<li>pokeapi is Django - why not Flask etc? - &#8216;cos of awesome packages</li>
+</ul>
+<p><strong>Live demo</strong> using tastypie (pokeapi)</p>
+<ul class="simple">
+<li>model with name field</li>
+<li>api.py</li>
+<li>create a ModelResource class, with Meta class with queryset</li>
+<li>add resource to urls.py</li>
+<li>runserver, test with http command</li>
+<li><a class="reference external" href="https://github.com/phalt/tastypie_demo">https://github.com/phalt/tastypie_demo</a></li>
+</ul>
+<div class="section" id="rest">
+<h2>REST?<a class="headerlink" href="#rest" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="http">
+<h3>HTTP<a class="headerlink" href="#http" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>HTTP VERBs (POST/PUT, GET, PUT, DELETE) = (CREATE, READ, UPDATE, DELETE)</li>
+<li>PUT vs POST: POST twice can create duplicate copies</li>
+<li>status codes - 200, 404, 403 (access denied), 204 (no content)</li>
+</ul>
+</div>
+<div class="section" id="stateless">
+<h3>Stateless<a class="headerlink" href="#stateless" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>web browsers aren&#8217;t stateless - cookies</li>
+<li>REST auth could use token in headers, OAuth</li>
+</ul>
+</div>
+<div class="section" id="hateoas">
+<h3>HATEOAS<a class="headerlink" href="#hateoas" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>hypermedia as the engine of app state</li>
+<li>basically, include links to stuff in the responses</li>
+</ul>
+</div>
+</div>
+<div class="section" id="confusion">
+<h2>Confusion<a class="headerlink" href="#confusion" title="Permalink to this headline">¶</a></h2>
+<p>Twitter - says RESTful - but ...</p>
+<ul class="simple">
+<li>POST /direct_messages/destroy/ - should be DELETE /direct_messages/[ID]</li>
+</ul>
+<p>flickr</p>
+<ul class="simple">
+<li>POST /services/rest/?method=flickr.activity.userComments - always POST!</li>
+<li>should be GET /services/rest/comments/[user id]/</li>
+</ul>
+<p>Why do people get REST wrong?</p>
+<p>REST is NOT a standard</p>
+</div>
+<div class="section" id="webhooks">
+<h2>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>eg pokemon text - text character name to number, get response</li>
+<li>web: request -&gt; service -&gt; response</li>
+<li>webhook: action -&gt; external service -&gt; HTTP POST to your own service</li>
+<li>webhook example: mandrill receive email on your behalf and hit a URL on your website with JSON representing the received email</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">APIs are Awesome</a><ul>
+<li><a class="reference internal" href="#rest">REST?</a><ul>
+<li><a class="reference internal" href="#http">HTTP</a></li>
+<li><a class="reference internal" href="#stateless">Stateless</a></li>
+<li><a class="reference internal" href="#hateoas">HATEOAS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#confusion">Confusion</a></li>
+<li><a class="reference internal" href="#webhooks">Webhooks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="astronomy.html"
+                        title="previous chapter">Python in Astronomy</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoWeekend2014/apis.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="astronomy.html" title="Python in Astronomy"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoWeekend 2014</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

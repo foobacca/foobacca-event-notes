@@ -53,9 +53,64 @@
             
   <div class="section" id="introducing-wagtail">
 <h1>Introducing Wagtail<a class="headerlink" href="#introducing-wagtail" title="Permalink to this headline">¶</a></h1>
+<p>Slogan is &#8220;Django content management made beautiful&#8221;</p>
 <ul class="simple">
 <li>Matt Westcott</li>
+<li>&#64;wagtailcms</li>
+<li><a class="reference external" href="http://wagtail.io/">http://wagtail.io/</a></li>
+<li><a class="reference external" href="https://github.com/torchbox/wagtail/">https://github.com/torchbox/wagtail/</a></li>
 </ul>
+<p>Torchbox is the company</p>
+<ul class="simple">
+<li>&#8220;We do digital stuff for the good guys&#8221;</li>
+<li>clients are charities, NGOs and education.</li>
+<li>Use drupal and django.</li>
+<li><a class="reference external" href="http://www.torchbox.com/">http://www.torchbox.com/</a></li>
+</ul>
+<p>Wagtail is a new django based CMS - looks very clean.  Built for RCA originally</p>
+<div class="section" id="why-a-new-cms">
+<h2>Why a new CMS?<a class="headerlink" href="#why-a-new-cms" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>There are already 20ish Django based CMS, and one or two non-Django based ones
+...  Hard to evaluate without spending lots of time</li>
+<li>Flexibility (we&#8217;re against it) (sometimes)</li>
+<li>conventional CMS (eg drupal) has blocks that can be rearranged very flexibly -
+so you get block based websites, and your code has to cope with lots of eventualities</li>
+<li>so for RCA give a fixed set of fields to fill in</li>
+</ul>
+<div class="highlight-html+django"><div class="highlight"><pre><span class="cp">{%</span> <span class="k">load</span> <span class="nv">image_tags</span> <span class="nv">rich_text</span> <span class="cp">%}</span>
+
+<span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;h1&gt;</span><span class="cp">{{</span> <span class="nv">self.title</span> <span class="cp">}}</span><span class="nt">&lt;/h1&gt;</span>
+
+    <span class="cp">{%</span> <span class="k">image</span> <span class="p">...</span> <span class="cp">%}</span>
+<span class="nt">&lt;/div&gt;</span>
+</pre></div>
+</div>
+<p>The self is the modelpage being rendered</p>
+</div>
+<div class="section" id="your-data-your-way">
+<h2>Your data, your way<a class="headerlink" href="#your-data-your-way" title="Permalink to this headline">¶</a></h2>
+<p>show complex data models</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">EventPage</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+    <span class="n">date__gte</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">(),</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Django-ish, but not too Django-ish</p>
+<p>instead of model-view-template, have wagtail URL router -&gt; model -&gt; template</p>
+</div>
+<div class="section" id="versioning-and-workflow">
+<h2>Versioning and workflow<a class="headerlink" href="#versioning-and-workflow" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Might have several versions of a page around - edit, 2nd person approves/publishes the edit.</li>
+<li>so we have to save (at least) 2 versions of each page, and be able to show preview</li>
+<li>solution - django-modelcluster - patch ForeignKey.  Keep edits around in the object
+without saving to the database.  For longer storage, pages get serialised to JSON!</li>
+<li>&#8220;some fairly evil hacking around with Django internals&#8221;</li>
+</ul>
+</div>
 </div>
 
 
@@ -64,6 +119,16 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introducing Wagtail</a><ul>
+<li><a class="reference internal" href="#why-a-new-cms">Why a new CMS?</a></li>
+<li><a class="reference internal" href="#your-data-your-way">Your data, your way</a></li>
+<li><a class="reference internal" href="#versioning-and-workflow">Versioning and workflow</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="geodjango.html"
                         title="previous chapter">Putting Django on the Map</a></p>

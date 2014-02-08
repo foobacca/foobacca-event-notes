@@ -26,7 +26,7 @@
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoWeekend 2014" href="index.html" />
     <link rel="next" title="Introducing Wagtail" href="wagtail.html" />
-    <link rel="prev" title="Yo dawg: putting a scripting language in your scripting language" href="scripting.html" /> 
+    <link rel="prev" title="OpenDevelop" href="opendevelop.html" /> 
   </head>
   <body>
     <div class="related">
@@ -39,7 +39,7 @@
           <a href="wagtail.html" title="Introducing Wagtail"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="scripting.html" title="Yo dawg: putting a scripting language in your scripting language"
+          <a href="opendevelop.html" title="OpenDevelop"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoWeekend 2014</a> &raquo;</li> 
@@ -53,8 +53,52 @@
             
   <div class="section" id="putting-django-on-the-map">
 <h1>Putting Django on the Map<a class="headerlink" href="#putting-django-on-the-map" title="Permalink to this headline">¶</a></h1>
+<p>GeoDjango</p>
 <ul class="simple">
 <li>Gareth Lloyd</li>
+<li>&#64;godawful</li>
+<li><a class="reference external" href="mailto:glloyd&#37;&#52;&#48;gmail&#46;com">glloyd<span>&#64;</span>gmail<span>&#46;</span>com</a></li>
+</ul>
+<p><em>&#8220;Everything is related to everything else, but near things are more related than distant things.&#8221;</em> - Tobler&#8217;s first law of geography</p>
+<ul class="simple">
+<li>GeoDjango gives a nice interface to 2 C++ libs, GDAL and GEOS</li>
+<li>GDAL is used for getting data in and out</li>
+<li>GEOS manipuates spatial data</li>
+<li>KML/GeoJSON</li>
+<li>have model fields for Point and Polygon</li>
+</ul>
+<p>Example app - 3sqaure</p>
+<ul class="simple">
+<li>install PostGIS <a class="reference external" href="http://postgis.net/install">http://postgis.net/install</a> , install libs<ul>
+<li>MySQL and SpatiaLite have some support, but much less than Postgres</li>
+</ul>
+</li>
+<li>add django.contrib.gis to INSTALLED_APPS</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.contrib.gis.db</span> <span class="kn">import</span> <span class="n">models</span>
+
+<span class="k">class</span> <span class="nc">xyz</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">PointField</span><span class="p">()</span>
+
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">GeoManager</span>
+</pre></div>
+</div>
+<p>Create objects with shapes and points.  Then can do stuff with querysets like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Place</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">locations__within</span><span class="o">=</span><span class="n">london</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">gps_reading</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">Place</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">gps_reading</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;distance&#39;</span><span class="p">)</span>
+<span class="n">Place</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">distance</span><span class="p">(</span><span class="n">gps_reading</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;distance&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">geojson</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Many operations on shape - spacial relationships stuff.</p>
+<p>Play with open datasets:</p>
+<ul class="simple">
+<li>ordinance survey</li>
+<li>data.gov.uk</li>
+<li><a class="reference external" href="https://www.sharegeo.ac.uk/">https://www.sharegeo.ac.uk/</a></li>
+<li><a class="reference external" href="http://openstreetmap.org">http://openstreetmap.org</a></li>
+<li><a class="reference external" href="https://github.com/gareth-lloyd/postcode_latlng">https://github.com/gareth-lloyd/postcode_latlng</a> - convert PO database from weird format to usable format</li>
 </ul>
 </div>
 
@@ -65,8 +109,8 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="scripting.html"
-                        title="previous chapter">Yo dawg: putting a scripting language in your scripting language</a></p>
+  <p class="topless"><a href="opendevelop.html"
+                        title="previous chapter">OpenDevelop</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="wagtail.html"
                         title="next chapter">Introducing Wagtail</a></p>
@@ -102,7 +146,7 @@
           <a href="wagtail.html" title="Introducing Wagtail"
              >next</a> |</li>
         <li class="right" >
-          <a href="scripting.html" title="Yo dawg: putting a scripting language in your scripting language"
+          <a href="opendevelop.html" title="OpenDevelop"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoWeekend 2014</a> &raquo;</li> 

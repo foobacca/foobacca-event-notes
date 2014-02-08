@@ -15,6 +15,7 @@ Contents:
 
    DjangoConEurope2013/index
    PyConUK2013/index
+   DjangoWeekend2014/index
 
 
 Credits

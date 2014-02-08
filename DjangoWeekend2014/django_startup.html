@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How does Django start? &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoWeekend 2014" href="index.html" />
+    <link rel="prev" title="APIs are Awesome" href="apis.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="apis.html" title="APIs are Awesome"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoWeekend 2014</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="how-does-django-start">
+<h1>How does Django start?<a class="headerlink" href="#how-does-django-start" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Marc Tamlyn</li>
+<li>&#64;mjtamlyn</li>
+<li>github.com/mjtamlyn</li>
+</ul>
+<div class="section" id="the-old-days">
+<h2>The old days<a class="headerlink" href="#the-old-days" title="Permalink to this headline">¶</a></h2>
+<p>(up to 1.6)</p>
+<ul class="simple">
+<li>at some point a model is imported</li>
+<li>metaclass: ModelBase.__new__() triggers django.db.models.loading.AppCache init</li>
+<li>reverse relations now work</li>
+<li>Most other bits of code inspect settings.INSTALLED_APPS directly</li>
+</ul>
+<p><strong>Problem is &#8220;at some point&#8221;</strong> - sometimes deploys can fail unpredictably</p>
+</div>
+<div class="section" id="the-long-and-winding-road">
+<h2>The long and winding road<a class="headerlink" href="#the-long-and-winding-road" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">#3591</span></tt> bug</p>
+<ul class="simple">
+<li>opened Feb 2007 (django 0.96 released March 2007)</li>
+<li>&#8220;Add support for custom app label and verbose name&#8221;</li>
+<li>Feb 2007 - design decision needed</li>
+<li>Sept 2007 - assigned to Adrian Holovaty</li>
+<li>Dec 2007 - accepted by Jacob</li>
+<li>various attempted patches</li>
+<li>PyCon 2008 - &#8220;The state of Django&#8221; - Adrian Holovaty - sprints
+- goals were similar
+- scope became about rewriting how django handles applications
+- class InstalledApps()</li>
+<li>app_label is used in lots of places - which ones should change?</li>
+<li>clear requirement for App.path</li>
+<li>2009 - basically nothing happened</li>
+<li>Feb 2010 - revert to Design decision needed</li>
+<li>Google SoC 2010 - &#8220;medium complexity&#8221; - multiple instances of apps, avoid names clashes, i18n of app names</li>
+<li>Sept 2010 - &#8220;Fixed on a branch&#8221;</li>
+<li>2011 - ongoing work - unpopular details (Metaclasses for Apps, reloadable app cache)</li>
+<li>2012 - patch brought up to speed, conflicts, broken tests, effort died</li>
+<li>2013 - migrations needed an app cache</li>
+<li>Dec 2013 - Aymeric takes a holiday - timezones, python 3, db txn, debug toolbar, 2 scoops review</li>
+<li><strong>and</strong> rethink the approach, minimal change</li>
+</ul>
+</div>
+<div class="section" id="now">
+<h2>Now<a class="headerlink" href="#now" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">class</span> <span class="pre">Apps()</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">class</span> <span class="pre">AppConfig()</span></tt></li>
+<li>no models.py required</li>
+<li>customisable verbose name</li>
+<li>reliable place for start up code (not just &#8220;at the bottom of models.py&#8221;)</li>
+<li>customise label ...</li>
+<li>merged! -&gt; Django 1.7</li>
+</ul>
+</div>
+<div class="section" id="what-does-it-mean-for-you">
+<h2>What does it mean for you?<a class="headerlink" href="#what-does-it-mean-for-you" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>may break existing projects and libraries</li>
+<li>hopefully it&#8217;s because you did it wrong ...</li>
+<li>now have much stricter startup sequence</li>
+<li>django.setup() configures settings, imports all applications</li>
+<li>trying to use the app registry before it&#8217;s loaded will error &#8220;Apps not loaded&#8221;</li>
+</ul>
+<p>The following will break</p>
+<ul class="simple">
+<li>modules level code which requires the apps to be loaded will break
+- eg ugettext() - use ugettext_lazy() - ugettext() requires apps to be loaded</li>
+<li>code relying on import order of models.py files may break</li>
+<li>code relying on <tt class="docutils literal"><span class="pre">for</span> <span class="pre">app</span> <span class="pre">in</span> <span class="pre">INSTALLED_APPS</span></tt></li>
+</ul>
+<p>Good stuff</p>
+<ul class="simple">
+<li>i18n names in contrib apps</li>
+<li>no need for admin.autodiscover() in urls (as we have a consistent place for start up)</li>
+</ul>
+<p>Use cases</p>
+<ul class="simple">
+<li>registering signals in my project specific app</li>
+<li>making my 3rd party app have an i18n name in admin</li>
+<li>customise a 3rd party app</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">apps</span>
+<span class="kn">from</span> <span class="nn">django.db.models.signals</span> <span class="kn">import</span> <span class="n">post_save</span>
+
+<span class="k">class</span> <span class="nc">BlogApp</span><span class="p">(</span><span class="n">apps</span><span class="o">.</span><span class="n">AppConfig</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;blog&#39;</span>
+
+    <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Post</span>
+        <span class="kn">from</span> <span class="nn">.signals</span> <span class="kn">import</span> <span class="n">flush_cache</span>
+        <span class="n">post_save</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">flush_cache</span><span class="p">,</span> <span class="n">sender</span><span class="o">=</span><span class="n">Post</span><span class="p">)</span>
+
+<span class="c"># ...</span>
+
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;blog.app.BlogApp&#39;</span><span class="p">,</span>
+    <span class="c"># ...</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>3rd party app with i18n verbose name</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">apps</span>
+
+<span class="k">class</span> <span class="nc">PonyConfig</span><span class="p">(</span><span class="n">apps</span><span class="o">.</span><span class="n">AppConfig</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s">&#39;ponies&#39;</span>
+    <span class="n">verbose_name</span> <span class="o">=</span> <span class="n">_</span><span class="p">(</span><span class="s">&#39;mor ponies&#39;</span><span class="p">)</span>
+
+<span class="c"># ...</span>
+
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;ponies.apps.PonyConfig&#39;</span><span class="p">,</span>
+    <span class="c"># ...</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>customise a 3rd party app</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyPonyConfig</span><span class="p">(</span><span class="n">PonyConfig</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># stuff</span>
+
+
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="c"># ...</span>
+    <span class="s">&#39;myproject.apps.MyPonyConfig&#39;</span><span class="p">,</span>
+    <span class="c"># ...</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Note this makes it a little tricky to work out whether a model has been loaded.</p>
+</div>
+<div class="section" id="future">
+<h2>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>AppAdmin - more advanced API for custom appearance of apps in admin</li>
+<li>App specific settings</li>
+<li>set up time customise of models - add fields, change field lengths, add indexes</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How does Django start?</a><ul>
+<li><a class="reference internal" href="#the-old-days">The old days</a></li>
+<li><a class="reference internal" href="#the-long-and-winding-road">The long and winding road</a></li>
+<li><a class="reference internal" href="#now">Now</a></li>
+<li><a class="reference internal" href="#what-does-it-mean-for-you">What does it mean for you?</a></li>
+<li><a class="reference internal" href="#future">Future</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="apis.html"
+                        title="previous chapter">APIs are Awesome</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoWeekend2014/django_startup.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="apis.html" title="APIs are Awesome"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoWeekend 2014</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

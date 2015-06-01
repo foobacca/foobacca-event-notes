@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>CAMEL, the Cardiff Maths e-learning project &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>Reaching out - Django in the Social Sciences &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
-    <link rel="next" title="Django live" href="django-live.html" />
-    <link rel="prev" title="Pushing the Pony’s Boundaries" href="pushing-pony.html" /> 
+    <link rel="next" title="Salt for Django Developers" href="salt.html" />
+    <link rel="prev" title="Django live" href="django-live.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="django-live.html" title="Django live"
+          <a href="salt.html" title="Salt for Django Developers"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="pushing-pony.html" title="Pushing the Pony’s Boundaries"
+          <a href="django-live.html" title="Django live"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
@@ -51,32 +51,53 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="camel-the-cardiff-maths-e-learning-project">
-<h1>CAMEL, the Cardiff Maths e-learning project<a class="headerlink" href="#camel-the-cardiff-maths-e-learning-project" title="Permalink to this headline">¶</a></h1>
-<p>Dafydd Evans</p>
+  <div class="section" id="reaching-out-django-in-the-social-sciences">
+<h1>Reaching out - Django in the Social Sciences<a class="headerlink" href="#reaching-out-django-in-the-social-sciences" title="Permalink to this headline">¶</a></h1>
+<p>Lucie Daeye
+&#64;patjouk
+self taught djangonista, and run django girls workshop
+3rd year of PhD</p>
 <ul class="simple">
-<li>1 person project for now</li>
-<li>CArdiff Maths E Learning project -&gt; CAMEL</li>
-<li>Cardiff Uni is mostly old school - print, mark with pen and paper</li>
-<li>on web, mostly latex -&gt; PDF - very static</li>
-<li>typesetting - glyphs, fonts, Donald Knuth, TeX, LaTeX</li>
-<li>LaTeX documents are not &#8220;well formed&#8221; (closing tags etc)</li>
-<li>but LaTeX is excellent for equations</li>
-<li>until recently HTML wasn&#8217;t great - but now MathJAX, which renders latex into nice equations in HTML</li>
-<li>MathJAX does fonts and characters, but doesn&#8217;t do structure</li>
-<li>so can we take Latex and convert to mix of HTML and mathjax</li>
-<li>can then embed homework into pages</li>
-<li>wrote a cutom parser, using a subset of latex</li>
-<li>equations left inside &lt;jax&gt; tags, but structure converted into HTML</li>
-<li>use django-mptt for tree of chapters, pages etc (efficient retrieval and slow insertion, move etc)</li>
-<li>models subclass mptt.models.MPTTModel - trees auto-update ...</li>
-<li>provides nice templatetags and filters</li>
-<li>demo how to put lists in for homework -&gt; HTML form</li>
-<li>free text box - make edit with latex format, update to show in page</li>
+<li>Naive expectations - data management</li>
+<li>expected to find
+- transform info collected into useful and organised data
+- centralise data - easy access
+- write and cut transcripts, label</li>
+<li>nice surprise
+- auto import
+- ...</li>
 </ul>
-<p>All looks very nice.</p>
-<p>Q - what happened to MathML
-A - MathML is unreadable (too verbose - see e=mc2) while latex can be read, so mathjax is better</p>
+<p>asked supervisor how to manage data
+- &#8220;use spreadsheets&#8221;
+- wondered if she was used to paper in folders in drawer
+- asked fellow PhD - also used files in folders</p>
+<p>expensive street survey
+- 800 surveys to digitise
+- €4000 of €30000 budget - lots of detail, restaurant addresses ...</p>
+<p>There must be another way!</p>
+<p>First steps - django admin
+- list of restaurants, details of each restaurant
+- needed to add maps, just points on map
+- attended Django Girls
+- KRLocalization
+- developed software in airport
+- so now have map with pins, and table with details below
+- click on restaurant in map - see details in sidebar, along with photo
+- empowering tool! - one day workshop, 10 hours coding, voila!</p>
+<p>Why does it matter
+- social scientists can really benefit from programming, but it&#8217;s hard for us to learn
+- if you don&#8217;t do STEM then no one even offers the help</p>
+<p>What can you do
+- support Django Girls - many attendees at workshop were academics in social sciences and humanities
+- initiatives at unis or community centres
+- teaching material/tutorial - don&#8217;t assumer learner is from STEM
+- Hello Web App by Tracy Osborn - very good - <a class="reference external" href="https://hellowebapp.com/">https://hellowebapp.com/</a>
+- crawler and scripting can really help do the work
+- carry on being a friendly and helpful community</p>
+<p>Questions
+- what are the libraries that help social sciences (like NumPy in science)
+- none now - managing interviews
+- non-mathematical starter projects?  hello web app, and making a meta-tutorial</p>
 </div>
 
 
@@ -86,14 +107,14 @@ A - MathML is unreadable (too verbose - see e=mc2) while latex can be read, so m
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="pushing-pony.html"
-                        title="previous chapter">Pushing the Pony&#8217;s Boundaries</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="django-live.html"
-                        title="next chapter">Django live</a></p>
+                        title="previous chapter">Django live</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="salt.html"
+                        title="next chapter">Salt for Django Developers</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2015/camel.txt"
+    <li><a href="../_sources/DjangoConEurope2015/social-sciences.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -120,10 +141,10 @@ A - MathML is unreadable (too verbose - see e=mc2) while latex can be read, so m
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="django-live.html" title="Django live"
+          <a href="salt.html" title="Salt for Django Developers"
              >next</a> |</li>
         <li class="right" >
-          <a href="pushing-pony.html" title="Pushing the Pony’s Boundaries"
+          <a href="django-live.html" title="Django live"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 

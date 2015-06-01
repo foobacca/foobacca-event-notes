@@ -2,6 +2,7 @@ Pushing the Pony's Boundaries
 =============================
 
 Ola Sitarska
+https://speakerdeck.com/olasitarska/django-admin-pushing-the-ponys-boundries
 
 Other notes
 

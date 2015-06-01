@@ -3,6 +3,7 @@ Reaching out - Django in the Social Sciences
 
 Lucie Daeye
 @patjouk
+slides - https://speakerdeck.com/patjouk/reaching-out-django-in-social-sciences
 self taught djangonista, and run django girls workshop
 3rd year of PhD
 

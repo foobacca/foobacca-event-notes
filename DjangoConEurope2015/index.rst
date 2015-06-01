@@ -24,6 +24,10 @@ Day 1
    lightning-day1
    pushing-pony
    camel
+   django-live
+   social-sciences
+   salt
+   nose-pytest
 
 Day 2
 -----

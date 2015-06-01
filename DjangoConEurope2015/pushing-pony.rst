@@ -1,6 +1,12 @@
 Pushing the Pony's Boundaries
 =============================
 
+Ola Sitarska
+
+Other notes
+
+- http://reinout.vanrees.org/weblog/2015/06/01/04-pony-boundaries.html
+
 - loves the Django Admin
 - started coding at 14, writing games, PHP
 - 6 years of building admin interfaces

@@ -20,3 +20,8 @@ Dafydd Evans
 - use django-mptt for tree of chapters, pages etc (efficient retrieval and slow insertion, move etc)
 - models subclass mptt.models.MPTTModel - trees auto-update ...
 - provides nice templatetags and filters
+
+- demo how to put lists in for homework -> HTML form
+- free text box - make edit with latex format, update to show in page
+
+All looks very nice.

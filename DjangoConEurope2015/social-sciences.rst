@@ -44,6 +44,11 @@ What can you do
 - support Django Girls - many attendees at workshop were academics in social sciences and humanities
 - initiatives at unis or community centres
 - teaching material/tutorial - don't assumer learner is from STEM
-- Hello Web App by Tracy Osborn - very good
+- Hello Web App by Tracy Osborn - very good - https://hellowebapp.com/
 - crawler and scripting can really help do the work
 - carry on being a friendly and helpful community
+
+Questions
+- what are the libraries that help social sciences (like NumPy in science)
+- none now - managing interviews
+- non-mathematical starter projects?  hello web app, and making a meta-tutorial

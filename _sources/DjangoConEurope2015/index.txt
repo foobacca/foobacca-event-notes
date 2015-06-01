@@ -1,5 +1,5 @@
 =====================
-DjangoCon Europe 2013
+DjangoCon Europe 2015
 =====================
 
 * Location: Cardiff, Wales

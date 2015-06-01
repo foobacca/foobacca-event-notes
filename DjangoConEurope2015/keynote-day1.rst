@@ -1,6 +1,9 @@
 Baptiste's adventures in Djangoland
 ===================================
 
+Baptiste Mispelon
+https://speakerdeck.com/bmispelon/baptistes-adventures-in-djangoland
+
 - got into django by accident
 - went to conferences and really got into sprints
 - ended up on core Django team

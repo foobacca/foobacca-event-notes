@@ -11,7 +11,7 @@ Dafydd Evans
 - typesetting - glyphs, fonts, Donald Knuth, TeX, LaTeX
 - LaTeX documents are not "well formed" (closing tags etc)
 - but LaTeX is excellent for equations
-- until recently HTML wasn't great - but now MathJAX
+- until recently HTML wasn't great - but now MathJAX, which renders latex into nice equations in HTML
 - MathJAX does fonts and characters, but doesn't do structure
 - so can we take Latex and convert to mix of HTML and mathjax
 - can then embed homework into pages
@@ -25,3 +25,6 @@ Dafydd Evans
 - free text box - make edit with latex format, update to show in page
 
 All looks very nice.
+
+Q - what happened to MathML
+A - MathML is unreadable (too verbose - see e=mc2) while latex can be read, so mathjax is better

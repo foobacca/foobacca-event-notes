@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>&lt;no title&gt; &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>Switching from nose to py.test at Mozilla &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -51,7 +51,56 @@
         <div class="bodywrapper">
           <div class="body">
             
-  
+  <div class="section" id="switching-from-nose-to-py-test-at-mozilla">
+<h1>Switching from nose to py.test at Mozilla<a class="headerlink" href="#switching-from-nose-to-py-test-at-mozilla" title="Permalink to this headline">¶</a></h1>
+<p>Matthieu Agopian</p>
+<p>glossary
+- test - bit of code to assert other code working
+- test runner - gather tests, run them, report
+- test suite, build - full collection
+- fixture - data fixture (django) OR dependency injection (pytest)</p>
+<p>What is pytest
+- Holger Krekel
+- no boiler place tests (eg assert 1 + 1 == 2) and still get meaningful report
+- plugins
+- 10 slowest tests &#8211;duration=10
+- modify tracebacks
+- drop to pdb on fail &#8211;pdb
+- output capture on by default - only display for fails
+- mark tests &#64;pytest.mark.functional - run separately
+- awesome failure reports - eg comparing dictionaries</p>
+<p>dependency injection
+- instead of setUp/tearDown ...
+- eg. rf, settings provided by pytest-django (request factory, django settings)</p>
+<p>parameterisation
+- have same test run multiple times with different inputs and expected outputs</p>
+<p>config
+- pytest.ini - markers to use, default args, test files
+- conftest.py - locally for current folder and children - eg use another settings file</p>
+<p>plugins
+- pytest-django</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8211;create-db, &#8211;reuse-db, to save time</li>
+<li>&#64;pytest.mark.django_db - explicit, see tests that will be slow.  Can be set in conftest.py</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>pytest-cov</li>
+<li>pytest-cache (&#8211;lf - only run last failed test)</li>
+<li>pytest-xdist</li>
+</ul>
+<p>why change?
+- is better maintained
+- compatible with current tests
+- will be better for future tests</p>
+<p>why not?
+- no dependency injection for nose classes
+- can still use the autouse fixtures
+- no data fixture bundling</p>
+<p>can convert some asserts quickly</p>
+</div>
+
 
           </div>
         </div>

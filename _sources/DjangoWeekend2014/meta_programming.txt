@@ -7,7 +7,7 @@ Meta-programming in Python
 - @voxmjw
 - http://mattjw.net mattjw@mattjw.net
 - https://github.com/mattjw/rps_metaprogramming
-- slides http://www.mattjw.net/2014/02/rps-metaprogramming
+- slides http://www.mattjw.net/2014/02/rps-metaprogramming and https://speakerdeck.com/mattjw/cheating-at-rock-paper-scissors-meta-programming-in-python
 
 Prog competition for iterated rock-paper-scissors
 

@@ -49,14 +49,8 @@ ChangeList
 Magic Tricks
 ------------
 
-The Future
-----------
-
-- admin doesn't rely on many other bits of Django - backwards compatibility has costs and benefits
-- admin created when best practice of Django were evolving - hard to refactor - big bag of code
-
 Django Girls
-------------
+~~~~~~~~~~~~
 
 - started 9 months ago
 - 60 workshops have happened - 1245 women have been taught - N America, S America, Africa, Europe
@@ -64,7 +58,7 @@ Django Girls
 - multilingual
 - each organiser can access the admin, but only their own page/event
 - need more advanced permissions
-- use django-soot (?) to add a nice sidebar
+- use djangosuit (?) to add a nice sidebar
 - maintenance team of 6 people who have superuser access
 - EventAdmin - get_queryset() - filter events by team user is in
 - get_form() - if not superuser - override queryset to filter by user/team
@@ -79,13 +73,21 @@ Django Girls
 - actions = ['show_on_homepage'] - add method (queryset update) and add short_description
 
 Don't
------
+~~~~~
 
 - use django admin as your user facing interface
 - waste too much time trying to customise
 
 Do
---
+~~
 
 - make your managers life easier with small tricks
 - ensure your admins can't break the site (with too much power)
+
+The Future
+----------
+
+- admin doesn't rely on many other bits of Django - backwards compatibility has costs and benefits
+- admin created when best practice of Django were evolving - hard to refactor - big bag of code
+- django-admin2 trying - in alpha for 3 years
+- django 1.9 will have an updated CSS for the admin - try it now - pip install django-flat-theme

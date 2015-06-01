@@ -104,3 +104,22 @@ Django in FinTech World
 FinTech = Financial Tech World
 business loan process is heavy, so 5M businesses want loans but can't get them
 so automate business loan process
+
+Working collectively to love our work
+-------------------------------------
+
+Daniel Quinn
+
+- nice to have offer of counsellors
+- but that is a symptom - the cause is companies treating employees better
+- eg working Saturdays required to keep job
+- now working for non-profit - could earn more, but quite enough, 30 days holiday/year - wonderful place to work
+- a range of companies have a range of practices
+- maybe we should be sharing what work is like where we are, and if your company is shit, go to a good one
+
+PyCon in Czech Republic
+-----------------------
+
+Tomasz
+(PyCon name still needs final permission)
+20-21 November 2015 (tbc)

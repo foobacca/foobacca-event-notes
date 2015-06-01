@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>A sincere tale of Django, developers and security &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="On privilege and moral duty" href="privilege-moral-duty.html" />
+    <link rel="prev" title="Switching from nose to py.test at Mozilla" href="nose-pytest.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="privilege-moral-duty.html" title="On privilege and moral duty"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="nose-pytest.html" title="Switching from nose to py.test at Mozilla"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="a-sincere-tale-of-django-developers-and-security">
+<h1>A sincere tale of Django, developers and security<a class="headerlink" href="#a-sincere-tale-of-django-developers-and-security" title="Permalink to this headline">¶</a></h1>
+<p>Erik Romijn
+&#64;erikpub</p>
+<ul class="simple">
+<li>used to think security was about knowing everything, and I didn&#8217;t know everything</li>
+<li>now - more about the way you think about things</li>
+</ul>
+<p>Things I don&#8217;t know about</p>
+<ul class="simple">
+<li>computers work differently - they don&#8217;t know what you meant - so ask:</li>
+<li>how does it know that?</li>
+<li>how might someone implement this in software?  How would you explain to a toddler?</li>
+</ul>
+<p>Example - oege - shared linux server for students</p>
+<ul class="simple">
+<li>register.php - enter uni username and password - register and email your details</li>
+<li>cat register.php - permission denied</li>
+<li>but write php script to read it, and as php run by webserver - it works</li>
+<li>script - runs sudo /path/to/script.sh user pass</li>
+<li>write php script to call script, create other accounts, change root password, etc</li>
+</ul>
+<p>Relentlessly question, take things apart and think creatively</p>
+<div class="section" id="django">
+<h2>Django<a class="headerlink" href="#django" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>&#8220;reassuringly secure&#8221; - password storage, auth, CSRF, DoS ...</li>
+<li>Django reduces the number of things you can screw up - eg auth system</li>
+<li>good docs - Security in Django</li>
+<li>Read &#8220;Two Scoops of Django&#8221; - good security section</li>
+</ul>
+<p>Can introduce remote code execution</p>
+<ul class="simple">
+<li>SESSION_ENGINE - signed_cookies</li>
+<li>SERIALISER - PickleSerializer</li>
+<li>SECRET_KEY = &#8216;not really secret&#8217;</li>
+</ul>
+<p>But the above aren&#8217;t default, and settings doc has warnings</p>
+<p>Django forms are also good
+- apple app id allowed dropbox credentials to be lost</p>
+<p><a class="reference external" href="https://www.ponycheckup.com/">https://www.ponycheckup.com/</a> - does automatic checks</p>
+<p>If you think you&#8217;ve found something, email <a class="reference external" href="mailto:security&#37;&#52;&#48;djangoproject&#46;com">security<span>&#64;</span>djangoproject<span>&#46;</span>com</a></p>
+</div>
+<div class="section" id="common-issues">
+<h2>Common Issues<a class="headerlink" href="#common-issues" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="absent-or-misconfigured-https">
+<h3>1 - absent or misconfigured https<a class="headerlink" href="#absent-or-misconfigured-https" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>https - essential for sensitive data - eg login details</li>
+<li>plain http - no integrity - could have stuff added, or replaced</li>
+<li>proper https
+- enable for entire site
+- redirect all users to https, enable HSTS
+- set the secure flag on cookies
+- all in settings SECURE_*
+- set the right cyphers, versions etc - <a class="reference external" href="https://ssllabs.com/ssltest/">https://ssllabs.com/ssltest/</a>
+- Book - Bulletproof SSL and TLS - practical, crypto concepts, vulnerabilities</li>
+</ul>
+</div>
+<div class="section" id="happy-path-only-testing">
+<h3>2 - Happy path only testing<a class="headerlink" href="#happy-path-only-testing" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>eg View with login_required</li>
+<li>abstract to mixin</li>
+<li>test, does login, then gets page</li>
+<li>forget mixin, the test still passes</li>
+<li>you need to test that anonymous users can&#8217;t view, that users w/o permissions can&#8217;t view ...</li>
+</ul>
+</div>
+<div class="section" id="media-uploads">
+<h3>3 - Media Uploads<a class="headerlink" href="#media-uploads" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">see one file, then guess path of another file</p>
+</li>
+<li><p class="first">SECURE_SSL_REDIRECT - doesn&#8217;t help</p>
+</li>
+<li><dl class="first docutils">
+<dt>properly</dt>
+<dd><ul class="first last simple">
+<li>ideally different storage, different domain</li>
+<li>at least do strict check on filetype, extension, mime type</li>
+<li>access control - serve through Django (slow) OR use x-sendfile to tell webserver to serve file</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="outdated-software">
+<h3>4 - Outdated Software<a class="headerlink" href="#outdated-software" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>django 1.3 has 20 missing patches, 1.5 has 7, 1.6 has 1</li>
+<li>requires.io - extracts all dependencies, versions, tells you about security issues!</li>
+</ul>
+</div>
+</div>
+<div class="section" id="human-factors">
+<h2>Human Factors<a class="headerlink" href="#human-factors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>ING Bank login &#8220;My ING&#8221;</li>
+<li>someone searches for &#8220;My&#8221; - hits first link, types in username and password without seeing what site is</li>
+<li>people will give password to someone claiming to be from IT</li>
+<li>password strength library - <a class="reference external" href="https://github.com/dropbox/zxcvbn">https://github.com/dropbox/zxcvbn</a></li>
+<li>two factor auth (2FA)</li>
+</ul>
+</div>
+<div class="section" id="risks">
+<h2>Risks<a class="headerlink" href="#risks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>What about the NSA?</li>
+<li>Yes, the NSA can hack you</li>
+<li>but you can be secure enough about to stop hackers</li>
+<li>backup and recovery is also important</li>
+<li>how long can you reasonably be offline for?</li>
+</ul>
+</div>
+<div class="section" id="why-it-matters">
+<h2>Why it matters<a class="headerlink" href="#why-it-matters" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>&#8220;it&#8217;s been fine for the last year&#8221;</li>
+<li>sometimes companies phone up and ask for passwords - they haven&#8217;t thought it through</li>
+<li>many people find security really annoying ... until something goes wrong</li>
+<li>quote &#8220;There is now way I can single handlely save the world ... ashamed to let one day go by without making an effort&#8221; Isaac Asimov</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">A sincere tale of Django, developers and security</a><ul>
+<li><a class="reference internal" href="#django">Django</a></li>
+<li><a class="reference internal" href="#common-issues">Common Issues</a><ul>
+<li><a class="reference internal" href="#absent-or-misconfigured-https">1 - absent or misconfigured https</a></li>
+<li><a class="reference internal" href="#happy-path-only-testing">2 - Happy path only testing</a></li>
+<li><a class="reference internal" href="#media-uploads">3 - Media Uploads</a></li>
+<li><a class="reference internal" href="#outdated-software">4 - Outdated Software</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#human-factors">Human Factors</a></li>
+<li><a class="reference internal" href="#risks">Risks</a></li>
+<li><a class="reference internal" href="#why-it-matters">Why it matters</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="nose-pytest.html"
+                        title="previous chapter">Switching from nose to py.test at Mozilla</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="privilege-moral-duty.html"
+                        title="next chapter">On privilege and moral duty</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/django-dev-security.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="privilege-moral-duty.html" title="On privilege and moral duty"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="nose-pytest.html" title="Switching from nose to py.test at Mozilla"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

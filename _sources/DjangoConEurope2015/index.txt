@@ -21,13 +21,15 @@ Day 1
    keynote-day1
    monolith
    injecting-django
-   lightning-day1
    pushing-pony
    camel
    django-live
    social-sciences
    salt
    nose-pytest
+   django-dev-security
+   privilege-moral-duty
+   lightning-day1
 
 Day 2
 -----

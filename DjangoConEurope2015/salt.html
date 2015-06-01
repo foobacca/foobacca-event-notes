@@ -54,8 +54,9 @@
   <div class="section" id="salt-for-django-developers">
 <h1>Salt for Django Developers<a class="headerlink" href="#salt-for-django-developers" title="Permalink to this headline">¶</a></h1>
 <p>Yann Malet
+&#64;gwadeloop
 co-author of High Performance Django</p>
-<p>slides - <a class="reference external" href="https://github.com/yml/slatTalkDjangoConEu2015">https://github.com/yml/slatTalkDjangoConEu2015</a></p>
+<p>slides - <a class="reference external" href="https://github.com/yml/saltTalkDjangoConEu2015">https://github.com/yml/saltTalkDjangoConEu2015</a></p>
 <p>about:
 - vocab
 - building blocks</p>
@@ -64,6 +65,9 @@ co-author of High Performance Django</p>
 <p>Vocab</p>
 <ul class="simple">
 <li>&#8220;master&#8221; controls &#8220;minion&#8221;</li>
+<li>pillars - variables for one or more minions</li>
+<li>grains - static info about minions</li>
+<li>topfile - yaml file matches states or pillars to minions</li>
 </ul>
 <p>Sample commands</p>
 <ul class="simple">
@@ -72,6 +76,17 @@ co-author of High Performance Django</p>
 <li>sudo salt G &#8220;roles:web&#8221; test.ping - lists connected minions with web server role</li>
 <li>sudo salt G &#8220;roles:web&#8221; cmd.run &#8220;uname -a&#8221; - runs command on filtered servers</li>
 </ul>
+<p>Show some config</p>
+<ul class="simple">
+<li>yaml format</li>
+<li>can use jinja templates</li>
+</ul>
+<p>Can do calculations in the templates (eg relative to available RAM)</p>
+<p>Ordering is hard in config mgt - use require and watch</p>
+<p>Debugging - can put a breakpoint anywhere in salt, and inspect with pdb!
+Can also inspect lots of data</p>
+<p>Also: reactor, beacon, mines, salt-cloud ... <a class="reference external" href="http://saltstack.com/">http://saltstack.com/</a></p>
+<p>Package the high performance django recommendations as hpd-states package</p>
 </div>
 
 

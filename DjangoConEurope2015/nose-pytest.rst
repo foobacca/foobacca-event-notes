@@ -2,6 +2,7 @@ Switching from nose to py.test at Mozilla
 =========================================
 
 Matthieu Agopian
+slides - http://mathieu.agopian.info/presentations/2015_06_djangocon_europe/
 
 glossary
 - test - bit of code to assert other code working

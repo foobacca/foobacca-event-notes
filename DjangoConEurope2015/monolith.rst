@@ -1,6 +1,9 @@
 Avoiding Monoliths
 ==================
 
+Hanna Kollo
+slides: http://harbour77.eu/?p=86
+
 - Single big monlith is bad
 - Having many very small apps all being very inter-related is also not great
 - 2nd iteration was fewer larger apps, less dependencies to follow between apps

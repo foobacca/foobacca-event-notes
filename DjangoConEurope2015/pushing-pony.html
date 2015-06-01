@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Pushing the Pony’s Boundaries &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Lightning Talks Day 2" href="lightning-day2.html" />
+    <link rel="prev" title="Lightning Talks Day 1" href="lightning-day1.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning Talks Day 2"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lightning-day1.html" title="Lightning Talks Day 1"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pushing-the-pony-s-boundaries">
+<h1>Pushing the Pony&#8217;s Boundaries<a class="headerlink" href="#pushing-the-pony-s-boundaries" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>loves the Django Admin</li>
+<li>started coding at 14, writing games, PHP</li>
+<li>6 years of building admin interfaces</li>
+</ul>
+<div class="section" id="admin">
+<h2>Admin<a class="headerlink" href="#admin" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Inside</li>
+<li>admin magic</li>
+<li>future of the admin</li>
+</ul>
+</div>
+<div class="section" id="how-the-admin-works">
+<h2>How the Admin Works<a class="headerlink" href="#how-the-admin-works" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">been there since the early days</p>
+</li>
+<li><p class="first">not the most beautiful part of the codebase</p>
+</li>
+<li><dl class="first docutils">
+<dt>3 main classes</dt>
+<dd><ul class="first last simple">
+<li>AdminSite</li>
+<li>ModelAdmin 2000 loc</li>
+<li>ChangeList</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>AdminSite</p>
+<ul class="simple">
+<li>AdminSite encapsulates an instance of the admin site</li>
+<li>login, logout ... are methods on the AdminSite object (see get_urls() )</li>
+<li>some dynamic urls generated from self._registry.items()</li>
+<li>can set eg list_display when registering your model (prob not a great idea ...)</li>
+<li>can set site_title etc in SiteAdmin</li>
+</ul>
+<p>ModelAdmin</p>
+<ul class="simple">
+<li>encapsulates all admin options and functionality for any given model</li>
+<li>actions_on_top actions_on_bottom - add actions to list view</li>
+<li>fieldsets - linked models</li>
+<li>list_display_links - add links in list view</li>
+<li>list_editable - eg checkboxes in list view (though look at bug 11313 - multiuser)</li>
+<li>ordering - can override model ordering in the admin</li>
+<li>radio_fields - have radio buttons when editing model object, instead of select</li>
+<li>save_as - &#8220;save as new&#8221; - edit a model and save as new object</li>
+<li>show_full_result_count - showing full count - can be used to turn off - eg slow NoSQL databases</li>
+</ul>
+<p>ChangeList</p>
+<ul class="simple">
+<li>field errors, searching, ordering ...</li>
+</ul>
+</div>
+<div class="section" id="magic-tricks">
+<h2>Magic Tricks<a class="headerlink" href="#magic-tricks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="django-girls">
+<h3>Django Girls<a class="headerlink" href="#django-girls" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>started 9 months ago</li>
+<li>60 workshops have happened - 1245 women have been taught - N America, S America, Africa, Europe</li>
+<li>all run from Django site</li>
+<li>multilingual</li>
+<li>each organiser can access the admin, but only their own page/event</li>
+<li>need more advanced permissions</li>
+<li>use djangosuit (?) to add a nice sidebar</li>
+<li>maintenance team of 6 people who have superuser access</li>
+<li>EventAdmin - get_queryset() - filter events by team user is in</li>
+<li>get_form() - if not superuser - override queryset to filter by user/team</li>
+<li>some organisers edited an old event to create new event - solve by &#8220;only edit future events&#8221;</li>
+<li>use get_readonly_fields() (django 1.8) - if not superuser, if not object.event.is_upcoming, return field list</li>
+<li>display all organisers as list on ChangeList view</li>
+<li>show organizer column in ChangeList view</li>
+<li>display status of event - custom method fields &#8220;is_event_over&#8221;</li>
+<li>display images in list - custom field get_logo_display() - returns HTML link</li>
+<li>custom actions - a way to publish multiple events with one click</li>
+<li>select multiple in list view - add custom action to select box</li>
+<li>actions = [&#8216;show_on_homepage&#8217;] - add method (queryset update) and add short_description</li>
+</ul>
+</div>
+<div class="section" id="don-t">
+<h3>Don&#8217;t<a class="headerlink" href="#don-t" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>use django admin as your user facing interface</li>
+<li>waste too much time trying to customise</li>
+</ul>
+</div>
+<div class="section" id="do">
+<h3>Do<a class="headerlink" href="#do" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>make your managers life easier with small tricks</li>
+<li>ensure your admins can&#8217;t break the site (with too much power)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="the-future">
+<h2>The Future<a class="headerlink" href="#the-future" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>admin doesn&#8217;t rely on many other bits of Django - backwards compatibility has costs and benefits</li>
+<li>admin created when best practice of Django were evolving - hard to refactor - big bag of code</li>
+<li>django-admin2 trying - in alpha for 3 years</li>
+<li>django 1.9 will have an updated CSS for the admin - try it now - pip install django-flat-theme</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Pushing the Pony&#8217;s Boundaries</a><ul>
+<li><a class="reference internal" href="#admin">Admin</a></li>
+<li><a class="reference internal" href="#how-the-admin-works">How the Admin Works</a></li>
+<li><a class="reference internal" href="#magic-tricks">Magic Tricks</a><ul>
+<li><a class="reference internal" href="#django-girls">Django Girls</a></li>
+<li><a class="reference internal" href="#don-t">Don&#8217;t</a></li>
+<li><a class="reference internal" href="#do">Do</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-future">The Future</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lightning-day1.html"
+                        title="previous chapter">Lightning Talks Day 1</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lightning-day2.html"
+                        title="next chapter">Lightning Talks Day 2</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/pushing-pony.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning Talks Day 2"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lightning-day1.html" title="Lightning Talks Day 1"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

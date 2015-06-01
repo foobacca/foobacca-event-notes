@@ -20,6 +20,7 @@ Day 1
    monolith
    injecting-django
    lightning-day1
+   pushing-pony
 
 Day 2
 -----

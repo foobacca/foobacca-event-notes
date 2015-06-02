@@ -38,7 +38,6 @@ Day 2
    :maxdepth: 2
 
    rabbit-hole
-   lightning-day2
    pony-wings
    polyglot
    docker
@@ -46,6 +45,12 @@ Day 2
    aggregation
    load-test
    octopus
+   desktop
+   lispisms
+   forms-static
+   real-time-apps
+   true-beauty
+   lightning-day2
 
 Day 3
 -----

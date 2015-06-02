@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Local Development with Docker &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Web accessibility is not an option" href="accessibility.html" />
+    <link rel="prev" title="Django’s role in a polyglot world" href="polyglot.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="accessibility.html" title="Web accessibility is not an option"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="polyglot.html" title="Django’s role in a polyglot world"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="local-development-with-docker">
+<h1>Local Development with Docker<a class="headerlink" href="#local-development-with-docker" title="Permalink to this headline">¶</a></h1>
+<p>stefan foulis</p>
+<p>docker-compose up - and we&#8217;re running!</p>
+<div class="section" id="what-is-docker-what-are-the-benefits">
+<h2>What is docker?  What are the benefits?<a class="headerlink" href="#what-is-docker-what-are-the-benefits" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>(sort of) like a VM (lxc) but much more efficient</li>
+<li>great tools for building and sharing app envs</li>
+<li>dev/prod parity</li>
+<li>image is like a template - snapshot of VM</li>
+<li>container - an instance of an image - running app</li>
+<li>registry - store/share images</li>
+</ul>
+</div>
+<div class="section" id="basic-docker-concerts">
+<h2>Basic Docker Concerts<a class="headerlink" href="#basic-docker-concerts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>docker push/pull</li>
+<li>hub.docker.com has various images ready to go - redis, django, postgres</li>
+<li>images would in layers
+- debian 8
+- python 3.4
+- django (python 3)
+- mysite v1</li>
+<li>docker file</li>
+</ul>
+<dl class="docutils">
+<dt>::</dt>
+<dd>FROM django:python3-onbuild
+RUN apt-get ...
+RUN mkdir
+WORKDIR ...
+COPY localfs to docker</dd>
+</dl>
+</div>
+<div class="section" id="create-docker-ised-django-project">
+<h2>Create docker-ised django project<a class="headerlink" href="#create-docker-ised-django-project" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>::</dt>
+<dd>docker build -t mydjangoimage
+docker run ... django-admin.py startproject mysite .
+docker run ... python manage.py runserver 0.0.0.0:8000</dd>
+</dl>
+</div>
+<div class="section" id="django-compose">
+<h2>django-compose<a class="headerlink" href="#django-compose" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>cmd line tool that runs yaml file describing stack</li>
+</ul>
+<p>yaml example</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd><dl class="first last docutils">
+<dt>web:</dt>
+<dd><p class="first">build: .
+volumes:</p>
+<blockquote>
+<div><ul class="simple">
+<li>.:/usr/src/app</li>
+</ul>
+</div></blockquote>
+<p>ports:
+links:</p>
+<blockquote>
+<div># to other images below</div></blockquote>
+<dl class="last docutils">
+<dt>env:</dt>
+<dd># set environment variables</dd>
+</dl>
+</dd>
+<dt>postgres:</dt>
+<dd>...</dd>
+<dt>redis:</dt>
+<dd>...</dd>
+</dl>
+</dd>
+</dl>
+<ul class="simple">
+<li>run commands in container - including bash</li>
+<li>need to rebuild occasionally - new dependencies</li>
+<li>pdb is hard - <tt class="docutils literal"><span class="pre">docker-compose</span> <span class="pre">run</span></tt> - then get an interactive console</li>
+<li>or <tt class="docutils literal"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">...</span> <span class="pre">/bin/bash</span></tt> - then run ps ...</li>
+</ul>
+</div>
+<div class="section" id="nice-urls-with-proxy">
+<h2>nice urls with proxy<a class="headerlink" href="#nice-urls-with-proxy" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>docker - nginx proxy - reverse proxy for docker, nice magic for real URLs</li>
+<li>ssh termination ...</li>
+<li>much faster than vagrant</li>
+<li>can mount directories from outside the container into the container, eg for postgres data store</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Local Development with Docker</a><ul>
+<li><a class="reference internal" href="#what-is-docker-what-are-the-benefits">What is docker?  What are the benefits?</a></li>
+<li><a class="reference internal" href="#basic-docker-concerts">Basic Docker Concerts</a></li>
+<li><a class="reference internal" href="#create-docker-ised-django-project">Create docker-ised django project</a></li>
+<li><a class="reference internal" href="#django-compose">django-compose</a></li>
+<li><a class="reference internal" href="#nice-urls-with-proxy">nice urls with proxy</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="polyglot.html"
+                        title="previous chapter">Django&#8217;s role in a polyglot world</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="accessibility.html"
+                        title="next chapter">Web accessibility is not an option</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/docker.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="accessibility.html" title="Web accessibility is not an option"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="polyglot.html" title="Django’s role in a polyglot world"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

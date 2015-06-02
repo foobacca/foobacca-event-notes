@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using Python to load-test web apps &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Lightning Talks Day 3" href="lightning-day3.html" />
+    <link rel="prev" title="Django aggregations demystified" href="aggregation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lightning-day3.html" title="Lightning Talks Day 3"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="aggregation.html" title="Django aggregations demystified"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="using-python-to-load-test-web-apps">
+<h1>Using Python to load-test web apps<a class="headerlink" href="#using-python-to-load-test-web-apps" title="Permalink to this headline">¶</a></h1>
+<p>Yulia Zozulya</p>
+<div class="section" id="funkload">
+<h2>FunkLoad<a class="headerlink" href="#funkload" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Looks like TestCase</li>
+<li>has setUpCycle() and tearDownCycle() - run before/after threads spawned/finish</li>
+<li>big config file</li>
+<li>spawns threads (with small delay)</li>
+<li>each thread runs test in a loop</li>
+<li>why FunkLoad?
+- familiar structure (from TestCase)
+- smoke tests with unittest runners
+- benchmark can be distributed between multiple machines
+- good docs - tips and tricks for performance
+- easily extensible</li>
+<li>why not?
+- uses default python threading module only - single core etc
+- default reports not configurable</li>
+</ul>
+</div>
+<div class="section" id="multi-mechanize-transaction">
+<h2>Multi-Mechanize Transaction<a class="headerlink" href="#multi-mechanize-transaction" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Transaction class</li>
+<li>config file - lighter than FunkLoad</li>
+<li>runner - spawns threads, with delay</li>
+<li>threads can be grouped into UserGroup - uses subprocesses, so multicore</li>
+<li>why use mm t?
+- uses multiprocessing
+- report graphics more configurable (and more out of the box)</li>
+<li>why not?
+- API not as obvious/simple as FunkLoad
+- distributed workflow not supported out of the box</li>
+</ul>
+</div>
+<div class="section" id="locust-io-taskset-and-locust">
+<h2>locust.io TaskSet and Locust<a class="headerlink" href="#locust-io-taskset-and-locust" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>TaskSet, Locust base classes</li>
+<li>TaskSet tasks can be weighted</li>
+<li>Locust doesn&#8217;t use threads - events and greenlets</li>
+<li>why use?
+- greenlets much faster for i/o than pthreads
+- light web UI for monitoring
+- distributed workflow supported
+- heterogenous tests - more realistic
+- no separate config - all in python</li>
+<li>why not?
+- tricky terminology and relations</li>
+</ul>
+</div>
+<div class="section" id="why-not-use-python-2">
+<h2>Why not use Python (2) ?<a class="headerlink" href="#why-not-use-python-2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>GIL</li>
+<li>above all use python 2</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using Python to load-test web apps</a><ul>
+<li><a class="reference internal" href="#funkload">FunkLoad</a></li>
+<li><a class="reference internal" href="#multi-mechanize-transaction">Multi-Mechanize Transaction</a></li>
+<li><a class="reference internal" href="#locust-io-taskset-and-locust">locust.io TaskSet and Locust</a></li>
+<li><a class="reference internal" href="#why-not-use-python-2">Why not use Python (2) ?</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="aggregation.html"
+                        title="previous chapter">Django aggregations demystified</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lightning-day3.html"
+                        title="next chapter">Lightning Talks Day 3</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/load-test.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lightning-day3.html" title="Lightning Talks Day 3"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="aggregation.html" title="Django aggregations demystified"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

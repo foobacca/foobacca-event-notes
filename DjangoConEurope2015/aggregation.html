@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django aggregations demystified &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Using Python to load-test web apps" href="load-test.html" />
+    <link rel="prev" title="Web accessibility is not an option" href="accessibility.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="load-test.html" title="Using Python to load-test web apps"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="accessibility.html" title="Web accessibility is not an option"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="django-aggregations-demystified">
+<h1>Django aggregations demystified<a class="headerlink" href="#django-aggregations-demystified" title="Permalink to this headline">¶</a></h1>
+<p>Theofanis Despoudis</p>
+<div class="section" id="aggregations">
+<h2>Aggregations<a class="headerlink" href="#aggregations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>database functions</li>
+<li>produce summaries over collections</li>
+<li>similar to reduce function</li>
+<li>return single value</li>
+<li>avg, max, min, sum, count, StdDev, variance</li>
+<li>setup
+- Gamer model
+- GameServer - m2m w Gamer
+- GameSession - inc multiple Gamer, one GamerServer
+- GameSessionResult - FK to session, user</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Gamer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">))</span>
+<span class="n">Gamer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">won</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">num_wins</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;won&#39;</span><span class="p">))</span>
+<span class="c"># avg points per gave</span>
+<span class="n">GameSessionResult</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">Avg</span><span class="p">(</span><span class="s">&#39;score&#39;</span><span class="p">),</span><span class="n">StdDev</span><span class="p">(</span><span class="s">&#39;score&#39;</span><span class="p">),</span><span class="n">Variance</span><span class="p">(</span><span class="s">&#39;score&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="annotations">
+<h2>Annotations<a class="headerlink" href="#annotations" title="Permalink to this headline">¶</a></h2>
+<p>summary per row/object</p>
+<div class="highlight-python"><pre>scores = GameSessionResult.objects.all().annotate(Sum('gamersessionresult__score'))
+scores[0].gamesessionresult__score__sum
+scores = GameSessionResult.objects.all().annotate(
+    sum_scores=Sum('gamesessionresult__score')),
+    ...)
+
+Gamer.objects.all().annotate(sum_points=Sum('gamesessionresult__score'))\
+    .filter(not null).order_by('sum_points')[:5]
+
+# group by
+GameServer.objects.values('region').annotate(num_users=Count('gamers'))</pre>
+</div>
+</div>
+<div class="section" id="practical-bits">
+<h2>Practical Bits<a class="headerlink" href="#practical-bits" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>when in doubt - check the generated query
+- django debug toolbar, debugsqlshell
+- <tt class="docutils literal"><span class="pre">print(queryset.query)</span></tt></li>
+<li>if you can do it in SQL, don&#8217;t do it in python</li>
+<li>collect queries in a manager - but put in proxy object, so can apply diff orders</li>
+<li>KISS</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django aggregations demystified</a><ul>
+<li><a class="reference internal" href="#aggregations">Aggregations</a></li>
+<li><a class="reference internal" href="#annotations">Annotations</a></li>
+<li><a class="reference internal" href="#practical-bits">Practical Bits</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="accessibility.html"
+                        title="previous chapter">Web accessibility is not an option</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="load-test.html"
+                        title="next chapter">Using Python to load-test web apps</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/aggregation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="load-test.html" title="Using Python to load-test web apps"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="accessibility.html" title="Web accessibility is not an option"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

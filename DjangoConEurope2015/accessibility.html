@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Web accessibility is not an option &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Django aggregations demystified" href="aggregation.html" />
+    <link rel="prev" title="Local Development with Docker" href="docker.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="aggregation.html" title="Django aggregations demystified"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="docker.html" title="Local Development with Docker"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="web-accessibility-is-not-an-option">
+<h1>Web accessibility is not an option<a class="headerlink" href="#web-accessibility-is-not-an-option" title="Permalink to this headline">¶</a></h1>
+<p>Xavier Dutreilh</p>
+<div class="section" id="the-problem">
+<h2>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
+<p>Consider life without the web - and all the small opportunities it has brought you.</p>
+<p>Some people have issues - because we design websites for non-disabled people</p>
+<p>Disability is a consequence of an impairment
+- from birth or acquired later
+- progressive or non-progressive
+- visual, hearing, motor or cognitive
+- visual - blind, low-vision, colour blind
+- hearing - deaf, or limited hearing
+- motor - limited dexterity or loss of limbs
+- cognitive - learning issues or memory loss</p>
+<p>How to do web accessibility
+- try using a screen reader!
+- provide alt text to non text content</p>
+<blockquote>
+<div><ul class="simple">
+<li>just alt=&#8221;Image of Xavier&#8221; - still bad, as screen reader says <tt class="docutils literal"><span class="pre">&quot;image</span> <span class="pre">of</span> <span class="pre">{}&quot;.format(alt_text)</span></tt></li>
+<li>alt=&#8221;Xavier&#8221; is appropriate, or alt=&#8221;Xavier giving a talk&#8221;</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>provide appropriate doc structure with tags
+- <tt class="docutils literal"><span class="pre">&lt;header&gt;&lt;/header&gt;&lt;nav&gt;&lt;/nav&gt;&lt;main&gt;&lt;article&gt;&lt;/article&gt;&lt;/main&gt;&lt;footer&gt;&lt;/footer&gt;</span></tt></li>
+<li>don&#8217;t use lists when not a list - screen reader noise</li>
+<li>do tables properly - <tt class="docutils literal"><span class="pre">&lt;thead&gt;</span></tt> section really helps</li>
+<li>provide appropriate validation and errors for forms
+- Django is pretty good, more relevant for JS front end stuff
+- use label tag with for attr - <tt class="docutils literal"><span class="pre">&lt;label</span> <span class="pre">for=&quot;name&quot;&gt;Name&lt;/label&gt;&lt;input</span> <span class="pre">name=&quot;name&quot;</span> <span class="pre">...&gt;</span></tt></li>
+<li>appropriate link description to links
+- screen reader will collect links on page and read to user without surrounding context
+- Bad - <tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;/articles&quot;&gt;Read</span> <span class="pre">all</span> <span class="pre">articles`&lt;/a&gt;</span></tt>
+- Better - <tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;/articles&quot;&gt;Read</span> <span class="pre">all</span> <span class="pre">articles&lt;/a&gt;</span></tt></li>
+<li>caption and transcripts for audio and video</li>
+<li>accessibility for non-html content (eg PDF)
+- same guidelines as web, when building in Word (or whatever)</li>
+<li>allow users to skip repetitive elements on the page
+- <tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;#content&quot;</span> <span class="pre">class=&quot;hidden-except-screen-readers&quot;&gt;Skip</span> <span class="pre">to</span> <span class="pre">main</span> <span class="pre">content&lt;/a&gt;</span></tt></li>
+<li>Do not rely on colour alone to convey info
+- bad - <tt class="docutils literal"><span class="pre">&lt;span</span> <span class="pre">class=&quot;label</span> <span class="pre">green&quot;&gt;&lt;/span&gt;</span></tt>
+- good - <tt class="docutils literal"><span class="pre">&lt;span</span> <span class="pre">class=&quot;label</span> <span class="pre">green&quot;&gt;some</span> <span class="pre">label&lt;/span&gt;</span></tt></li>
+<li>make sure content is clearly written and easy to read (hard to apply)
+- writing in second language
+- sometimes assumes shared culture
+- &#8220;Write explicit, clear, simple and positive sentences&#8221;</li>
+<li>Use clear fonts, relative units (better for zooming) and strong contrasts
+- and avoid blinking or moving text at all costs
+- or any moving element</li>
+<li>make browser side JS code accessible
+- most screen readers use JS
+- avoid device dependent events</li>
+<li>design to standards - avoid hacks
+- avoid inline styles, deprecated tags and missing attributes</li>
+</ul>
+<p>Where do we go?
+- learn about impairment and disability
+- listen to people with disabilities (and the variety)
+- guidelines - WCAG, ATAG, UUAG, ARIA
+- try accessibility tools on laptop or smartphone - screen reader, high colour contrast ...
+- validate your web app with WAVE
+- chrome accessibility developer tools
+- provide your skills to accessibility organisations</p>
+<p>Comments and Questions
+- Designers - get out of my way - eg restrict zoom with viewport setting
+- is there a cmd line tool to validate, so it can be used in unit tests
+- don&#8217;t build a second version - allow skipping info</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Web accessibility is not an option</a><ul>
+<li><a class="reference internal" href="#the-problem">The Problem</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="docker.html"
+                        title="previous chapter">Local Development with Docker</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="aggregation.html"
+                        title="next chapter">Django aggregations demystified</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/accessibility.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="aggregation.html" title="Django aggregations demystified"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="docker.html" title="Local Development with Docker"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

@@ -37,6 +37,7 @@ Day 2
 .. toctree::
    :maxdepth: 2
 
+   rabbit-hole
    lightning-day2
 
 Day 3

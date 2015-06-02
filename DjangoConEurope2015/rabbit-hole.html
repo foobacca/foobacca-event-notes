@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Into the rabbit hole &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Lightning Talks Day 2" href="lightning-day2.html" />
+    <link rel="prev" title="Lightning Talks Day 1" href="lightning-day1.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning Talks Day 2"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lightning-day1.html" title="Lightning Talks Day 1"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="into-the-rabbit-hole">
+<h1>Into the rabbit hole<a class="headerlink" href="#into-the-rabbit-hole" title="Permalink to this headline">¶</a></h1>
+<p>Ola Sendecka
+&#64;asendecka
+Django Core team
+Django Girls co-founder</p>
+<ul class="simple">
+<li>A story of Alice in Djangoland.</li>
+<li>Using model with BooleanField is_archived and manager with .filter(is_archived=False)</li>
+<li>But found a ModelForm didn&#8217;t show the instance she wanted to look at</li>
+<li>Use function to do magic - preserve_existing_choices - insert current value in select</li>
+<li>Hit error page</li>
+<li>Changed to extend ModelChoiceIterator to insert the current value</li>
+<li>Form now displays properly, but form save gives error</li>
+<li>So extend ModelChoiceField and override to_python() method</li>
+<li>Then tried to change select widget to RadioSelect - but that didn&#8217;t work.</li>
+<li>Looked at __init__() method - but it&#8217;s big and hairy, so didn&#8217;t want to mess with it</li>
+<li>So instead use normal ModelChoiceField, and inject her to_python() method</li>
+<li>It worked! But it was ugly, fragile - she felt ashamed</li>
+<li>She&#8217;d spent hours, unexpected stuff happened, not good</li>
+</ul>
+<p>She&#8217;d been in a rabbit hole</p>
+<ul class="simple">
+<li>rabbit hole - you get so caught up in a detail, that you spend lots of time buried there, get sidetracked, change direction a lot and end up somewhere unexpected</li>
+<li>you can follow the steps, but lots of confusion and frustration</li>
+<li>some think rabbit holes are good - in flow mode</li>
+<li>but every time I end up in a rabbit hole, I feel frustrated, helpless, angry, stupid</li>
+<li>next time I would do things differently</li>
+<li>to understand the rabbit hole I wanted to read things - I have 2 bits of advice</li>
+<li>ziegarnik effect
+- the tendency to have intrusive thoughts about something started but never finished
+- so even though you want to move on, you keep going back, feel guilty ..
+- expts show that people remember unfinished puzzles much better than solved ones
+- sometimes we&#8217;ve invested too much - hard to objectively judge</li>
+<li>sunk cost fallacy
+- you get emotionally invested in the project once you&#8217;ve put time into it
+- so you feel you can&#8217;t stop - the time spent would be &#8220;wasted&#8221;
+- so you keep going
+- connected to personal responsibility - so affects person responsible for committing resources
+- so you end up doing unwise things and continuing investing when you should stop</li>
+</ul>
+<p>So how did Alice end up in the rabbit hole in the first place
+- django was doing lots of magic to make it easy - so she assumed her change would be easy
+- concentrated on surface level issue - symptom, not cause
+- continues building on previous partial solution, rather than backing out and starting again
+- convinced she was very close to a solution
+- cannot give up - too proud, wanting to prove - can be ok on side project, but not good in your job, or a big open source project</p>
+<p>What to do:</p>
+<ul class="simple">
+<li>first notice that you are in a rabbit hole
+- don&#8217;t notice when time passes
+- always almost done
+- forget to eat, drink, go to toilet ...
+- when you do step away, you can&#8217;t stop thinking about the problem
+- haven&#8217;t spoken with anyone for some time
+- feel cranky about any interruptions</li>
+<li>how to get out
+- estimate time for your next task and set timer
+- make a todo list
+- rubber duck - explain your problem to someone/duck/... - write an email to someone
+- take a longer break - and actually stop thinking about the issue!
+- ask for help</li>
+</ul>
+<p>What are your stories about rabbit holes?  How do you get out of them?</p>
+<ul class="simple">
+<li>where can I ask for help on Django?</li>
+<li>good to have colleague, even remotely.  Maybe someone else on the internet</li>
+<li>helping others online makes it more likely that others will help you</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lightning-day1.html"
+                        title="previous chapter">Lightning Talks Day 1</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lightning-day2.html"
+                        title="next chapter">Lightning Talks Day 2</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/rabbit-hole.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning Talks Day 2"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lightning-day1.html" title="Lightning Talks Day 1"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

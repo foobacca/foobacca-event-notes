@@ -76,3 +76,6 @@ nice urls with proxy
 
 - docker - nginx proxy - reverse proxy for docker, nice magic for real URLs
 - ssh termination ...
+
+- much faster than vagrant
+- can mount directories from outside the container into the container, eg for postgres data store

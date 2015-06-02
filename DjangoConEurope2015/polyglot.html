@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Django’s role in a polyglot world &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Lightning Talks Day 3" href="lightning-day3.html" />
+    <link rel="prev" title="Give your pony wings" href="pony-wings.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lightning-day3.html" title="Lightning Talks Day 3"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pony-wings.html" title="Give your pony wings"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="django-s-role-in-a-polyglot-world">
+<h1>Django&#8217;s role in a polyglot world<a class="headerlink" href="#django-s-role-in-a-polyglot-world" title="Permalink to this headline">¶</a></h1>
+<p>David Gouldin
+&#64;dgouldin
+slides - <a class="reference external" href="https://django-ployglot.herokuapp.com">https://django-ployglot.herokuapp.com</a></p>
+<ul class="simple">
+<li>Django is 10 years old</li>
+<li>it is not a CMS (but was built to make one)</li>
+<li>used to be LAMP - one (relational) datastore, all on one server</li>
+<li>now much more service orientated - can even treat the web browser as a service that runs stuff</li>
+<li>expectations for responsiveness, &#8220;app-like&#8221;</li>
+</ul>
+<p>Django strengths
+- python
+- &#8220;perfectionists with deadlines&#8221;
+- orm &amp; migrations (though doesn&#8217;t cover entire SQL standard)
+- the admin
+- django rest framework (for REST API)
+- celery (async work queue)</p>
+<p>Django weaknesses
+- c10k - 10000 concurrent connections to web service - alternatives async.io, twisted, but lose library support</p>
+<p>JS client integration
+- community then expect JS on the server</p>
+<p>Push to web clients
+- no good solution in Django - long connections - but kills server
+- polyglot can use socket.io, websocketd, golang</p>
+<p>async task results
+- add task ids to initial response
+- then have client poll other endpoint to get status of task id
+- OR can use pubsub/async to subscribe to task, and then result gets pushed to client</p>
+<ul class="simple">
+<li>react.js - but then need js running on the server</li>
+<li>run node on server - React.renderToString(BaseElement)</li>
+<li>can have node on separate subdomain - have node to initial web page, then have Django as a service provider</li>
+</ul>
+<p>Shared auth across services
+- django.contrib.auth
+- have node proxy auth to django
+- access token, check with django
+- have separate auth service that django and others use - but more heavyweight</p>
+<div class="section" id="take-away-points">
+<h2>Take away points<a class="headerlink" href="#take-away-points" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Say no to full stack python - not feasible for the web</li>
+<li>HTTP is your friend (and pubsub is the back up)</li>
+<li>Think about web browsers as service consumers</li>
+</ul>
+</div>
+<div class="section" id="questions">
+<h2>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>when is it worth the effort?  When it seems like a webapp - plain webpage (eg blog) doesn&#8217;t need it</li>
+<li>testing? service contracts are really important - can test each service in isolation, and then just do a few integration tests</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Django&#8217;s role in a polyglot world</a><ul>
+<li><a class="reference internal" href="#take-away-points">Take away points</a></li>
+<li><a class="reference internal" href="#questions">Questions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pony-wings.html"
+                        title="previous chapter">Give your pony wings</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lightning-day3.html"
+                        title="next chapter">Lightning Talks Day 3</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/polyglot.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lightning-day3.html" title="Lightning Talks Day 3"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pony-wings.html" title="Give your pony wings"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

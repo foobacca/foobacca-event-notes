@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Lightning Talks Day 3 &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>Give your pony wings &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,7 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
-    <link rel="prev" title="Django’s role in a polyglot world" href="polyglot.html" /> 
+    <link rel="next" title="Django’s role in a polyglot world" href="polyglot.html" />
+    <link rel="prev" title="Lightning Talks Day 2" href="lightning-day2.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,6 +37,9 @@
              accesskey="I">index</a></li>
         <li class="right" >
           <a href="polyglot.html" title="Django’s role in a polyglot world"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning Talks Day 2"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
@@ -47,8 +51,57 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="lightning-talks-day-3">
-<h1>Lightning Talks Day 3<a class="headerlink" href="#lightning-talks-day-3" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="give-your-pony-wings">
+<h1>Give your pony wings<a class="headerlink" href="#give-your-pony-wings" title="Permalink to this headline">¶</a></h1>
+<p>Benjamin Wohlwend
+&#64;piquadrat_ch</p>
+<ul class="simple">
+<li>I like my code to be lazy</li>
+<li>Making your code not do too much work makes your code faster</li>
+<li>make a stackoverflow clone - for pony owners</li>
+<li>use Django - models for Question, Answer, Tag, User ...</li>
+<li>views for QuestionList, QuestionView</li>
+<li>templates ...</li>
+<li>go live - happy until ...</li>
+<li>someone linked from ponynews and</li>
+<li>we have a performance problem (or maybe several problems)</li>
+<li>so how do you find the issues</li>
+<li>django-debug-toolbar, django-dev-server, ...</li>
+<li>django-debug-toolbar is great - lots of features - SQL queries shown - hundreds of queries for one page</li>
+<li>django-devserver - shows number of sql queries, number of duplicates, time for request</li>
+</ul>
+<p>The big three
+- reduce database queries
+- do less work
+- if all else fails - cache</p>
+<p>Less SQL queries
+- select_related()</p>
+<blockquote>
+<div><ul class="simple">
+<li>use to preload objects referenced by ForeignKey</li>
+<li>eg looking up user in template</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>prefetch_related()
+- similar for reverse ForeignKey and ManyToMany
+- so get all tags for all questions in one query</li>
+</ul>
+<p>Overall, go from 121 queries to 3 queries!</p>
+<p>Do less work
+- move work out of request/response cycle (eg celery)
+- only fetch data that we need - QuerySet.defer() can skip unneeded large columns (or only())
+- let others do the work (eg do calculations in the database with annotate/aggregate)</p>
+<p>Caching
+- doing properly gives you great scaling
+- but cache invalidation is really hard
+- can also make code hard to test and understand
+- so recommend only use it when necessary
+- cache_page decorator - put it on view - timeout
+- template caching with {% cache %}
+- ORM caching with jonny-cache or django-cache-machine
+- caching http proxy like Varnish</p>
+<p>Much more in book - High Performance Django</p>
 </div>
 
 
@@ -58,11 +111,14 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
+  <p class="topless"><a href="lightning-day2.html"
+                        title="previous chapter">Lightning Talks Day 2</a></p>
+  <h4>Next topic</h4>
   <p class="topless"><a href="polyglot.html"
-                        title="previous chapter">Django&#8217;s role in a polyglot world</a></p>
+                        title="next chapter">Django&#8217;s role in a polyglot world</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2015/lightning-day3.txt"
+    <li><a href="../_sources/DjangoConEurope2015/pony-wings.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -90,6 +146,9 @@
              >index</a></li>
         <li class="right" >
           <a href="polyglot.html" title="Django’s role in a polyglot world"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning Talks Day 2"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 

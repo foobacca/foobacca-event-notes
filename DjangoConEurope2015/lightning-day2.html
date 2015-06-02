@@ -53,6 +53,118 @@
             
   <div class="section" id="lightning-talks-day-2">
 <h1>Lightning Talks Day 2<a class="headerlink" href="#lightning-talks-day-2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="django-and-robotic-telescopes">
+<h2>Django and robotic telescopes<a class="headerlink" href="#django-and-robotic-telescopes" title="Permalink to this headline">¶</a></h2>
+<p>Edward Gomez
+<a class="reference external" href="http://lcogt.net">http://lcogt.net</a></p>
+<ul class="simple">
+<li>Galaxy pictures - pretty</li>
+<li>12 telescopes currently operating &#8220;the sun never rises on our telescopes&#8221;</li>
+<li>telescopes size of double decker bus, family car, R2D2 - clusters</li>
+<li>1000 ish active users (250 astronomers, 750 school kids)</li>
+<li>web requests to server, then telescopes controlled</li>
+<li>django to take requests, schedule optimiser, save results</li>
+<li>image pipeline, python archive, served by django</li>
+<li>try it, <a class="reference external" href="http://bit.do/lco-dj-signup">http://bit.do/lco-dj-signup</a></li>
+<li>work on it <a class="reference external" href="http://lcogt.net/jobs">http://lcogt.net/jobs</a></li>
+</ul>
+</div>
+<div class="section" id="real-time-web-thing">
+<h2>Real time web thing<a class="headerlink" href="#real-time-web-thing" title="Permalink to this headline">¶</a></h2>
+<p>Craig Stone</p>
+<ul class="simple">
+<li>slides not working</li>
+<li>mashing django and angular</li>
+<li>django-angular and djangular</li>
+<li>use <tt class="docutils literal"><span class="pre">{%</span> <span class="pre">verbatim</span> <span class="pre">%}</span></tt> tag around angular framework</li>
+</ul>
+</div>
+<div class="section" id="api-by-example">
+<h2>API by example<a class="headerlink" href="#api-by-example" title="Permalink to this headline">¶</a></h2>
+<p>Carlos Barrobes
+&#64;technomilk</p>
+<ul class="simple">
+<li>an approach to testing across services</li>
+<li>before - single app</li>
+<li>want to split it up
+- UI in angular
+- backend in django/DRF</li>
+<li>want both teams to work independently</li>
+<li>want each part to be tested separately</li>
+<li>backend team should not dictate the API</li>
+<li>ABE - API by example - in json files</li>
+<li>3 repos - backend, client, mocks</li>
+<li>all begins with pull request to the mocks repo
+- signed off by at least one person from each team
+- PR is documented discussion
+- ABE files is documented API</li>
+<li>ABE mocks are versioned dependency for both front and back end</li>
+</ul>
+<p>github.com/txels
+github.com/apibyexample</p>
+</div>
+<div class="section" id="git-crypt">
+<h2>git-crypt<a class="headerlink" href="#git-crypt" title="Permalink to this headline">¶</a></h2>
+<p>Thomas
+github.com/alphacc</p>
+<ul class="simple">
+<li>admins have secret in git, but other users can&#8217;t read secret</li>
+<li>transparent encrypt/decrypt when check in/out</li>
+<li>you need a GPG key</li>
+<li>brew install git-crypt</li>
+<li>git-crypt init /path/to/key</li>
+<li>files to encrypt in .gitattributes <tt class="docutils literal"><span class="pre">*.key</span> <span class="pre">filter=git-crypt</span> <span class="pre">diff=git-crypt</span></tt></li>
+</ul>
+<p><a class="reference external" href="http://www.theport.ch">http://www.theport.ch</a>
+<a class="reference external" href="http://www.theport.ch/portfolio-item/the-port-presentation">http://www.theport.ch/portfolio-item/the-port-presentation</a></p>
+</div>
+<div class="section" id="using-streaminghttpresponse-for-json-html">
+<h2>Using StreamingHTTPResponse for JSON &amp; HTML<a class="headerlink" href="#using-streaminghttpresponse-for-json-html" title="Permalink to this headline">¶</a></h2>
+<p>Matthew Somerville
+&#64;dracos</p>
+<ul class="simple">
+<li>stop your server falling over with hacks and bug fixes</li>
+<li>request for every map boundary</li>
+<li>started 50M, 500M looksup ... total almost 2G</li>
+<li>was loading it all into memory - should have been using StreamingHTTPResponse</li>
+<li>then had to sort out middleware ...</li>
+<li>but we&#8217;re not doing a generator, but was using a dictionary</li>
+<li>created iterdict - not really a dict, but allows generator</li>
+<li>new total 215 MB</li>
+<li>gzip with unicode caused death</li>
+<li>HTML version - django doesn&#8217;t stream templates, so had to iterate django template</li>
+<li>jinja2 does support iterating template</li>
+</ul>
+</div>
+<div class="section" id="shakeslide-predicting-landslides">
+<h2>shakeslide - Predicting landslides<a class="headerlink" href="#shakeslide-predicting-landslides" title="Permalink to this headline">¶</a></h2>
+<p>&#64;DrRobParker
+&#64;g...</p>
+<ul class="simple">
+<li>Geologist at Cardiff Uni</li>
+<li>using Django to predict landslides triggered by earthquakes</li>
+<li>building a global db of landslides</li>
+<li>then using machine learning, models, ... for prediction</li>
+<li>then made website doing near real time prediction - shakeslide</li>
+<li>Nepal - predictions made - huge areas, real risk</li>
+<li>landslide dams - landslide blocks river, water builds up, bursts -&gt; massive damage</li>
+<li>built 2 worker profiles</li>
+<li>1 is data source provider - constantly updating</li>
+<li>queuing system</li>
+<li>2 renders hidef images</li>
+</ul>
+</div>
+<div class="section" id="bdd-with-goat">
+<h2>BDD with goat<a class="headerlink" href="#bdd-with-goat" title="Permalink to this headline">¶</a></h2>
+<p>Ilja, cuescience</p>
+<ul class="simple">
+<li>BDD - behave lib - test written in natural language</li>
+<li>type annotations - use python 3 - but types specified twise</li>
+<li>goat is addon to behave - can then use python 3 function annotations</li>
+<li>context is repeated a lot - do implicit argument injection</li>
+<li>pip install goat</li>
+</ul>
+</div>
 </div>
 
 
@@ -61,6 +173,20 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Lightning Talks Day 2</a><ul>
+<li><a class="reference internal" href="#django-and-robotic-telescopes">Django and robotic telescopes</a></li>
+<li><a class="reference internal" href="#real-time-web-thing">Real time web thing</a></li>
+<li><a class="reference internal" href="#api-by-example">API by example</a></li>
+<li><a class="reference internal" href="#git-crypt">git-crypt</a></li>
+<li><a class="reference internal" href="#using-streaminghttpresponse-for-json-html">Using StreamingHTTPResponse for JSON &amp; HTML</a></li>
+<li><a class="reference internal" href="#shakeslide-predicting-landslides">shakeslide - Predicting landslides</a></li>
+<li><a class="reference internal" href="#bdd-with-goat">BDD with goat</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="true-beauty.html"
                         title="previous chapter">True beauty is on the inside, but users are shallow</a></p>

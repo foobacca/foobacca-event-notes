@@ -3,6 +3,7 @@ Effortless real time apps in Django
 
 Aaron Bassett
 @aaronbassett
+slides - https://speakerdeck.com/aaronbassett/effortless-real-time-apps-in-django
 
 - 1996 - iframes - can refresh part of web page
 - ajax - do polling request

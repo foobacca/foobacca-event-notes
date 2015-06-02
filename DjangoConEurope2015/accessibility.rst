@@ -64,3 +64,8 @@ Where do we go?
 - validate your web app with WAVE
 - chrome accessibility developer tools
 - provide your skills to accessibility organisations
+
+Comments and Questions
+- Designers - get out of my way - eg restrict zoom with viewport setting
+- is there a cmd line tool to validate, so it can be used in unit tests
+- don't build a second version - allow skipping info

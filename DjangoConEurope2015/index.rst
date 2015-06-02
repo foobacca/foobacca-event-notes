@@ -41,6 +41,7 @@ Day 2
    lightning-day2
    pony-wings
    polyglot
+   docker
 
 Day 3
 -----

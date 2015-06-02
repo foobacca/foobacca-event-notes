@@ -39,6 +39,8 @@ Day 2
 
    rabbit-hole
    lightning-day2
+   pony-wings
+   polyglot
 
 Day 3
 -----

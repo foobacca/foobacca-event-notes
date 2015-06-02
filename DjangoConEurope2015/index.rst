@@ -45,6 +45,7 @@ Day 2
    accessibility
    aggregation
    load-test
+   octopus
 
 Day 3
 -----

@@ -57,6 +57,7 @@ git-crypt
 
 Thomas
 github.com/alphacc
+slides - https://github.com/alphacc/djangoconeu2015
 
 - admins have secret in git, but other users can't read secret
 - transparent encrypt/decrypt when check in/out

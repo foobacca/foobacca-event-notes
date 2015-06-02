@@ -3,6 +3,7 @@ Give your pony wings
 
 Benjamin Wohlwend
 @piquadrat_ch
+slides - https://speakerdeck.com/piquadrat/make-your-pony-fly
 
 - I like my code to be lazy
 - Making your code not do too much work makes your code faster

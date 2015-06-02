@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Lightning Talks Day 2 &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>Forms are static - no they aren’t &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
-    <link rel="next" title="Lightning Talks Day 3" href="lightning-day3.html" />
-    <link rel="prev" title="True beauty is on the inside, but users are shallow" href="true-beauty.html" /> 
+    <link rel="next" title="Effortless real time apps in Django" href="real-time-apps.html" />
+    <link rel="prev" title="Lispisms" href="lispisms.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="lightning-day3.html" title="Lightning Talks Day 3"
+          <a href="real-time-apps.html" title="Effortless real time apps in Django"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="true-beauty.html" title="True beauty is on the inside, but users are shallow"
+          <a href="lispisms.html" title="Lispisms"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
@@ -51,8 +51,43 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="lightning-talks-day-2">
-<h1>Lightning Talks Day 2<a class="headerlink" href="#lightning-talks-day-2" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="forms-are-static-no-they-aren-t">
+<h1>Forms are static - no they aren&#8217;t<a class="headerlink" href="#forms-are-static-no-they-aren-t" title="Permalink to this headline">¶</a></h1>
+<p>Markus Holtermann
+&#64;m_holtermann</p>
+<p>django-dynamic-forms</p>
+<ul class="simple">
+<li>talking about django.forms</li>
+<li>most important thing - user data validation</li>
+<li>can also be used for data from API or similar</li>
+<li>static?  the form in the page doesn&#8217;t change while you interact with it</li>
+</ul>
+<p>what about request dependent forms</p>
+<ul class="simple">
+<li>eg captcha only shown for anonymous users</li>
+<li>still static - need to modify code to make changes, do testing etc</li>
+</ul>
+<p>What are non-static forms</p>
+<ul class="simple">
+<li>forms that can change layout - which fields present, order of fields</li>
+<li>doesn&#8217;t require changes on code level</li>
+</ul>
+<p>Why do you need them?</p>
+<ul class="simple">
+<li>had small client, organised events, each event had different details for form</li>
+<li>so wanted client to be able to change form themselves</li>
+</ul>
+<p>How does that work?</p>
+<ul class="simple">
+<li>ModelForm does dynamic class construction, uses Meta class</li>
+<li>but ultimately still static - and models aren&#8217;t modified during app runtime</li>
+<li><tt class="docutils literal"><span class="pre">type(name,</span> <span class="pre">bases,</span> <span class="pre">attrs)</span></tt> rocks!</li>
+<li>form instance stored in database</li>
+<li>FormModel - Name, Actions, ..., URLs</li>
+<li>FormFieldModel - wrap Django form fields - name, label ... options</li>
+<li>will be able to use data from postgres json fields once Django 1.9</li>
+<li>in admin, form meta stuff, then inline for adding fields</li>
+</ul>
 </div>
 
 
@@ -62,14 +97,14 @@
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="true-beauty.html"
-                        title="previous chapter">True beauty is on the inside, but users are shallow</a></p>
+  <p class="topless"><a href="lispisms.html"
+                        title="previous chapter">Lispisms</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="lightning-day3.html"
-                        title="next chapter">Lightning Talks Day 3</a></p>
+  <p class="topless"><a href="real-time-apps.html"
+                        title="next chapter">Effortless real time apps in Django</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2015/lightning-day2.txt"
+    <li><a href="../_sources/DjangoConEurope2015/forms-static.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -96,10 +131,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="lightning-day3.html" title="Lightning Talks Day 3"
+          <a href="real-time-apps.html" title="Effortless real time apps in Django"
              >next</a> |</li>
         <li class="right" >
-          <a href="true-beauty.html" title="True beauty is on the inside, but users are shallow"
+          <a href="lispisms.html" title="Lispisms"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 

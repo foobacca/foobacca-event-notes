@@ -42,6 +42,9 @@ Day 2
    pony-wings
    polyglot
    docker
+   accessibility
+   aggregation
+   load-test
 
 Day 3
 -----

@@ -53,7 +53,73 @@
             
   <div class="section" id="effortless-real-time-apps-in-django">
 <h1>Effortless real time apps in Django<a class="headerlink" href="#effortless-real-time-apps-in-django" title="Permalink to this headline">¶</a></h1>
-<p>Aaron Bassett</p>
+<p>Aaron Bassett
+&#64;aaronbassett</p>
+<ul class="simple">
+<li>1996 - iframes - can refresh part of web page</li>
+<li>ajax - do polling request</li>
+<li>long polling - open request, keep open until something to say, then start new request</li>
+<li>all are HACKY</li>
+<li>2010 - websockets - effortless real time apps</li>
+<li>short polling - 100000 users poll every system, 871 byte header -&gt; 83MB per second</li>
+<li>websockets - 0.2 MB per second</li>
+<li>also save data for mobile users</li>
+<li><a class="reference external" href="http://swampdragon.net">http://swampdragon.net</a> python package</li>
+<li>uses django, tornado and redis</li>
+<li>redis is in-memory key value store, can also write to disk, pubsub built in</li>
+<li>tornado - python, non-blocking webserver</li>
+<li>django</li>
+<li>browser - tornado - redis - swampdragon/django - postgres</li>
+<li>build another todo app</li>
+</ul>
+<div class="highlight-python"><pre>pip install swampdragon
+apt-get install redis  # or brew - but windows not supported, use VM, cloud ...</pre>
+</div>
+<ul class="simple">
+<li>swamp dragon has dragon admin, similar to django-admin.py, createproject command with standard structure</li>
+<li>adds settings to settings.py and creates server.py - similar to manage.py, but runs tornado server</li>
+<li>in production, do some WSGI thing</li>
+<li>Code - swampdragon.models.SelfPublishModel - mixin, when model saved, push object to redis</li>
+<li>uses serializers, convert python object to json, so browser can consume it</li>
+<li>swampdragon.serializers.model_serializer - then subclass it for your model</li>
+<li>can feel similar to django-rest-framework - but not quite interoperable, branch of swampdragon supports DRF serializers</li>
+<li>then have routers, analagous to views, swampdragon.route_handler.ModelRouter</li>
+<li>methods - get_list, create, delete, get_object ...</li>
+<li>use Angular.js for browser (but can use any other js framework, or raw js if you want)</li>
+</ul>
+<dl class="docutils">
+<dt>::</dt>
+<dd><blockquote class="first">
+<div><p>$dragon.subscribe(&#8216;todo-item&#8217;, $scope.channel, {todo_list__id: 1})
+$dragon.getList(&#8216;todo-item&#8217;, ...)
+$dragon.onReady(function() {</p>
+<blockquote>
+<div>$dragon.subscribe(...);
+$dragon.getList(...);
+$dragon.getSingle(...);</div></blockquote>
+<p>});</p>
+<dl class="docutils">
+<dt>$dragon.onMessageChannel(</dt>
+<dd>...</dd>
+</dl>
+<p>);</p>
+</div></blockquote>
+<p class="last">code at <a class="reference external" href="https://github.com/aaronbassett/djangocon-swampdragon">https://github.com/aaronbassett/djangocon-swampdragon</a></p>
+</dd>
+</dl>
+<ul class="simple">
+<li>more complexity - more things to manage/go wrong</li>
+<li>so use PaaS - firebase, pusher, pubnub ...</li>
+<li>DaaS (database as a service)</li>
+</ul>
+<p><a class="reference external" href="http://www.leggetter.co.uk/2013/12/09/choosing-realtime-web-app-tech-stack.html">http://www.leggetter.co.uk/2013/12/09/choosing-realtime-web-app-tech-stack.html</a></p>
+<p>Using Pusher instead - rewrite the SelfPublishModel - don&#8217;t need Router then
+Can use pusher angular library</p>
+<p><a class="reference external" href="https://github.com/aaronbassett/djangocon-pusher">https://github.com/aaronbassett/djangocon-pusher</a></p>
+<p>Working on stuff for Glasgow Council
+requirement is to see when someone else is trying to edit thing at same time as you
+only want to see notifications for single object - so create per-object channels</p>
+<p>created django-pusherable package - on pypi and github</p>
 </div>
 
 

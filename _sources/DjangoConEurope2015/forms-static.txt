@@ -3,6 +3,7 @@ Forms are static - no they aren't
 
 Markus Holtermann
 @m_holtermann
+slides - https://speakerdeck.com/markush/forms-are-static-no-they-arent
 
 django-dynamic-forms
 

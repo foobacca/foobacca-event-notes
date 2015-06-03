@@ -5,8 +5,10 @@ DjangoCon Europe 2015
 * Location: Cardiff, Wales
 * URL: http://2015.djangocon.eu
 * Other people's notes:
+
   - http://reinout.vanrees.org/weblog/tags/djangocon.html
   - tweets of the event - http://eventifier.com/event/djangoeu/
+
 * Videos of talks at http://www.youtube.com/user/DjangoConTV
 
 Django Con Europe

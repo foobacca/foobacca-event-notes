@@ -58,7 +58,7 @@ view smells
 - pass request/response to a domain function
 - validation logic
 - manipulate or saving models
-  - article - tom christie, dab apps
+  - article - tom christie, dab apps - http://dabapps.com/blog/django-models-and-encapsulation/
   - any change to model, write a different function, maybe put it in model layer
 - sending email, access network ...
 

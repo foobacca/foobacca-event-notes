@@ -4,6 +4,7 @@ True beauty is on the inside, but users are shallow
 Loek Van Gent
 @loek1pc
 work for 1% club - platform for small projects that have a social impoact
+slides - http://slideshare.net/LoekvanGent/shallow
 
 - Idea - let's make multi-tenant site, and white-label site
 - BIG refactor

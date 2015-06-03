@@ -73,9 +73,6 @@ slides - <a class="reference external" href="https://speakerdeck.com/aaronbasset
 <li>browser - tornado - redis - swampdragon/django - postgres</li>
 <li>build another todo app</li>
 </ul>
-<div class="highlight-python"><pre>pip install swampdragon
-apt-get install redis  # or brew - but windows not supported, use VM, cloud ...</pre>
-</div>
 <ul class="simple">
 <li>swamp dragon has dragon admin, similar to django-admin.py, createproject command with standard structure</li>
 <li>adds settings to settings.py and creates server.py - similar to manage.py, but runs tornado server</li>
@@ -88,26 +85,21 @@ apt-get install redis  # or brew - but windows not supported, use VM, cloud ...<
 <li>methods - get_list, create, delete, get_object ...</li>
 <li>use Angular.js for browser (but can use any other js framework, or raw js if you want)</li>
 </ul>
-<dl class="docutils">
-<dt>::</dt>
-<dd><blockquote class="first">
-<div><p>$dragon.subscribe(&#8216;todo-item&#8217;, $scope.channel, {todo_list__id: 1})
-$dragon.getList(&#8216;todo-item&#8217;, ...)
-$dragon.onReady(function() {</p>
-<blockquote>
-<div>$dragon.subscribe(...);
-$dragon.getList(...);
-$dragon.getSingle(...);</div></blockquote>
-<p>});</p>
-<dl class="docutils">
-<dt>$dragon.onMessageChannel(</dt>
-<dd>...</dd>
-</dl>
-<p>);</p>
-</div></blockquote>
-<p class="last">code at <a class="reference external" href="https://github.com/aaronbassett/djangocon-swampdragon">https://github.com/aaronbassett/djangocon-swampdragon</a></p>
-</dd>
-</dl>
+<div class="highlight-javascript"><div class="highlight"><pre>   <span class="nx">$dragon</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s1">&#39;todo-item&#39;</span><span class="p">,</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">channel</span><span class="p">,</span> <span class="p">{</span><span class="nx">todo_list__id</span><span class="o">:</span> <span class="mi">1</span><span class="p">})</span>
+   <span class="nx">$dragon</span><span class="p">.</span><span class="nx">getList</span><span class="p">(</span><span class="s1">&#39;todo-item&#39;</span><span class="p">,</span> <span class="p">...)</span>
+   <span class="nx">$dragon</span><span class="p">.</span><span class="nx">onReady</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       <span class="nx">$dragon</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(...);</span>
+       <span class="nx">$dragon</span><span class="p">.</span><span class="nx">getList</span><span class="p">(...);</span>
+       <span class="nx">$dragon</span><span class="p">.</span><span class="nx">getSingle</span><span class="p">(...);</span>
+   <span class="p">});</span>
+
+   <span class="nx">$dragon</span><span class="p">.</span><span class="nx">onMessageChannel</span><span class="p">(</span>
+       <span class="p">...</span>
+   <span class="p">);</span>
+
+<span class="nx">code</span> <span class="nx">at</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//github.com/aaronbassett/djangocon-swampdragon</span>
+</pre></div>
+</div>
 <ul class="simple">
 <li>more complexity - more things to manage/go wrong</li>
 <li>so use PaaS - firebase, pusher, pubnub ...</li>

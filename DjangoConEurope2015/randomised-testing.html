@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>True beauty is on the inside, but users are shallow &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>Hypothesis, randomised testing for Django &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
-    <link rel="next" title="Lightning Talks Day 2" href="lightning-day2.html" />
-    <link rel="prev" title="Effortless real time apps in Django" href="real-time-apps.html" /> 
+    <link rel="next" title="An ageing coder tackles his ageing code" href="ageing-code.html" />
+    <link rel="prev" title="How to write a view" href="write-view.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="lightning-day2.html" title="Lightning Talks Day 2"
+          <a href="ageing-code.html" title="An ageing coder tackles his ageing code"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="real-time-apps.html" title="Effortless real time apps in Django"
+          <a href="write-view.html" title="How to write a view"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
@@ -51,39 +51,60 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="true-beauty-is-on-the-inside-but-users-are-shallow">
-<h1>True beauty is on the inside, but users are shallow<a class="headerlink" href="#true-beauty-is-on-the-inside-but-users-are-shallow" title="Permalink to this headline">¶</a></h1>
-<p>Loek Van Gent
-&#64;loek1pc
-work for 1% club - platform for small projects that have a social impoact
-slides - <a class="reference external" href="http://slideshare.net/LoekvanGent/shallow">http://slideshare.net/LoekvanGent/shallow</a></p>
+  <div class="section" id="hypothesis-randomised-testing-for-django">
+<h1>Hypothesis, randomised testing for Django<a class="headerlink" href="#hypothesis-randomised-testing-for-django" title="Permalink to this headline">¶</a></h1>
+<p>Rae Knowler
+&#64;raeknowler
+CKAN, Symfony, Django
+slides -</p>
+<p>&#64;drmaciver - hypothesis author
+&#64;sinister_katze - fuzzy, loves catching bugs</p>
 <ul class="simple">
-<li>Idea - let&#8217;s make multi-tenant site, and white-label site</li>
-<li>BIG refactor</li>
-<li>history - simple, static</li>
+<li>slides -</li>
+<li><a class="reference external" href="http://hypothesis.readthedocs.org">http://hypothesis.readthedocs.org</a></li>
+<li><a class="reference external" href="https://github.com/bellisk/hypothesis-django-example">https://github.com/bellisk/hypothesis-django-example</a></li>
+<li>Property based testing library</li>
+<li>inspired by Haskell&#8217;s Quickcheck</li>
 </ul>
-<p>how do we write better front end code?</p>
+<p>Why is it so great?</p>
 <ul class="simple">
-<li>project true_beauty, apps heart, spirit</li>
-<li>two scoops - group your front-end - put template and static in overall project directory - then front end guys don&#8217;t have to search across whole project</li>
+<li><strong>lots</strong> of randomised data
+- say name is string, email, number
+- come up with 2000 customers!
+- if fail, work down to simplest string with bug (eg ! mark)</li>
+<li>can deal with complex data types - eg Django Models</li>
+<li>works with pytest, unittest - just a library</li>
 </ul>
-<p>front end tools</p>
+<p>hypothesis-django</p>
 <ul class="simple">
-<li>js requirements - bower</li>
-<li>structured CSS - Sass, less ...</li>
-<li>build front end (convert sass to css, minify) - grunt</li>
-<li>install grunt etc - npm</li>
-<li>starting to look like an entire project within the project</li>
-<li>django to provide data, django rest framework to provide REST API</li>
-<li>js framework - angular, backbone, ember, react ...</li>
-<li>ember cli for front end</li>
+<li>tests look similar to Django tests</li>
+<li>custom field types</li>
+<li>generate child models</li>
+<li>can generate fixtures for Django (new!)</li>
 </ul>
-<p>Sum up</p>
+<p>pip install hypothesis hypothesis-django</p>
+<p>Example</p>
 <ul class="simple">
-<li>love your front end - it&#8217;s the only thing the users see</li>
-<li>group your front end - get all that JS etc in one place</li>
-<li>use tools to help structure the front end code</li>
-<li>start using Ember - it&#8217;s the future (or angular, react ... but not backbone)</li>
+<li>StockSubscription model
+- fields: symbol, last notified, NotificationsPerDay
+- methods - <tt class="docutils literal"><span class="pre">__str__</span></tt>, next_notification_time</li>
+<li>tests - use hypothesis version of models, TestCase, and <tt class="docutils literal"><span class="pre">given</span></tt></li>
+<li>given decorator - tells hypothesis type of fields, in combination with hypothesis.strategies.integers</li>
+<li>hypothesis finds a falsifying example (0 values -&gt; divide by 0)</li>
+</ul>
+<p>Example 2</p>
+<ul class="simple">
+<li>Portfolio model</li>
+<li>want to find median value</li>
+<li>test generates list of StockSubscription, max len 100</li>
+<li>test asserts median value is from 0 to 100</li>
+<li>finds bug - if 2 in list, this causes error in median function</li>
+</ul>
+<p>Hypothesis is awesome</p>
+<ul class="simple">
+<li>it makes your tests way simpler - hypothesis will find the edge cases</li>
+<li>it finds subtle bugs</li>
+<li>simple tests that are insanely effective</li>
 </ul>
 </div>
 
@@ -94,14 +115,14 @@ slides - <a class="reference external" href="http://slideshare.net/LoekvanGent/s
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="real-time-apps.html"
-                        title="previous chapter">Effortless real time apps in Django</a></p>
+  <p class="topless"><a href="write-view.html"
+                        title="previous chapter">How to write a view</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="lightning-day2.html"
-                        title="next chapter">Lightning Talks Day 2</a></p>
+  <p class="topless"><a href="ageing-code.html"
+                        title="next chapter">An ageing coder tackles his ageing code</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2015/true-beauty.txt"
+    <li><a href="../_sources/DjangoConEurope2015/randomised-testing.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -128,10 +149,10 @@ slides - <a class="reference external" href="http://slideshare.net/LoekvanGent/s
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="lightning-day2.html" title="Lightning Talks Day 2"
+          <a href="ageing-code.html" title="An ageing coder tackles his ageing code"
              >next</a> |</li>
         <li class="right" >
-          <a href="real-time-apps.html" title="Effortless real time apps in Django"
+          <a href="write-view.html" title="How to write a view"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 

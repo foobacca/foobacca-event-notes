@@ -6,6 +6,8 @@ Ola Sendecka
 Django Core team
 Django Girls co-founder
 
+slides - https://speakerdeck.com/asendecka/into-the-rabbit-hole
+
 - A story of Alice in Djangoland.
 - Using model with BooleanField is_archived and manager with .filter(is_archived=False)
 - But found a ModelForm didn't show the instance she wanted to look at

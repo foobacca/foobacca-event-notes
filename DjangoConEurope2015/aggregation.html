@@ -78,17 +78,18 @@
 <div class="section" id="annotations">
 <h2>Annotations<a class="headerlink" href="#annotations" title="Permalink to this headline">¶</a></h2>
 <p>summary per row/object</p>
-<div class="highlight-python"><pre>scores = GameSessionResult.objects.all().annotate(Sum('gamersessionresult__score'))
-scores[0].gamesessionresult__score__sum
-scores = GameSessionResult.objects.all().annotate(
-    sum_scores=Sum('gamesessionresult__score')),
-    ...)
+<div class="highlight-python"><div class="highlight"><pre><span class="n">scores</span> <span class="o">=</span> <span class="n">GameSessionResult</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">Sum</span><span class="p">(</span><span class="s">&#39;gamersessionresult__score&#39;</span><span class="p">))</span>
+<span class="n">scores</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">gamesessionresult__score__sum</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">GameSessionResult</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+    <span class="n">sum_scores</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s">&#39;gamesessionresult__score&#39;</span><span class="p">)),</span>
+    <span class="o">...</span><span class="p">)</span>
 
-Gamer.objects.all().annotate(sum_points=Sum('gamesessionresult__score'))\
-    .filter(not null).order_by('sum_points')[:5]
+<span class="n">Gamer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">sum_points</span><span class="o">=</span><span class="n">Sum</span><span class="p">(</span><span class="s">&#39;gamesessionresult__score&#39;</span><span class="p">))</span>\
+    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="ow">not</span> <span class="n">null</span><span class="p">)</span><span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s">&#39;sum_points&#39;</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
 
-# group by
-GameServer.objects.values('region').annotate(num_users=Count('gamers'))</pre>
+<span class="c"># group by</span>
+<span class="n">GameServer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">values</span><span class="p">(</span><span class="s">&#39;region&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">num_users</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;gamers&#39;</span><span class="p">))</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="practical-bits">

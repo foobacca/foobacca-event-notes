@@ -78,23 +78,9 @@
 - mysite v1</li>
 <li>docker file</li>
 </ul>
-<dl class="docutils">
-<dt>::</dt>
-<dd>FROM django:python3-onbuild
-RUN apt-get ...
-RUN mkdir
-WORKDIR ...
-COPY localfs to docker</dd>
-</dl>
 </div>
 <div class="section" id="create-docker-ised-django-project">
 <h2>Create docker-ised django project<a class="headerlink" href="#create-docker-ised-django-project" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>::</dt>
-<dd>docker build -t mydjangoimage
-docker run ... django-admin.py startproject mysite .
-docker run ... python manage.py runserver 0.0.0.0:8000</dd>
-</dl>
 </div>
 <div class="section" id="django-compose">
 <h2>django-compose<a class="headerlink" href="#django-compose" title="Permalink to this headline">¶</a></h2>
@@ -102,33 +88,6 @@ docker run ... python manage.py runserver 0.0.0.0:8000</dd>
 <li>cmd line tool that runs yaml file describing stack</li>
 </ul>
 <p>yaml example</p>
-<dl class="docutils">
-<dt>::</dt>
-<dd><dl class="first last docutils">
-<dt>web:</dt>
-<dd><p class="first">build: .
-volumes:</p>
-<blockquote>
-<div><ul class="simple">
-<li>.:/usr/src/app</li>
-</ul>
-</div></blockquote>
-<p>ports:
-links:</p>
-<blockquote>
-<div># to other images below</div></blockquote>
-<dl class="last docutils">
-<dt>env:</dt>
-<dd># set environment variables</dd>
-</dl>
-</dd>
-<dt>postgres:</dt>
-<dd>...</dd>
-<dt>redis:</dt>
-<dd>...</dd>
-</dl>
-</dd>
-</dl>
 <ul class="simple">
 <li>run commands in container - including bash</li>
 <li>need to rebuild occasionally - new dependencies</li>

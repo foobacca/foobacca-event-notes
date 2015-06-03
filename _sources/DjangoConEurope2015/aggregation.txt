@@ -18,7 +18,7 @@ Aggregations
   - GameSession - inc multiple Gamer, one GamerServer
   - GameSessionResult - FK to session, user
 
-::
+.. code-block:: python
 
    Gamer.objects.all().aggregate(unique=Count('id'))
    Gamer.objects.all().exclude(won=False).aggregate(num_wins=Count('won'))
@@ -30,7 +30,7 @@ Annotations
 
 summary per row/object
 
-::
+.. code-block:: python
 
    scores = GameSessionResult.objects.all().annotate(Sum('gamersessionresult__score'))
    scores[0].gamesessionresult__score__sum

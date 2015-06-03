@@ -25,7 +25,7 @@ slides - https://speakerdeck.com/aaronbassett/effortless-real-time-apps-in-djang
 
 - build another todo app
 
-::
+.. code-block::
 
    pip install swampdragon
    apt-get install redis  # or brew - but windows not supported, use VM, cloud ...
@@ -43,7 +43,8 @@ slides - https://speakerdeck.com/aaronbassett/effortless-real-time-apps-in-djang
 
 - use Angular.js for browser (but can use any other js framework, or raw js if you want)
 
-::
+.. code-block:: javascript
+
     $dragon.subscribe('todo-item', $scope.channel, {todo_list__id: 1})
     $dragon.getList('todo-item', ...)
     $dragon.onReady(function() {

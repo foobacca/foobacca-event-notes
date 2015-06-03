@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The net is dark and full of terrors &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="How to write a view" href="write-view.html" />
+    <link rel="prev" title="Lightning Talks Day 2" href="lightning-day2.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="write-view.html" title="How to write a view"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning Talks Day 2"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-net-is-dark-and-full-of-terrors">
+<h1>The net is dark and full of terrors<a class="headerlink" href="#the-net-is-dark-and-full-of-terrors" title="Permalink to this headline">¶</a></h1>
+<p>James Bennett</p>
+<div class="section" id="history-of-django-and-security">
+<h2>History of Django and Security<a class="headerlink" href="#history-of-django-and-security" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>August 2006 - first published vuln in Django CVE-2007-0404</li>
+<li>found by member of team, published reported</li>
+<li>arbitrary command execution is bad - played down in announcement</li>
+<li>fix - download new copy of file and overwrite old one - not great</li>
+<li>20 May 2015 - latest vuln - CVE-2015-3982</li>
+<li>now we do a full release to fix</li>
+<li>don&#8217;t downplay seriousness</li>
+<li>credit to reporter</li>
+<li>Action: &#8220;upgrade immediately&#8221;</li>
+</ul>
+<p>full list <a class="reference external" href="https://docs.djangoproject.com/en/dev/releases/security/">https://docs.djangoproject.com/en/dev/releases/security/</a></p>
+<ul>
+<li><p class="first">pre-2007 - informal security process</p>
+</li>
+<li><p class="first">2008 - 1.0 - template auto-escaping
+- controversial at time
+- philosophy - this is too important to leave off by default and just document</p>
+</li>
+<li><p class="first">2010 - 1.2 - modern CSRF protection
+- old version - two middleware, in contrib, mentioned in docs
+- one middleware, in core, on by default
+- again, better to be safe by default</p>
+</li>
+<li><p class="first">2012 - 1.4 - big deal, still supported
+- first release that took security seriously
+- hashing, crypto, signed cookies, clickjacking
+- sensitive errors - suppresses some things in error messages (debug, emails)</p>
+<blockquote>
+<div><p>such as passwords, etc</p>
+</div></blockquote>
+<ul class="simple">
+<li>formal security process - <a class="reference external" href="https://www.djangoproject.com/security/">https://www.djangoproject.com/security/</a></li>
+</ul>
+</li>
+<li><p class="first">2013 - 1.5/1.6
+- Host header hardening
+- Increased hash iterations - PDKF2
+- Hash truncation</p>
+</li>
+<li><p class="first">2014 - 1.7
+- system check framework</p>
+</li>
+<li><p class="first">2015 - 1.8
+- security middleware</p>
+<blockquote>
+<div><ul class="simple">
+<li>in browser XSS filter</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>deployment check</li>
+</ul>
+</li>
+</ul>
+<p>security process
+- email <a class="reference external" href="mailto:security&#37;&#52;&#48;djangoproject&#46;com">security<span>&#64;</span>djangoproject<span>&#46;</span>com</a>
+- try to replicate
+- private bug tracker, fix
+- review, and if necessary backport to supported versions
+- CVE identifier
+- one week prior to release send to security notification list (mostly linux distros)</p>
+<blockquote>
+<div><ul class="simple">
+<li>can be done more quickly if vuln is public</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li>do release, blog post, tell all the social media</li>
+<li>GOAL - ensure responsible reporting and disclosure of security issues</li>
+</ul>
+</div>
+<div class="section" id="how-django-tries-to-protect-you">
+<h2>How Django tries to protect you<a class="headerlink" href="#how-django-tries-to-protect-you" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>OWASP top ten vulnerabilities
+- injection attacks
+- auth and session management
+- cross site scripting XSS
+- direct object references - see database ID in URL and change number - Django encourages human readable URLs
+- misconfiguration - system check framework etc
+- sensitive data exposure - can&#8217;t force you to use HTTPS, but provide support for it
+- function level access control - decorators, permission checks
+- CSRF
+- components with known vulnerabilities - require recent versions of databases, drivers, and notify common libs (eg xml libs)
+- unvalidated redirects and forward</li>
+<li>above and beyond
+- clickjacking
+- in-browser XSS
+- crypto signing APIs
+- constant time password hash check
+- every release has GPG signed hash file, and GPG signed tag in github</li>
+</ul>
+<p>Django tries to be secure by default and offer the tools needed to help our users.</p>
+</div>
+<div class="section" id="how-we-ve-screwed-up-over-the-years">
+<h2>How we&#8217;ve screwed up over the years<a class="headerlink" href="#how-we-ve-screwed-up-over-the-years" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Why do we fail?</li>
+</ul>
+<p>Input Validation</p>
+<ul class="simple">
+<li>people have &#8220;good ideas&#8221; -&gt; vulnerability
+- accept language header - was caching in memory - but DoS via looong headers</li>
+<li>password reset using base36 - again loong tokens
+- now we reject anything longer than 13 chars (64 bits)</li>
+<li>formsets grow without bound - users can increase number to cause DoS</li>
+<li>no cap on password length - DoS due to very long passwords - now limit 4096 bytes</li>
+<li>Python is great - no buffer overflows, but can DoS yourself</li>
+<li>We learned this the hard way repeatedly</li>
+<li>Comes down to input validation before doing work</li>
+<li>Configure your webserver to cap the length of HTTP request headers and bodies</li>
+</ul>
+<p>Algorithmic complexity</p>
+<ul class="simple">
+<li>URLField - verify_exists - check by fetching URL, can make that take a long time</li>
+<li>regex performance - can make them take VERY long time</li>
+<li>compressed image files - some routines decompress images - use huge amount of memory - DoS</li>
+<li>DoS via large image files, looking for headers</li>
+<li>Big O notation - algorithmic complexity</li>
+<li>what&#8217;s the worst that could happen?</li>
+<li>figure out how much work your code does, how much work you could make it do, then how to make sure it does less</li>
+<li>learn about compressed formats, pathological regex</li>
+<li>so we don&#8217;t accept everything in emails</li>
+</ul>
+<p>Trust</p>
+<ul class="simple">
+<li>trust unsafe cookie value</li>
+<li>info leakage in admin</li>
+<li>CSRF via forged HTTP headers</li>
+<li>info leakage via admin history log</li>
+<li>XSS via admin trusting URLField values</li>
+<li>we can trust the HTTP Host header now
+- this caused 5 vulnerabilities
+- sometimes Django needs to generate full URL - but you should NEVER trust the host header
+- now Django requires an explicit whitelist of values in the host header</li>
+<li>don&#8217;t trust your users</li>
+<li>don&#8217;t trust your web server</li>
+<li>don&#8217;t trust your database</li>
+<li>ALWAYS verify</li>
+</ul>
+<p>article - default allow is the dumbest idea in history</p>
+<p>There is no such thing as secure</p>
+<p>Learn to pick yourselves up when you fall</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The net is dark and full of terrors</a><ul>
+<li><a class="reference internal" href="#history-of-django-and-security">History of Django and Security</a></li>
+<li><a class="reference internal" href="#how-django-tries-to-protect-you">How Django tries to protect you</a></li>
+<li><a class="reference internal" href="#how-we-ve-screwed-up-over-the-years">How we&#8217;ve screwed up over the years</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lightning-day2.html"
+                        title="previous chapter">Lightning Talks Day 2</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="write-view.html"
+                        title="next chapter">How to write a view</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/net-terrors.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="write-view.html" title="How to write a view"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lightning-day2.html" title="Lightning Talks Day 2"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

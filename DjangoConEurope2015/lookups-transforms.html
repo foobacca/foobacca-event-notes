@@ -53,7 +53,158 @@
             
   <div class="section" id="lookups-transforms-and-expressions">
 <h1>Lookups, Transforms and Expressions<a class="headerlink" href="#lookups-transforms-and-expressions" title="Permalink to this headline">¶</a></h1>
-<p>Anssi Kaariainen</p>
+<ul class="simple">
+<li>Anssi Kaariainen</li>
+<li>django core team, ORM, lookups and transforms</li>
+</ul>
+<p>Lookups</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__glob</span><span class="o">=</span><span class="s">&#39;Django*&#39;</span><span class="p">)</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__lower__glob</span><span class="o">=</span><span class="s">&#39;*DJanGo*&#39;</span><span class="p">)</span>
+<span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+  <span class="n">author_str</span><span class="o">=</span><span class="n">GroupConcat</span><span class="p">(</span><span class="s">&#39;authors__name&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Why not <tt class="docutils literal"><span class="pre">extra()</span></tt> ?</p>
+<ul class="simple">
+<li>reuseability</li>
+<li>chainability</li>
+<li>multi-database support</li>
+<li>nicer looking code</li>
+<li>easier to support</li>
+</ul>
+<p>Lookup Class</p>
+<ul class="simple">
+<li>a condition in the query&#8217;s WHERE clause</li>
+<li>eg gt, lt ...</li>
+</ul>
+<p>Create a custom lookup</p>
+<ul class="simple">
+<li>subclass models.Lookup</li>
+<li>set <tt class="docutils literal"><span class="pre">lookup_name</span></tt></li>
+<li>implement <tt class="docutils literal"><span class="pre">as_sql()</span></tt></li>
+<li>register to a Field</li>
+</ul>
+<p>Demo - Glob Lookup</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@models.CharField.register_lookup</span>
+<span class="k">class</span> <span class="nc">GlobLookup</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Lookup</span><span class="p">):</span>
+    <span class="n">lookup_name</span> <span class="o">=</span> <span class="s">&#39;glob&#39;</span>
+
+    <span class="k">def</span> <span class="nf">as_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compiler</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+        <span class="n">lhs_sql</span><span class="p">,</span> <span class="n">lhs_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_lhs</span><span class="p">(</span><span class="n">compiler</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+        <span class="n">rhs_sql</span><span class="p">,</span> <span class="n">rhs_params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">process_rhs</span><span class="p">(</span><span class="n">compiler</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s"> glob </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lhs_sql</span><span class="p">,</span> <span class="n">rhs_sql</span><span class="p">),</span> <span class="n">lhs_params</span> <span class="o">+</span> <span class="n">rhs_params</span>
+
+    <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__glob</span><span class="o">=</span><span class="s">&quot;*Django*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Transform - case insensitive</p>
+<p>Transform takes in a value, outputs a transformed value</p>
+<ul class="simple">
+<li>subclass models.Transform</li>
+<li>set <tt class="docutils literal"><span class="pre">lookup_name</span></tt></li>
+<li>implement <tt class="docutils literal"><span class="pre">as_sql()</span></tt></li>
+<li>register to a Field</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># note it *is* register_lookup</span>
+<span class="nd">@models.CharField.register_lookup</span>
+<span class="k">class</span> <span class="nc">LowerTransform</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Transform</span><span class="p">):</span>
+    <span class="n">lookup_name</span> <span class="o">=</span> <span class="s">&#39;lower&#39;</span>
+
+    <span class="k">def</span> <span class="nf">as_sql</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">compiler</span><span class="p">,</span> <span class="n">connection</span><span class="p">):</span>
+        <span class="n">lhs_sql</span><span class="p">,</span> <span class="n">lhs_params</span> <span class="o">=</span> <span class="n">compiler</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lhs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">&#39;lower(</span><span class="si">%s</span><span class="s">)&#39;</span> <span class="o">%</span> <span class="n">lhs_sql</span><span class="p">,</span> <span class="n">lhs_params</span>
+
+    <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">title__lower__glob</span><span class="o">=</span><span class="s">&quot;*django*&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Can apply transform multiple times eg <tt class="docutils literal"><span class="pre">title__lower__lower__glob</span></tt></li>
+<li>Can apply to both sides with <tt class="docutils literal"><span class="pre">bilateral</span> <span class="pre">=</span> <span class="pre">True</span></tt> in class</li>
+</ul>
+<p>Expressions</p>
+<ul class="simple">
+<li>An element in SELECT clause</li>
+<li>eg <tt class="docutils literal"><span class="pre">Avg('authors__age')</span></tt></li>
+</ul>
+<p>Create expression in 1.8</p>
+<ul class="simple">
+<li>subclass models.Func or models.Aggregate</li>
+<li>set <tt class="docutils literal"><span class="pre">lookup_name</span></tt></li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># note it *is* register_lookup</span>
+<span class="k">class</span> <span class="nc">GroupConcat</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Aggregate</span><span class="p">):</span>
+    <span class="n">function</span> <span class="o">=</span> <span class="s">&#39;group_concat&#39;</span>
+
+    <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">authors_str</span><span class="o">=</span><span class="n">GroupConcat</span><span class="p">(</span><span class="s">&#39;author__name&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c"># combine various things - produces complex SQL query</span>
+    <span class="n">Book</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
+        <span class="n">authors_str</span><span class="o">=</span><span class="n">GroupConcat</span><span class="p">(</span><span class="s">&#39;author__name&#39;</span><span class="p">)</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+        <span class="n">authors_str__lower__glob</span><span class="o">=</span><span class="s">&quot;*a,m*&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>New in Django 1.8</p>
+<ul>
+<li><p class="first">all expressions support arithmetic operations</p>
+</li>
+<li><p class="first">all aggregates are expressions</p>
+<blockquote>
+<div><p>annotate price_pre_page = Sum &#8216;books__price&#8217; / Sum &#8216;books__pages&#8217;</p>
+</div></blockquote>
+</li>
+</ul>
+<p>output_field</p>
+<ul class="simple">
+<li>When the type of the value changes - eg len charfield -&gt; integerfield</li>
+<li>set <tt class="docutils literal"><span class="pre">output_field</span> <span class="pre">=</span> <span class="pre">models.IntegerField</span></tt> on class</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">annotate</span><span class="p">(</span>
+    <span class="n">name_len</span><span class="o">=</span><span class="n">Length</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name_len__gte</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Multiple SQL dialects</p>
+<ul class="simple">
+<li>django looks for (eg) <tt class="docutils literal"><span class="pre">as_postgres()</span></tt> method before <tt class="docutils literal"><span class="pre">as_sql()</span></tt> method</li>
+<li>so can use DB functions directly</li>
+</ul>
+<p>Hstore and ArrayField</p>
+<ul class="simple">
+<li>in django.contrib.postgres</li>
+<li>HStoreField - key values</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Dog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s">&#39;Ruth&#39;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s">&#39;breed&#39;</span><span class="p">:</span> <span class="s">&#39;labrador&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">Dog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">data__breed</span><span class="o">=</span><span class="s">&#39;labrador&#39;</span><span class="p">)</span>
+<span class="n">Dog</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">data__breed__icontains</span><span class="o">=</span><span class="s">&#39;l&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>ArrayField</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Post</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s">&#39;first post&#39;</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;thoughts&#39;</span><span class="p">,</span> <span class="s">&#39;django&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="nb">filter</span><span class="p">(</span><span class="n">tags__contains</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;thoughts&#39;</span><span class="p">,</span> <span class="s">&#39;django&#39;</span><span class="p">])</span>
+<span class="nb">filter</span><span class="p">(</span><span class="n">tags__overlap</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;thoughts&#39;</span><span class="p">,</span> <span class="s">&#39;django&#39;</span><span class="p">])</span>
+<span class="nb">filter</span><span class="p">(</span><span class="n">tags__1__lower__glob</span><span class="o">=</span><span class="s">&#39;*o*&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next</p>
+<ul class="simple">
+<li>implement common expressions in Django core/contrib</li>
+<li>use in more places - eg order_by</li>
+<li>unify expression and transform implementation</li>
+<li>idea - <tt class="docutils literal"><span class="pre">.filter(F('name').substr(0,</span> <span class="pre">25).icontains('anssi'))</span></tt></li>
+</ul>
+<p>Much more in Django docs</p>
+<p><a class="reference external" href="https://www.djangoproject.com/fundraising/">https://www.djangoproject.com/fundraising/</a></p>
 </div>
 
 

@@ -54,6 +54,50 @@
   <div class="section" id="project-templates-alternatives-and-tools">
 <h1>Project templates - alternatives and tools<a class="headerlink" href="#project-templates-alternatives-and-tools" title="Permalink to this headline">¶</a></h1>
 <p>Emmanuelle Delescolle</p>
+<p>What does a Django project look like?</p>
+<ul class="simple">
+<li>having a core app with most logic bothers me</li>
+<li>saw talk - Mark Lavin - Anatomy of a Django Project<ul>
+<li>a Django project is not a thing</li>
+</ul>
+</li>
+<li>put more things in the base project directory<ul>
+<li>environ.py.dist</li>
+<li>manage.py</li>
+<li>requirements.txt</li>
+<li>settings.py</li>
+<li>urls.py</li>
+</ul>
+</li>
+</ul>
+<p>settings.py</p>
+<ul class="simple">
+<li>Put <tt class="docutils literal"><span class="pre">project</span></tt> at top of INSTALLED_APPS list - load my stuff first</li>
+<li>template loading magic</li>
+<li>Use the <tt class="docutils literal"><span class="pre">--template</span></tt> argument to <tt class="docutils literal"><span class="pre">django-admin.py</span> <span class="pre">startproject</span></tt></li>
+<li>Various availabe on the internet</li>
+<li>template looks pretty similar to project, but<ul>
+<li>use dir name project_name - converted to your actual project name</li>
+<li>in files, can use <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">project_name</span> <span class="pre">}}</span></tt> and that will also be converted</li>
+<li>but only python source files are template-able by default</li>
+<li>want to do stuff in sass, create a virtualenv, ...</li>
+</ul>
+</li>
+</ul>
+<p>Solution</p>
+<ul class="simple">
+<li>cookiecutter by audreyr and pydanny</li>
+<li>every file is template-able (using jinja2)</li>
+<li>you can add hooks for more automation</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>cookiecutter django_template/cc_project_app
+<span class="c"># questions asked to set variables</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>cookiecutter template is similar to django project template, but directory name can be <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">cookiecutter.project_name</span> <span class="pre">}}</span></tt></li>
+<li>cookiecutter.json defines the questions/variables used</li>
+</ul>
 </div>
 
 

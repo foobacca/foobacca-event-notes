@@ -27,7 +27,7 @@ front end tools
 
 - ember cli for front end
 
-.. code-block:: shell
+.. code-block:: bash
 
    ember new good_looks
    cd good_looks

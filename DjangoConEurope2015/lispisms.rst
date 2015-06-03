@@ -27,6 +27,7 @@ What if we could have globals that do behave
 - then each piece of code can be reasoned about
 
 Local change is the norm in Lisp
+
 - example, and equivalent in python
 - but python likes mutables and objects - managing bindings is not enough
 - obvious problem is that code inside can still change object state
@@ -35,6 +36,7 @@ Local change is the norm in Lisp
 - solution: special syntax for attribute change
 
 lispism library
+
 - special object called ``D``
 
 .. code-block:: python
@@ -49,6 +51,7 @@ Builtin containers are replaced by immutables - eg list -> tuple
 Freezing
 
 Limitations
+
 - freezing can be worked around, but will avoid mistaken changes
 - can't control C extensions
 - generators - yield inside let breaks the contract
@@ -59,6 +62,7 @@ Future
 - threading
 - use MacroPy macros for better sub-object control
 - implement lisp restarts
+
   - separate What from How in error handling
   - code detects error handles it, but can't make decision
   - higher code sets map of extension -> action label

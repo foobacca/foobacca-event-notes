@@ -29,17 +29,20 @@ What is a view
 Problem
 
 - django views are too big
+
   - separation of concerns is broken
   - business logic, validation done in views
   - persistence logic - start/end transaction, even SQL queries
   - persentation layer - some work done in the view
 
 - Django does blur the layers a bit
+
   - models mix business logic and persistence
   - modelforms and generic CBVs mix up stuff
   - fine most of the time, enormously productive, but need to be aware of the boundaries, and sometimes step back and separate things out
 
 - MODEL != models.py
+
   - moving logic so you have thin views and fat models, but that puts too much in models
   - MODEL = domain/models.py domain/forms.py domain/services.py
   - don't try and force everything into your model
@@ -58,8 +61,10 @@ view smells
 - pass request/response to a domain function
 - validation logic
 - manipulate or saving models
+
   - article - tom christie, dab apps - http://dabapps.com/blog/django-models-and-encapsulation/
   - any change to model, write a different function, maybe put it in model layer
+
 - sending email, access network ...
 
 generic CBVs

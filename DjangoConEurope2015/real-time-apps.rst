@@ -25,7 +25,7 @@ slides - https://speakerdeck.com/aaronbassett/effortless-real-time-apps-in-djang
 
 - build another todo app
 
-.. code-block:: shell
+.. code-block:: bash
 
    pip install swampdragon
    apt-get install redis  # or brew - but windows not supported, use VM, cloud ...
@@ -65,13 +65,13 @@ slides - https://speakerdeck.com/aaronbassett/effortless-real-time-apps-in-djang
 
 http://www.leggetter.co.uk/2013/12/09/choosing-realtime-web-app-tech-stack.html
 
-Using Pusher instead - rewrite the SelfPublishModel - don't need Router then
-Can use pusher angular library
+- Using Pusher instead - rewrite the SelfPublishModel - don't need Router then
+- Can use pusher angular library
 
 https://github.com/aaronbassett/djangocon-pusher
 
-Working on stuff for Glasgow Council
-requirement is to see when someone else is trying to edit thing at same time as you
-only want to see notifications for single object - so create per-object channels
+- Working on stuff for Glasgow Council
+- requirement is to see when someone else is trying to edit thing at same time as you
+- only want to see notifications for single object - so create per-object channels
 
 created django-pusherable package - on pypi and github

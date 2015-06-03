@@ -67,6 +67,7 @@ Content
 - ODBC drivers ... (2 years ago)
 - data minefield - different ways of writing names of wine AND similar names are different
 - needed help with wine knowledge
+
   - customised Django Admin so others could use it
   - translations through i18n
 

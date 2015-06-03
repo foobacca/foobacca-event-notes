@@ -25,6 +25,7 @@ How the Admin Works
 - been there since the early days
 - not the most beautiful part of the codebase
 - 3 main classes
+
     - AdminSite
     - ModelAdmin 2000 loc
     - ChangeList

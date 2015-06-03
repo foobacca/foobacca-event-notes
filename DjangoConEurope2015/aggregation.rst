@@ -13,6 +13,7 @@ Aggregations
 - avg, max, min, sum, count, StdDev, variance
 
 - setup
+
   - Gamer model
   - GameServer - m2m w Gamer
   - GameSession - inc multiple Gamer, one GamerServer
@@ -48,8 +49,10 @@ Practical Bits
 --------------
 
 - when in doubt - check the generated query 
+
   - django debug toolbar, debugsqlshell
   - ``print(queryset.query)``
+
 - if you can do it in SQL, don't do it in python
 - collect queries in a manager - but put in proxy object, so can apply diff orders
 - KISS

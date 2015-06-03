@@ -21,10 +21,12 @@ Basic Docker Concerts
 - docker push/pull
 - hub.docker.com has various images ready to go - redis, django, postgres
 - images would in layers
+
   - debian 8
   - python 3.4
   - django (python 3)
   - mysite v1
+
 - docker file
 
 .. code-block:: none
@@ -38,7 +40,7 @@ Basic Docker Concerts
 Create docker-ised django project
 ---------------------------------
 
-.. code-block:: shell
+.. code-block:: bash
 
    docker build -t mydjangoimage
    docker run ... django-admin.py startproject mysite .

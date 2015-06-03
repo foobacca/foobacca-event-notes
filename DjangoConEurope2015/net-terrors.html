@@ -68,62 +68,57 @@
 <li>Action: &#8220;upgrade immediately&#8221;</li>
 </ul>
 <p>full list <a class="reference external" href="https://docs.djangoproject.com/en/dev/releases/security/">https://docs.djangoproject.com/en/dev/releases/security/</a></p>
-<ul>
-<li><p class="first">pre-2007 - informal security process</p>
-</li>
-<li><p class="first">2008 - 1.0 - template auto-escaping
-- controversial at time
-- philosophy - this is too important to leave off by default and just document</p>
-</li>
-<li><p class="first">2010 - 1.2 - modern CSRF protection
-- old version - two middleware, in contrib, mentioned in docs
-- one middleware, in core, on by default
-- again, better to be safe by default</p>
-</li>
-<li><p class="first">2012 - 1.4 - big deal, still supported
-- first release that took security seriously
-- hashing, crypto, signed cookies, clickjacking
-- sensitive errors - suppresses some things in error messages (debug, emails)</p>
-<blockquote>
-<div><p>such as passwords, etc</p>
-</div></blockquote>
 <ul class="simple">
+<li>pre-2007 - informal security process</li>
+<li>2008 - 1.0 - template auto-escaping<ul>
+<li>controversial at time</li>
+<li>philosophy - this is too important to leave off by default and just document</li>
+</ul>
+</li>
+<li>2010 - 1.2 - modern CSRF protection<ul>
+<li>old version - two middleware, in contrib, mentioned in docs</li>
+<li>one middleware, in core, on by default</li>
+<li>again, better to be safe by default</li>
+</ul>
+</li>
+<li>2012 - 1.4 - big deal, still supported<ul>
+<li>first release that took security seriously</li>
+<li>hashing, crypto, signed cookies, clickjacking</li>
+<li>sensitive errors - suppresses some things in error messages (debug, emails)
+such as passwords, etc</li>
 <li>formal security process - <a class="reference external" href="https://www.djangoproject.com/security/">https://www.djangoproject.com/security/</a></li>
 </ul>
 </li>
-<li><p class="first">2013 - 1.5/1.6
-- Host header hardening
-- Increased hash iterations - PDKF2
-- Hash truncation</p>
+<li>2013 - 1.5/1.6<ul>
+<li>Host header hardening</li>
+<li>Increased hash iterations - PDKF2</li>
+<li>Hash truncation</li>
+</ul>
 </li>
-<li><p class="first">2014 - 1.7
-- system check framework</p>
+<li>2014 - 1.7<ul>
+<li>system check framework</li>
+</ul>
 </li>
-<li><p class="first">2015 - 1.8
-- security middleware</p>
-<blockquote>
-<div><ul class="simple">
+<li>2015 - 1.8<ul>
+<li>security middleware<ul>
 <li>in browser XSS filter</li>
 </ul>
-</div></blockquote>
-<ul class="simple">
+</li>
 <li>deployment check</li>
 </ul>
 </li>
 </ul>
-<p>security process
-- email <a class="reference external" href="mailto:security&#37;&#52;&#48;djangoproject&#46;com">security<span>&#64;</span>djangoproject<span>&#46;</span>com</a>
-- try to replicate
-- private bug tracker, fix
-- review, and if necessary backport to supported versions
-- CVE identifier
-- one week prior to release send to security notification list (mostly linux distros)</p>
-<blockquote>
-<div><ul class="simple">
+<p>security process</p>
+<ul class="simple">
+<li>email <a class="reference external" href="mailto:security&#37;&#52;&#48;djangoproject&#46;com">security<span>&#64;</span>djangoproject<span>&#46;</span>com</a></li>
+<li>try to replicate</li>
+<li>private bug tracker, fix</li>
+<li>review, and if necessary backport to supported versions</li>
+<li>CVE identifier</li>
+<li>one week prior to release send to security notification list (mostly linux distros)<ul>
 <li>can be done more quickly if vuln is public</li>
 </ul>
-</div></blockquote>
-<ul class="simple">
+</li>
 <li>do release, blog post, tell all the social media</li>
 <li>GOAL - ensure responsible reporting and disclosure of security issues</li>
 </ul>
@@ -131,23 +126,27 @@
 <div class="section" id="how-django-tries-to-protect-you">
 <h2>How Django tries to protect you<a class="headerlink" href="#how-django-tries-to-protect-you" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>OWASP top ten vulnerabilities
-- injection attacks
-- auth and session management
-- cross site scripting XSS
-- direct object references - see database ID in URL and change number - Django encourages human readable URLs
-- misconfiguration - system check framework etc
-- sensitive data exposure - can&#8217;t force you to use HTTPS, but provide support for it
-- function level access control - decorators, permission checks
-- CSRF
-- components with known vulnerabilities - require recent versions of databases, drivers, and notify common libs (eg xml libs)
-- unvalidated redirects and forward</li>
-<li>above and beyond
-- clickjacking
-- in-browser XSS
-- crypto signing APIs
-- constant time password hash check
-- every release has GPG signed hash file, and GPG signed tag in github</li>
+<li>OWASP top ten vulnerabilities<ul>
+<li>injection attacks</li>
+<li>auth and session management</li>
+<li>cross site scripting XSS</li>
+<li>direct object references - see database ID in URL and change number - Django encourages human readable URLs</li>
+<li>misconfiguration - system check framework etc</li>
+<li>sensitive data exposure - can&#8217;t force you to use HTTPS, but provide support for it</li>
+<li>function level access control - decorators, permission checks</li>
+<li>CSRF</li>
+<li>components with known vulnerabilities - require recent versions of databases, drivers, and notify common libs (eg xml libs)</li>
+<li>unvalidated redirects and forward</li>
+</ul>
+</li>
+<li>above and beyond<ul>
+<li>clickjacking</li>
+<li>in-browser XSS</li>
+<li>crypto signing APIs</li>
+<li>constant time password hash check</li>
+<li>every release has GPG signed hash file, and GPG signed tag in github</li>
+</ul>
+</li>
 </ul>
 <p>Django tries to be secure by default and offer the tools needed to help our users.</p>
 </div>
@@ -158,10 +157,14 @@
 </ul>
 <p>Input Validation</p>
 <ul class="simple">
-<li>people have &#8220;good ideas&#8221; -&gt; vulnerability
-- accept language header - was caching in memory - but DoS via looong headers</li>
-<li>password reset using base36 - again loong tokens
-- now we reject anything longer than 13 chars (64 bits)</li>
+<li>people have &#8220;good ideas&#8221; -&gt; vulnerability<ul>
+<li>accept language header - was caching in memory - but DoS via looong headers</li>
+</ul>
+</li>
+<li>password reset using base36 - again loong tokens<ul>
+<li>now we reject anything longer than 13 chars (64 bits)</li>
+</ul>
+</li>
 <li>formsets grow without bound - users can increase number to cause DoS</li>
 <li>no cap on password length - DoS due to very long passwords - now limit 4096 bytes</li>
 <li>Python is great - no buffer overflows, but can DoS yourself</li>
@@ -188,10 +191,12 @@
 <li>CSRF via forged HTTP headers</li>
 <li>info leakage via admin history log</li>
 <li>XSS via admin trusting URLField values</li>
-<li>we can trust the HTTP Host header now
-- this caused 5 vulnerabilities
-- sometimes Django needs to generate full URL - but you should NEVER trust the host header
-- now Django requires an explicit whitelist of values in the host header</li>
+<li>we can trust the HTTP Host header now<ul>
+<li>this caused 5 vulnerabilities</li>
+<li>sometimes Django needs to generate full URL - but you should NEVER trust the host header</li>
+<li>now Django requires an explicit whitelist of values in the host header</li>
+</ul>
+</li>
 <li>don&#8217;t trust your users</li>
 <li>don&#8217;t trust your web server</li>
 <li>don&#8217;t trust your database</li>

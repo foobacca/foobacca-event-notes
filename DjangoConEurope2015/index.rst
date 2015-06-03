@@ -13,6 +13,8 @@ DjangoCon Europe 2015
 
 * Django for Social Good had a gathering, and started google group
 
+Next year will be in Budapest, Hungary - Baptiste involved in organisation
+
 Django Con Europe
 =================
 

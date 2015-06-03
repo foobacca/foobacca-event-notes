@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Demystifying mixins with Django &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Coding with knives (part 2)" href="knives.html" />
+    <link rel="prev" title="What it’s really like building RESTful APIs with Django" href="restful-apis.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="knives.html" title="Coding with knives (part 2)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="restful-apis.html" title="What it’s really like building RESTful APIs with Django"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="demystifying-mixins-with-django">
+<h1>Demystifying mixins with Django<a class="headerlink" href="#demystifying-mixins-with-django" title="Permalink to this headline">¶</a></h1>
+<p>Ana Balica
+&#64;anabalica
+slides - <a class="reference external" href="http://www.slideshare.net/AnaBalica/djangocon2015-demystifying-mixins-with-django">http://www.slideshare.net/AnaBalica/djangocon2015-demystifying-mixins-with-django</a></p>
+<ul class="simple">
+<li>mixins controlled way to add to your classes</li>
+<li>NOT a special python construct - just ordinary python class</li>
+<li>inherit from object</li>
+<li>single responsibility</li>
+<li>not meant to be extended to another Mixin</li>
+<li>not meant to be instantiated</li>
+<li>implemented using multiple inheritance
+- order matters (method resolution order)</li>
+</ul>
+<p>Say copy/paste a feature between classes that are otherwise different</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">mymethod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">BaseFoo</span><span class="p">,</span> <span class="n">MyMixin</span><span class="p">):</span>
+    <span class="c"># read as MyMixin is the base class, extended by BaseFoo, extended by Foo</span>
+    <span class="c"># so this is bad</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Foo</span><span class="p">(</span><span class="n">MyMixin</span><span class="p">,</span> <span class="n">BaseFoo</span><span class="p">):</span>
+    <span class="c"># better</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>extensions goes from right to left</p>
+<p>Class Based Views example</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LoginRequiredMixin</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">dispatch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">PermissionDenied</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">AboutView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">TemplateView</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s">&quot;about.html&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>alternative - TemplateView &lt;- LoginRequiredTemplateView &lt;- AboutView</li>
+<li>but then DetailView needs LoginRequiredDetailView, UpdateView ... - duplicated code</li>
+<li>so Mixin approach reduces duplication</li>
+</ul>
+<p>Useful methods in class based views</p>
+<ul class="simple">
+<li>dispatch() - check permissions</li>
+<li>get_context_data() - add more data to the context</li>
+<li>get_template_names() - more flexible selection of template</li>
+</ul>
+<p>How to learn</p>
+<ul class="simple">
+<li>Just read the source code</li>
+<li><a class="reference external" href="https://docs.djangoproject.com/en/1.8/topics/class-based-views/mixins/">https://docs.djangoproject.com/en/1.8/topics/class-based-views/mixins/</a></li>
+<li><a class="reference external" href="http://ccbv.co.uk/">http://ccbv.co.uk/</a></li>
+<li>django-braces is a package with lots of useful mixins</li>
+<li>don&#8217;t do too much chaining of mixins - hard to understand execution flow</li>
+</ul>
+<p>Summary</p>
+<ul class="simple">
+<li>single responsibility</li>
+<li>plug-in functionality</li>
+<li>isn&#8217;t creating a subtyping relation (so not SOLID, breaks Liskov)</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="restful-apis.html"
+                        title="previous chapter">What it&#8217;s really like building RESTful APIs with Django</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="knives.html"
+                        title="next chapter">Coding with knives (part 2)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/mixins.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="knives.html" title="Coding with knives (part 2)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="restful-apis.html" title="What it’s really like building RESTful APIs with Django"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

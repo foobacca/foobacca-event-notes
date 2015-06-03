@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What it’s really like building RESTful APIs with Django &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
+    <link rel="next" title="Demystifying mixins with Django" href="mixins.html" />
+    <link rel="prev" title="State of the CMS in Django" href="cms.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="mixins.html" title="Demystifying mixins with Django"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cms.html" title="State of the CMS in Django"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="what-it-s-really-like-building-restful-apis-with-django">
+<h1>What it&#8217;s really like building RESTful APIs with Django<a class="headerlink" href="#what-it-s-really-like-building-restful-apis-with-django" title="Permalink to this headline">¶</a></h1>
+<p>Paul Hallett
+&#64;phalt_</p>
+<p>Lessons learnt from converting a big legacy app to RESTful API</p>
+<ul class="simple">
+<li>Working for lyst</li>
+<li>old API was basically rpc style - doesn&#8217;t match well to HTTP</li>
+<li>used just one URL api.lyst.com/rpc/v1/</li>
+<li>use POST even when just getting stuff</li>
+<li>really hard to debug</li>
+</ul>
+<p>Rebuild with Django REST Framework</p>
+<ul class="simple">
+<li>Why?<ul>
+<li>Batteries included API framework</li>
+</ul>
+</li>
+</ul>
+<p>What was learned</p>
+<ul class="simple">
+<li>good opportunity to look at what you have and think about what&#8217;s been learnt</li>
+<li>examine technical debt</li>
+<li>what does the mobile app care about<ul>
+<li>products</li>
+<li>users, registration</li>
+</ul>
+</li>
+<li>design first, code second</li>
+<li>resources (in the REST sense)<ul>
+<li>they don&#8217;t always map directly to models</li>
+<li>eg model Cart - loads of fields, no separation of concerns</li>
+</ul>
+</li>
+<li>DRF Serializers<ul>
+<li>similar to Django forms</li>
+<li>link to model, list the fields you want to include</li>
+<li>so can have 3 resources based on single model, with different subsets of fields</li>
+<li>and lots of other flexible options</li>
+</ul>
+</li>
+<li>DRF Routers<ul>
+<li>great for a CRUD based service, but if different might ignore it</li>
+</ul>
+</li>
+<li>DRF Permissions<ul>
+<li>set DEFAULT_PERMISSION_CLASSES to AdminOnly</li>
+<li>then set them for each view with permission_classes class attribute</li>
+</ul>
+</li>
+<li>DRF Authentication<ul>
+<li>even if you have one consumer, should still have auth</li>
+<li>I recommend token auth for simple cases</li>
+<li>more complex, use OAuth2<ul>
+<li>bit of a headache to install, but much more powerful</li>
+<li>eg can expire a permission</li>
+<li>pip install django-oauth2-toolkit</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>HTTP</p>
+<ul class="simple">
+<li>HTTP only provides so much</li>
+<li>HTTP checkout (process and purchase items)<ul>
+<li>initial thought make a new HTTP verb</li>
+<li>went for <tt class="docutils literal"><span class="pre">HTTP</span> <span class="pre">POST</span> <span class="pre">https://api.lyst.com/cart/checkout/</span></tt></li>
+<li>pass in ID for card</li>
+</ul>
+</li>
+</ul>
+<p>Asynchronous</p>
+<ul class="simple">
+<li>shouldn&#8217;t care about other things going on</li>
+<li>timeouts</li>
+<li>clients can poll</li>
+<li>we tried &#8220;web hook&#8221;<ul>
+<li>callback_url, push_notification</li>
+<li>send a <tt class="docutils literal"><span class="pre">HTTP1.1</span> <span class="pre">202</span> <span class="pre">ACCEPTED</span></tt></li>
+</ul>
+</li>
+</ul>
+<p>Documentation</p>
+<ul class="simple">
+<li>your API can be great, but without docs it&#8217;s a bad API</li>
+<li>swagger can auto-generate docs</li>
+<li>but sometimes you&#8217;re bending the standard REST rules, so just wrote our own</li>
+<li>in particular doc the auth - how do I get a token</li>
+<li>give some curl examples</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cms.html"
+                        title="previous chapter">State of the CMS in Django</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="mixins.html"
+                        title="next chapter">Demystifying mixins with Django</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/DjangoConEurope2015/restful-apis.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="mixins.html" title="Demystifying mixins with Django"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cms.html" title="State of the CMS in Django"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Project templates - alternatives and tools &mdash; Foobacca Event Notes 1.0 documentation</title>
+    <title>State of the CMS in Django &mdash; Foobacca Event Notes 1.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
     <link rel="up" title="DjangoCon Europe 2015" href="index.html" />
-    <link rel="next" title="State of the CMS in Django" href="cms.html" />
-    <link rel="prev" title="Better web applications through user testing" href="user-testing.html" /> 
+    <link rel="next" title="What it’s really like building RESTful APIs with Django" href="restful-apis.html" />
+    <link rel="prev" title="Project templates - alternatives and tools" href="project-templates.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="cms.html" title="State of the CMS in Django"
+          <a href="restful-apis.html" title="What it’s really like building RESTful APIs with Django"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="user-testing.html" title="Better web applications through user testing"
+          <a href="project-templates.html" title="Project templates - alternatives and tools"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">DjangoCon Europe 2015</a> &raquo;</li> 
@@ -51,53 +51,44 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="project-templates-alternatives-and-tools">
-<h1>Project templates - alternatives and tools<a class="headerlink" href="#project-templates-alternatives-and-tools" title="Permalink to this headline">¶</a></h1>
-<p>Emmanuelle Delescolle</p>
-<p>What does a Django project look like?</p>
+  <div class="section" id="state-of-the-cms-in-django">
+<h1>State of the CMS in Django<a class="headerlink" href="#state-of-the-cms-in-django" title="Permalink to this headline">¶</a></h1>
+<p>Iacopo Spalletti - Django CMS
+Tom Dyson - Wagtail</p>
+<div class="section" id="django-cms">
+<h2>Django CMS<a class="headerlink" href="#django-cms" title="Permalink to this headline">¶</a></h2>
+<p>Four main users</p>
 <ul class="simple">
-<li>having a core app with most logic bothers me</li>
-<li>saw talk - Mark Lavin - Anatomy of a Django Project<ul>
-<li>a Django project is not a thing</li>
+<li>developer</li>
+<li>front end dev</li>
+<li>Power editor</li>
+<li>low level editors</li>
+<li>Use ORM in fancy, non-trivial way</li>
+<li>Django CMS - editing built on the flexibility of the admin (though the admin is hidden from editors)</li>
+<li>url conf is a pain point - bit abused by the way URLs hooked in</li>
 </ul>
-</li>
-<li>put more things in the base project directory<ul>
-<li>environ.py.dist</li>
-<li>manage.py</li>
-<li>requirements.txt</li>
-<li>settings.py</li>
-<li>urls.py</li>
-</ul>
-</li>
-</ul>
-<p>settings.py</p>
-<ul class="simple">
-<li>Put <tt class="docutils literal"><span class="pre">project</span></tt> at top of INSTALLED_APPS list - load my stuff first</li>
-<li>template loading magic</li>
-<li>Use the <tt class="docutils literal"><span class="pre">--template</span></tt> argument to <tt class="docutils literal"><span class="pre">django-admin.py</span> <span class="pre">startproject</span></tt></li>
-<li>Various availabe on the internet</li>
-<li>template looks pretty similar to project, but<ul>
-<li>use dir name project_name - converted to your actual project name</li>
-<li>in files, can use <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">project_name</span> <span class="pre">}}</span></tt> and that will also be converted</li>
-<li>but only python source files are template-able by default</li>
-<li>want to do stuff in sass, create a virtualenv, ...</li>
-</ul>
-</li>
-</ul>
-<p>Solution</p>
-<ul class="simple">
-<li>cookiecutter by audreyr and pydanny</li>
-<li>every file is template-able (using jinja2)</li>
-<li>you can add hooks for more automation</li>
-</ul>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>cookiecutter django_template/cc_project_app
-<span class="c"># questions asked to set variables</span>
-</pre></div>
 </div>
+<div class="section" id="wagtail">
+<h2>Wagtail<a class="headerlink" href="#wagtail" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>cookiecutter template is similar to django project template, but directory name can be <tt class="docutils literal"><span class="pre">{{</span> <span class="pre">cookiecutter.project_name</span> <span class="pre">}}</span></tt></li>
-<li>cookiecutter.json defines the questions/variables used</li>
+<li>seeking to remove control from power editors</li>
+<li>done a lot of work in Drupal as well</li>
+<li>focussed on Django developers - standard Django stuff</li>
+<li>focussed on performance</li>
 </ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>front end development</p>
+<p>communicate properly with the community eg CMS removed features 2.4 -&gt; 3.0</p>
+<p>wordpress style success?!</p>
+<ul class="simple">
+<li>deployment is harder for any django project</li>
+<li>aldryn is providing CMS-as-a-service</li>
+<li>themes are good for widely used projects</li>
+<li>wordpress ease of administration is so much easier - that&#8217;s a big barrier to wide adoption</li>
+</ul>
+</div>
 </div>
 
 
@@ -106,15 +97,25 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">State of the CMS in Django</a><ul>
+<li><a class="reference internal" href="#django-cms">Django CMS</a></li>
+<li><a class="reference internal" href="#wagtail">Wagtail</a></li>
+<li><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="user-testing.html"
-                        title="previous chapter">Better web applications through user testing</a></p>
+  <p class="topless"><a href="project-templates.html"
+                        title="previous chapter">Project templates - alternatives and tools</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="cms.html"
-                        title="next chapter">State of the CMS in Django</a></p>
+  <p class="topless"><a href="restful-apis.html"
+                        title="next chapter">What it&#8217;s really like building RESTful APIs with Django</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/DjangoConEurope2015/project-templates.txt"
+    <li><a href="../_sources/DjangoConEurope2015/cms.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -141,10 +142,10 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="cms.html" title="State of the CMS in Django"
+          <a href="restful-apis.html" title="What it’s really like building RESTful APIs with Django"
              >next</a> |</li>
         <li class="right" >
-          <a href="user-testing.html" title="Better web applications through user testing"
+          <a href="project-templates.html" title="Project templates - alternatives and tools"
              >previous</a> |</li>
         <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
           <li><a href="index.html" >DjangoCon Europe 2015</a> &raquo;</li> 

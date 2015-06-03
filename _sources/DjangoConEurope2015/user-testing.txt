@@ -3,6 +3,7 @@ Better web applications through user testing
 
 Ludvig Wadenstein
 @ludw
+slides - http://ludw.se~ludw/user_testing.pdf
 
 What is user testing
 

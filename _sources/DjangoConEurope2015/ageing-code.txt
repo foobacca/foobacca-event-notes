@@ -3,6 +3,7 @@ An ageing coder tackles his ageing code
 
 Owen Campbell
 @opcampbell
+slides - http://www.owencampbell.me.uk/docs/djangocon2015.pdf
 
 https://github.com/meatballs
 

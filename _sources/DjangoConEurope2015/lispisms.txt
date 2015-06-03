@@ -38,6 +38,7 @@ lispism library
 - special object called ``D``
 
 .. code-block:: python
+
    D.let(a=1, b=2):
        print D.a
        D.let(a=3, b=4):

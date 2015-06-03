@@ -25,7 +25,7 @@ slides - https://speakerdeck.com/aaronbassett/effortless-real-time-apps-in-djang
 
 - build another todo app
 
-.. code-block::
+.. code-block:: shell
 
    pip install swampdragon
    apt-get install redis  # or brew - but windows not supported, use VM, cloud ...

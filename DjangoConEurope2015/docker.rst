@@ -27,7 +27,8 @@ Basic Docker Concerts
   - mysite v1
 - docker file
 
-.. code-block::
+.. code-block:: none
+
    FROM django:python3-onbuild
    RUN apt-get ...
    RUN mkdir
@@ -37,7 +38,8 @@ Basic Docker Concerts
 Create docker-ised django project
 ---------------------------------
 
-.. code-block::
+.. code-block:: shell
+
    docker build -t mydjangoimage
    docker run ... django-admin.py startproject mysite .
    docker run ... python manage.py runserver 0.0.0.0:8000
@@ -49,7 +51,8 @@ django-compose
 
 yaml example
 
-.. code-block::
+.. code-block:: yaml
+
    web:
      build: .
      volumes:

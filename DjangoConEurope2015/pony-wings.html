@@ -71,37 +71,43 @@ slides - <a class="reference external" href="https://speakerdeck.com/piquadrat/m
 <li>django-debug-toolbar is great - lots of features - SQL queries shown - hundreds of queries for one page</li>
 <li>django-devserver - shows number of sql queries, number of duplicates, time for request</li>
 </ul>
-<p>The big three
-- reduce database queries
-- do less work
-- if all else fails - cache</p>
-<p>Less SQL queries
-- select_related()</p>
-<blockquote>
-<div><ul class="simple">
+<p>The big three</p>
+<ul class="simple">
+<li>reduce database queries</li>
+<li>do less work</li>
+<li>if all else fails - cache</li>
+</ul>
+<p>Less SQL queries</p>
+<ul class="simple">
+<li>select_related()<ul>
 <li>use to preload objects referenced by ForeignKey</li>
 <li>eg looking up user in template</li>
 </ul>
-</div></blockquote>
-<ul class="simple">
-<li>prefetch_related()
-- similar for reverse ForeignKey and ManyToMany
-- so get all tags for all questions in one query</li>
+</li>
+<li>prefetch_related()<ul>
+<li>similar for reverse ForeignKey and ManyToMany</li>
+<li>so get all tags for all questions in one query</li>
+</ul>
+</li>
 </ul>
 <p>Overall, go from 121 queries to 3 queries!</p>
-<p>Do less work
-- move work out of request/response cycle (eg celery)
-- only fetch data that we need - QuerySet.defer() can skip unneeded large columns (or only())
-- let others do the work (eg do calculations in the database with annotate/aggregate)</p>
-<p>Caching
-- doing properly gives you great scaling
-- but cache invalidation is really hard
-- can also make code hard to test and understand
-- so recommend only use it when necessary
-- cache_page decorator - put it on view - timeout
-- template caching with {% cache %}
-- ORM caching with jonny-cache or django-cache-machine
-- caching http proxy like Varnish</p>
+<p>Do less work</p>
+<ul class="simple">
+<li>move work out of request/response cycle (eg celery)</li>
+<li>only fetch data that we need - QuerySet.defer() can skip unneeded large columns (or only())</li>
+<li>let others do the work (eg do calculations in the database with annotate/aggregate)</li>
+</ul>
+<p>Caching</p>
+<ul class="simple">
+<li>doing properly gives you great scaling</li>
+<li>but cache invalidation is really hard</li>
+<li>can also make code hard to test and understand</li>
+<li>so recommend only use it when necessary</li>
+<li>cache_page decorator - put it on view - timeout</li>
+<li>template caching with {% cache %}</li>
+<li>ORM caching with jonny-cache or django-cache-machine</li>
+<li>caching http proxy like Varnish</li>
+</ul>
 <p>Much more in book - High Performance Django</p>
 </div>
 

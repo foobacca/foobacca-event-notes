@@ -36,21 +36,25 @@ Carlos Barrobes
 - an approach to testing across services
 - before - single app
 - want to split it up
+
   - UI in angular
   - backend in django/DRF
+
 - want both teams to work independently
 - want each part to be tested separately
 - backend team should not dictate the API
 - ABE - API by example - in json files
 - 3 repos - backend, client, mocks
 - all begins with pull request to the mocks repo
+
   - signed off by at least one person from each team
   - PR is documented discussion
   - ABE files is documented API
+
 - ABE mocks are versioned dependency for both front and back end
 
-github.com/txels
-github.com/apibyexample
+https://github.com/txels
+https://github.com/apibyexample
 
 git-crypt
 ---------

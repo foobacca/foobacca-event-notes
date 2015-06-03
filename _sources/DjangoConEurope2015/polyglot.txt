@@ -12,6 +12,7 @@ slides - https://django-ployglot.herokuapp.com
 - expectations for responsiveness, "app-like"
 
 Django strengths
+
 - python
 - "perfectionists with deadlines"
 - orm & migrations (though doesn't cover entire SQL standard)
@@ -20,16 +21,20 @@ Django strengths
 - celery (async work queue)
 
 Django weaknesses
+
 - c10k - 10000 concurrent connections to web service - alternatives async.io, twisted, but lose library support
 
 JS client integration
+
 - community then expect JS on the server
 
 Push to web clients
+
 - no good solution in Django - long connections - but kills server
 - polyglot can use socket.io, websocketd, golang
 
 async task results
+
 - add task ids to initial response
 - then have client poll other endpoint to get status of task id
 - OR can use pubsub/async to subscribe to task, and then result gets pushed to client
@@ -39,6 +44,7 @@ async task results
 - can have node on separate subdomain - have node to initial web page, then have Django as a service provider
 
 Shared auth across services
+
 - django.contrib.auth
 - have node proxy auth to django
 - access token, check with django

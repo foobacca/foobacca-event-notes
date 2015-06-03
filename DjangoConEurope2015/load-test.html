@@ -62,15 +62,19 @@
 <li>big config file</li>
 <li>spawns threads (with small delay)</li>
 <li>each thread runs test in a loop</li>
-<li>why FunkLoad?
-- familiar structure (from TestCase)
-- smoke tests with unittest runners
-- benchmark can be distributed between multiple machines
-- good docs - tips and tricks for performance
-- easily extensible</li>
-<li>why not?
-- uses default python threading module only - single core etc
-- default reports not configurable</li>
+<li>why FunkLoad?<ul>
+<li>familiar structure (from TestCase)</li>
+<li>smoke tests with unittest runners</li>
+<li>benchmark can be distributed between multiple machines</li>
+<li>good docs - tips and tricks for performance</li>
+<li>easily extensible</li>
+</ul>
+</li>
+<li>why not?<ul>
+<li>uses default python threading module only - single core etc</li>
+<li>default reports not configurable</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="multi-mechanize-transaction">
@@ -80,12 +84,16 @@
 <li>config file - lighter than FunkLoad</li>
 <li>runner - spawns threads, with delay</li>
 <li>threads can be grouped into UserGroup - uses subprocesses, so multicore</li>
-<li>why use mm t?
-- uses multiprocessing
-- report graphics more configurable (and more out of the box)</li>
-<li>why not?
-- API not as obvious/simple as FunkLoad
-- distributed workflow not supported out of the box</li>
+<li>why use mm t?<ul>
+<li>uses multiprocessing</li>
+<li>report graphics more configurable (and more out of the box)</li>
+</ul>
+</li>
+<li>why not?<ul>
+<li>API not as obvious/simple as FunkLoad</li>
+<li>distributed workflow not supported out of the box</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="locust-io-taskset-and-locust">
@@ -94,14 +102,18 @@
 <li>TaskSet, Locust base classes</li>
 <li>TaskSet tasks can be weighted</li>
 <li>Locust doesn&#8217;t use threads - events and greenlets</li>
-<li>why use?
-- greenlets much faster for i/o than pthreads
-- light web UI for monitoring
-- distributed workflow supported
-- heterogenous tests - more realistic
-- no separate config - all in python</li>
-<li>why not?
-- tricky terminology and relations</li>
+<li>why use?<ul>
+<li>greenlets much faster for i/o than pthreads</li>
+<li>light web UI for monitoring</li>
+<li>distributed workflow supported</li>
+<li>heterogenous tests - more realistic</li>
+<li>no separate config - all in python</li>
+</ul>
+</li>
+<li>why not?<ul>
+<li>tricky terminology and relations</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="why-not-use-python-2">

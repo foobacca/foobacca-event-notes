@@ -8,10 +8,12 @@ co-author of High Performance Django
 slides - https://github.com/yml/saltTalkDjangoConEu2015
 
 about:
+
 - vocab
 - building blocks
 
 not:
+
 - in depth guide to salt
 
 Vocab
@@ -37,8 +39,8 @@ Can do calculations in the templates (eg relative to available RAM)
 
 Ordering is hard in config mgt - use require and watch
 
-Debugging - can put a breakpoint anywhere in salt, and inspect with pdb!
-Can also inspect lots of data
+- Debugging - can put a breakpoint anywhere in salt, and inspect with pdb!
+- Can also inspect lots of data
 
 Also: reactor, beacon, mines, salt-cloud ... http://saltstack.com/
 

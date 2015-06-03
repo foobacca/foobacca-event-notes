@@ -77,20 +77,26 @@
 </ul>
 <p>Problem</p>
 <ul class="simple">
-<li>django views are too big
-- separation of concerns is broken
-- business logic, validation done in views
-- persistence logic - start/end transaction, even SQL queries
-- persentation layer - some work done in the view</li>
-<li>Django does blur the layers a bit
-- models mix business logic and persistence
-- modelforms and generic CBVs mix up stuff
-- fine most of the time, enormously productive, but need to be aware of the boundaries, and sometimes step back and separate things out</li>
-<li>MODEL != models.py
-- moving logic so you have thin views and fat models, but that puts too much in models
-- MODEL = domain/models.py domain/forms.py domain/services.py
-- don&#8217;t try and force everything into your model
-- though &#8220;service&#8221; is an over-used word</li>
+<li>django views are too big<ul>
+<li>separation of concerns is broken</li>
+<li>business logic, validation done in views</li>
+<li>persistence logic - start/end transaction, even SQL queries</li>
+<li>persentation layer - some work done in the view</li>
+</ul>
+</li>
+<li>Django does blur the layers a bit<ul>
+<li>models mix business logic and persistence</li>
+<li>modelforms and generic CBVs mix up stuff</li>
+<li>fine most of the time, enormously productive, but need to be aware of the boundaries, and sometimes step back and separate things out</li>
+</ul>
+</li>
+<li>MODEL != models.py<ul>
+<li>moving logic so you have thin views and fat models, but that puts too much in models</li>
+<li>MODEL = domain/models.py domain/forms.py domain/services.py</li>
+<li>don&#8217;t try and force everything into your model</li>
+<li>though &#8220;service&#8221; is an over-used word</li>
+</ul>
+</li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">..service.service</span> <span class="kn">import</span> <span class="n">Service</span>
 
@@ -104,9 +110,11 @@
 <ul class="simple">
 <li>pass request/response to a domain function</li>
 <li>validation logic</li>
-<li>manipulate or saving models
-- article - tom christie, dab apps - <a class="reference external" href="http://dabapps.com/blog/django-models-and-encapsulation/">http://dabapps.com/blog/django-models-and-encapsulation/</a>
-- any change to model, write a different function, maybe put it in model layer</li>
+<li>manipulate or saving models<ul>
+<li>article - tom christie, dab apps - <a class="reference external" href="http://dabapps.com/blog/django-models-and-encapsulation/">http://dabapps.com/blog/django-models-and-encapsulation/</a></li>
+<li>any change to model, write a different function, maybe put it in model layer</li>
+</ul>
+</li>
 <li>sending email, access network ...</li>
 </ul>
 <p>generic CBVs</p>

@@ -31,12 +31,15 @@ She'd been in a rabbit hole
 - next time I would do things differently
 
 - to understand the rabbit hole I wanted to read things - I have 2 bits of advice
-- ziegarnik effect 
+- ziegarnik effect
+
   - the tendency to have intrusive thoughts about something started but never finished
   - so even though you want to move on, you keep going back, feel guilty ..
   - expts show that people remember unfinished puzzles much better than solved ones
   - sometimes we've invested too much - hard to objectively judge
+
 - sunk cost fallacy
+
   - you get emotionally invested in the project once you've put time into it
   - so you feel you can't stop - the time spent would be "wasted"
   - so you keep going
@@ -44,6 +47,7 @@ She'd been in a rabbit hole
   - so you end up doing unwise things and continuing investing when you should stop
 
 So how did Alice end up in the rabbit hole in the first place
+
 - django was doing lots of magic to make it easy - so she assumed her change would be easy
 - concentrated on surface level issue - symptom, not cause
 - continues building on previous partial solution, rather than backing out and starting again
@@ -53,13 +57,16 @@ So how did Alice end up in the rabbit hole in the first place
 What to do:
 
 - first notice that you are in a rabbit hole
+
   - don't notice when time passes
   - always almost done
   - forget to eat, drink, go to toilet ...
   - when you do step away, you can't stop thinking about the problem
   - haven't spoken with anyone for some time
   - feel cranky about any interruptions
+
 - how to get out
+
   - estimate time for your next task and set timer
   - make a todo list
   - rubber duck - explain your problem to someone/duck/... - write an email to someone

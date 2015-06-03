@@ -68,10 +68,12 @@ slides -</p>
 </ul>
 <p>Why is it so great?</p>
 <ul class="simple">
-<li><strong>lots</strong> of randomised data
-- say name is string, email, number
-- come up with 2000 customers!
-- if fail, work down to simplest string with bug (eg ! mark)</li>
+<li><strong>lots</strong> of randomised data<ul>
+<li>say name is string, email, number</li>
+<li>come up with 2000 customers!</li>
+<li>if fail, work down to simplest string with bug (eg ! mark)</li>
+</ul>
+</li>
 <li>can deal with complex data types - eg Django Models</li>
 <li>works with pytest, unittest - just a library</li>
 </ul>
@@ -85,9 +87,11 @@ slides -</p>
 <p>pip install hypothesis hypothesis-django</p>
 <p>Example</p>
 <ul class="simple">
-<li>StockSubscription model
-- fields: symbol, last notified, NotificationsPerDay
-- methods - <tt class="docutils literal"><span class="pre">__str__</span></tt>, next_notification_time</li>
+<li>StockSubscription model<ul>
+<li>fields: symbol, last notified, NotificationsPerDay</li>
+<li>methods - <tt class="docutils literal"><span class="pre">__str__</span></tt>, next_notification_time</li>
+</ul>
+</li>
 <li>tests - use hypothesis version of models, TestCase, and <tt class="docutils literal"><span class="pre">given</span></tt></li>
 <li>given decorator - tells hypothesis type of fields, in combination with hypothesis.strategies.integers</li>
 <li>hypothesis finds a falsifying example (0 values -&gt; divide by 0)</li>

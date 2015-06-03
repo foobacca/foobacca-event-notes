@@ -62,11 +62,13 @@
 <li>similar to reduce function</li>
 <li>return single value</li>
 <li>avg, max, min, sum, count, StdDev, variance</li>
-<li>setup
-- Gamer model
-- GameServer - m2m w Gamer
-- GameSession - inc multiple Gamer, one GamerServer
-- GameSessionResult - FK to session, user</li>
+<li>setup<ul>
+<li>Gamer model</li>
+<li>GameServer - m2m w Gamer</li>
+<li>GameSession - inc multiple Gamer, one GamerServer</li>
+<li>GameSessionResult - FK to session, user</li>
+</ul>
+</li>
 </ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">Gamer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">))</span>
 <span class="n">Gamer</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">exclude</span><span class="p">(</span><span class="n">won</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="n">num_wins</span><span class="o">=</span><span class="n">Count</span><span class="p">(</span><span class="s">&#39;won&#39;</span><span class="p">))</span>
@@ -95,9 +97,11 @@
 <div class="section" id="practical-bits">
 <h2>Practical Bits<a class="headerlink" href="#practical-bits" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>when in doubt - check the generated query
-- django debug toolbar, debugsqlshell
-- <tt class="docutils literal"><span class="pre">print(queryset.query)</span></tt></li>
+<li>when in doubt - check the generated query<ul>
+<li>django debug toolbar, debugsqlshell</li>
+<li><tt class="docutils literal"><span class="pre">print(queryset.query)</span></tt></li>
+</ul>
+</li>
 <li>if you can do it in SQL, don&#8217;t do it in python</li>
 <li>collect queries in a manager - but put in proxy object, so can apply diff orders</li>
 <li>KISS</li>

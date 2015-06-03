@@ -26,6 +26,7 @@ Ageing Code
 - system moved to MS Access
 - converted to MS SQL Server with .NET client
 - change because
+
   - SQL Server license cost
   - Windows development environment, and Windows VM
 
@@ -34,13 +35,20 @@ Way Forward
 
 - wanted web app -> framework
 - started with Ruby and Rails (as experienced it already)
+
   - only ever started from scratch with Rails - but this time needed to use existing database and Rails made it hard
+
 - then tried JS and node.js
+
   - hate JS (emotional response)
+
 - Scala and Play framework - heard about it
+
   - Scala language is a thing of beauty
   - Play framework was OK, but it's young, and libraries and tools weren't there so would have to start from scratch
+
 - Python and Django
+
   - was able to build stuff fairly quickly
   - Postgres, Django REST Framework
   - Logic as Django/DRF code (previously logic was in SQL Server stored procedures)

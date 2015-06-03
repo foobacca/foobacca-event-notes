@@ -89,8 +89,10 @@
 <li>SECRET_KEY = &#8216;not really secret&#8217;</li>
 </ul>
 <p>But the above aren&#8217;t default, and settings doc has warnings</p>
-<p>Django forms are also good
-- apple app id allowed dropbox credentials to be lost</p>
+<p>Django forms are also good</p>
+<ul class="simple">
+<li>apple app id allowed dropbox credentials to be lost</li>
+</ul>
 <p><a class="reference external" href="https://www.ponycheckup.com/">https://www.ponycheckup.com/</a> - does automatic checks</p>
 <p>If you think you&#8217;ve found something, email <a class="reference external" href="mailto:security&#37;&#52;&#48;djangoproject&#46;com">security<span>&#64;</span>djangoproject<span>&#46;</span>com</a></p>
 </div>
@@ -101,13 +103,15 @@
 <ul class="simple">
 <li>https - essential for sensitive data - eg login details</li>
 <li>plain http - no integrity - could have stuff added, or replaced</li>
-<li>proper https
-- enable for entire site
-- redirect all users to https, enable HSTS
-- set the secure flag on cookies
-- all in settings SECURE_*
-- set the right cyphers, versions etc - <a class="reference external" href="https://ssllabs.com/ssltest/">https://ssllabs.com/ssltest/</a>
-- Book - Bulletproof SSL and TLS - practical, crypto concepts, vulnerabilities</li>
+<li>proper https<ul>
+<li>enable for entire site</li>
+<li>redirect all users to https, enable HSTS</li>
+<li>set the secure flag on cookies</li>
+<li>all in settings SECURE_*</li>
+<li>set the right cyphers, versions etc - <a class="reference external" href="https://ssllabs.com/ssltest/">https://ssllabs.com/ssltest/</a></li>
+<li>Book - Bulletproof SSL and TLS - practical, crypto concepts, vulnerabilities</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="happy-path-only-testing">
@@ -127,15 +131,14 @@
 </li>
 <li><p class="first">SECURE_SSL_REDIRECT - doesn&#8217;t help</p>
 </li>
-<li><dl class="first docutils">
-<dt>properly</dt>
-<dd><ul class="first last simple">
+<li><p class="first">properly</p>
+<blockquote>
+<div><ul class="simple">
 <li>ideally different storage, different domain</li>
 <li>at least do strict check on filetype, extension, mime type</li>
 <li>access control - serve through Django (slow) OR use x-sendfile to tell webserver to serve file</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </div>

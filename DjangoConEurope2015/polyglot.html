@@ -63,34 +63,44 @@ slides - <a class="reference external" href="https://django-ployglot.herokuapp.c
 <li>now much more service orientated - can even treat the web browser as a service that runs stuff</li>
 <li>expectations for responsiveness, &#8220;app-like&#8221;</li>
 </ul>
-<p>Django strengths
-- python
-- &#8220;perfectionists with deadlines&#8221;
-- orm &amp; migrations (though doesn&#8217;t cover entire SQL standard)
-- the admin
-- django rest framework (for REST API)
-- celery (async work queue)</p>
-<p>Django weaknesses
-- c10k - 10000 concurrent connections to web service - alternatives async.io, twisted, but lose library support</p>
-<p>JS client integration
-- community then expect JS on the server</p>
-<p>Push to web clients
-- no good solution in Django - long connections - but kills server
-- polyglot can use socket.io, websocketd, golang</p>
-<p>async task results
-- add task ids to initial response
-- then have client poll other endpoint to get status of task id
-- OR can use pubsub/async to subscribe to task, and then result gets pushed to client</p>
+<p>Django strengths</p>
 <ul class="simple">
+<li>python</li>
+<li>&#8220;perfectionists with deadlines&#8221;</li>
+<li>orm &amp; migrations (though doesn&#8217;t cover entire SQL standard)</li>
+<li>the admin</li>
+<li>django rest framework (for REST API)</li>
+<li>celery (async work queue)</li>
+</ul>
+<p>Django weaknesses</p>
+<ul class="simple">
+<li>c10k - 10000 concurrent connections to web service - alternatives async.io, twisted, but lose library support</li>
+</ul>
+<p>JS client integration</p>
+<ul class="simple">
+<li>community then expect JS on the server</li>
+</ul>
+<p>Push to web clients</p>
+<ul class="simple">
+<li>no good solution in Django - long connections - but kills server</li>
+<li>polyglot can use socket.io, websocketd, golang</li>
+</ul>
+<p>async task results</p>
+<ul class="simple">
+<li>add task ids to initial response</li>
+<li>then have client poll other endpoint to get status of task id</li>
+<li>OR can use pubsub/async to subscribe to task, and then result gets pushed to client</li>
 <li>react.js - but then need js running on the server</li>
 <li>run node on server - React.renderToString(BaseElement)</li>
 <li>can have node on separate subdomain - have node to initial web page, then have Django as a service provider</li>
 </ul>
-<p>Shared auth across services
-- django.contrib.auth
-- have node proxy auth to django
-- access token, check with django
-- have separate auth service that django and others use - but more heavyweight</p>
+<p>Shared auth across services</p>
+<ul class="simple">
+<li>django.contrib.auth</li>
+<li>have node proxy auth to django</li>
+<li>access token, check with django</li>
+<li>have separate auth service that django and others use - but more heavyweight</li>
+</ul>
 <div class="section" id="take-away-points">
 <h2>Take away points<a class="headerlink" href="#take-away-points" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">

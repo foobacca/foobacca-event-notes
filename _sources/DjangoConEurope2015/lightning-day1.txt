@@ -6,22 +6,22 @@ I am a doctor
 
 Dr Russel Kieth-McGee
 
-Django Core Team, President of DSF
-Ticket ID - "Dork One"
-Founder of BeeWare project and Toga(?)
-Startup ... cloud tree?
+- Django Core Team, President of DSF
+- Ticket ID - "Dork One"
+- Founder of BeeWare project and Toga(?)
+- Startup ... cloud tree?
 
 Doctor of Computer Science - This is not medical advice
 
-Stress, lots of balls in the air - became "an angry man"
-Lost enthusiasm, confidence
-Health issues
-Rollercoaster
-Few weeks ago hit rock bottom - diagnosed as in Major Depressive episode - started treatment
+- Stress, lots of balls in the air - became "an angry man"
+- Lost enthusiasm, confidence
+- Health issues
+- Rollercoaster
+- Few weeks ago hit rock bottom - diagnosed as in Major Depressive episode - started treatment
 
-I put off getting help for far too long
-didn't want to admit to stigma of mental illness
-our industry causes problems - burnout is constantly talked about
+- I put off getting help for far too long
+- didn't want to admit to stigma of mental illness
+- our industry causes problems - burnout is constantly talked about
 
 Don't ignore the signs (in yourself or others), seek help
 
@@ -30,16 +30,16 @@ The first software engineer
 
 Andrew Godwin
 
-Margaret Hamilton, 1969
-Wrote code for Apollo 11 Landing Modules - lead developer
-coined term "software engineer"
-mission was almost complete failure - apart from software
-landing radar - how high are you?  etc
-small computer on landing module
-rendezvous radar at the other end - to link up to go home
-computer can't handle both radars - but rendezvous radar turned on during landing
-computer overloaded, was about to shutdown
-manual abort, manual fly back
+- Margaret Hamilton, 1969
+- Wrote code for Apollo 11 Landing Modules - lead developer
+- coined term "software engineer"
+- mission was almost complete failure - apart from software
+- landing radar - how high are you?  etc
+- small computer on landing module
+- rendezvous radar at the other end - to link up to go home
+- computer can't handle both radars - but rendezvous radar turned on during landing
+- computer overloaded, was about to shutdown
+- manual abort, manual fly back
 
 put prioritisation in, so it survived
 
@@ -52,9 +52,9 @@ Notifications of login attempts
 
 Markus H
 
-Django app written a few weeks ago (while writing thesis)
-security email to say "someone tried to log in as you"
-works with signals
+- Django app written a few weeks ago (while writing thesis)
+- security email to say "someone tried to log in as you"
+- works with signals
 
 https://github.com/markush/django-login-canary
 
@@ -101,9 +101,9 @@ upcoming Berlin summer 2015, costa rica, asia
 Django in FinTech World
 -----------------------
 
-FinTech = Financial Tech World
-business loan process is heavy, so 5M businesses want loans but can't get them
-so automate business loan process
+- FinTech = Financial Tech World
+- business loan process is heavy, so 5M businesses want loans but can't get them
+- so automate business loan process
 
 Working collectively to love our work
 -------------------------------------

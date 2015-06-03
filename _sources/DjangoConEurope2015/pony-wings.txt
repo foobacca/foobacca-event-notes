@@ -20,26 +20,33 @@ slides - https://speakerdeck.com/piquadrat/make-your-pony-fly
 - django-devserver - shows number of sql queries, number of duplicates, time for request
 
 The big three
+
 - reduce database queries
 - do less work
 - if all else fails - cache
 
 Less SQL queries
+
 - select_related()
+
   - use to preload objects referenced by ForeignKey
   - eg looking up user in template
+
 - prefetch_related()
+
   - similar for reverse ForeignKey and ManyToMany
   - so get all tags for all questions in one query
 
 Overall, go from 121 queries to 3 queries!
 
 Do less work
+
 - move work out of request/response cycle (eg celery)
 - only fetch data that we need - QuerySet.defer() can skip unneeded large columns (or only())
 - let others do the work (eg do calculations in the database with annotate/aggregate)
 
 Caching
+
 - doing properly gives you great scaling
 - but cache invalidation is really hard
 - can also make code hard to test and understand

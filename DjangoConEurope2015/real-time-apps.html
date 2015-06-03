@@ -73,8 +73,9 @@ slides - <a class="reference external" href="https://speakerdeck.com/aaronbasset
 <li>browser - tornado - redis - swampdragon/django - postgres</li>
 <li>build another todo app</li>
 </ul>
-<div class="highlight-shell"><pre>pip install swampdragon
-apt-get install redis  # or brew - but windows not supported, use VM, cloud ...</pre>
+<div class="highlight-bash"><div class="highlight"><pre>pip install swampdragon
+apt-get install redis  <span class="c"># or brew - but windows not supported, use VM, cloud ...</span>
+</pre></div>
 </div>
 <ul class="simple">
 <li>swamp dragon has dragon admin, similar to django-admin.py, createproject command with standard structure</li>
@@ -109,12 +110,16 @@ apt-get install redis  # or brew - but windows not supported, use VM, cloud ...<
 <li>DaaS (database as a service)</li>
 </ul>
 <p><a class="reference external" href="http://www.leggetter.co.uk/2013/12/09/choosing-realtime-web-app-tech-stack.html">http://www.leggetter.co.uk/2013/12/09/choosing-realtime-web-app-tech-stack.html</a></p>
-<p>Using Pusher instead - rewrite the SelfPublishModel - don&#8217;t need Router then
-Can use pusher angular library</p>
+<ul class="simple">
+<li>Using Pusher instead - rewrite the SelfPublishModel - don&#8217;t need Router then</li>
+<li>Can use pusher angular library</li>
+</ul>
 <p><a class="reference external" href="https://github.com/aaronbassett/djangocon-pusher">https://github.com/aaronbassett/djangocon-pusher</a></p>
-<p>Working on stuff for Glasgow Council
-requirement is to see when someone else is trying to edit thing at same time as you
-only want to see notifications for single object - so create per-object channels</p>
+<ul class="simple">
+<li>Working on stuff for Glasgow Council</li>
+<li>requirement is to see when someone else is trying to edit thing at same time as you</li>
+<li>only want to see notifications for single object - so create per-object channels</li>
+</ul>
 <p>created django-pusherable package - on pypi and github</p>
 </div>
 

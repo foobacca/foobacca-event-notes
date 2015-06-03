@@ -33,11 +33,13 @@ Encrypt pyc files to stop reverse engineering
 Also encrypted HTML code to stop customers changing the look
 
 webserver
+
 - dev server is bad idea
 - c++ server slow
 - ended up using cherry py - django-cp
 
 db
+
 - sqlite not good for network
 - postgres - hard to install
 - firebase hit the spot

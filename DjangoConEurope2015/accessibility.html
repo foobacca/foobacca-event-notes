@@ -58,68 +58,92 @@
 <h2>The Problem<a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h2>
 <p>Consider life without the web - and all the small opportunities it has brought you.</p>
 <p>Some people have issues - because we design websites for non-disabled people</p>
-<p>Disability is a consequence of an impairment
-- from birth or acquired later
-- progressive or non-progressive
-- visual, hearing, motor or cognitive
-- visual - blind, low-vision, colour blind
-- hearing - deaf, or limited hearing
-- motor - limited dexterity or loss of limbs
-- cognitive - learning issues or memory loss</p>
-<p>How to do web accessibility
-- try using a screen reader!
-- provide alt text to non text content</p>
-<blockquote>
-<div><ul class="simple">
+<p>Disability is a consequence of an impairment</p>
+<ul class="simple">
+<li>from birth or acquired later</li>
+<li>progressive or non-progressive</li>
+<li>visual, hearing, motor or cognitive</li>
+<li>visual - blind, low-vision, colour blind</li>
+<li>hearing - deaf, or limited hearing</li>
+<li>motor - limited dexterity or loss of limbs</li>
+<li>cognitive - learning issues or memory loss</li>
+</ul>
+<p>How to do web accessibility</p>
+<ul class="simple">
+<li>try using a screen reader!</li>
+<li>provide alt text to non text content<ul>
 <li>just alt=&#8221;Image of Xavier&#8221; - still bad, as screen reader says <tt class="docutils literal"><span class="pre">&quot;image</span> <span class="pre">of</span> <span class="pre">{}&quot;.format(alt_text)</span></tt></li>
 <li>alt=&#8221;Xavier&#8221; is appropriate, or alt=&#8221;Xavier giving a talk&#8221;</li>
 </ul>
-</div></blockquote>
-<ul class="simple">
-<li>provide appropriate doc structure with tags
-- <tt class="docutils literal"><span class="pre">&lt;header&gt;&lt;/header&gt;&lt;nav&gt;&lt;/nav&gt;&lt;main&gt;&lt;article&gt;&lt;/article&gt;&lt;/main&gt;&lt;footer&gt;&lt;/footer&gt;</span></tt></li>
+</li>
+<li>provide appropriate doc structure with tags<ul>
+<li><tt class="docutils literal"><span class="pre">&lt;header&gt;&lt;/header&gt;&lt;nav&gt;&lt;/nav&gt;&lt;main&gt;&lt;article&gt;&lt;/article&gt;&lt;/main&gt;&lt;footer&gt;&lt;/footer&gt;</span></tt></li>
+</ul>
+</li>
 <li>don&#8217;t use lists when not a list - screen reader noise</li>
 <li>do tables properly - <tt class="docutils literal"><span class="pre">&lt;thead&gt;</span></tt> section really helps</li>
-<li>provide appropriate validation and errors for forms
-- Django is pretty good, more relevant for JS front end stuff
-- use label tag with for attr - <tt class="docutils literal"><span class="pre">&lt;label</span> <span class="pre">for=&quot;name&quot;&gt;Name&lt;/label&gt;&lt;input</span> <span class="pre">name=&quot;name&quot;</span> <span class="pre">...&gt;</span></tt></li>
-<li>appropriate link description to links
-- screen reader will collect links on page and read to user without surrounding context
-- Bad - <tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;/articles&quot;&gt;Read</span> <span class="pre">all</span> <span class="pre">articles`&lt;/a&gt;</span></tt>
-- Better - <tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;/articles&quot;&gt;Read</span> <span class="pre">all</span> <span class="pre">articles&lt;/a&gt;</span></tt></li>
-<li>caption and transcripts for audio and video</li>
-<li>accessibility for non-html content (eg PDF)
-- same guidelines as web, when building in Word (or whatever)</li>
-<li>allow users to skip repetitive elements on the page
-- <tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;#content&quot;</span> <span class="pre">class=&quot;hidden-except-screen-readers&quot;&gt;Skip</span> <span class="pre">to</span> <span class="pre">main</span> <span class="pre">content&lt;/a&gt;</span></tt></li>
-<li>Do not rely on colour alone to convey info
-- bad - <tt class="docutils literal"><span class="pre">&lt;span</span> <span class="pre">class=&quot;label</span> <span class="pre">green&quot;&gt;&lt;/span&gt;</span></tt>
-- good - <tt class="docutils literal"><span class="pre">&lt;span</span> <span class="pre">class=&quot;label</span> <span class="pre">green&quot;&gt;some</span> <span class="pre">label&lt;/span&gt;</span></tt></li>
-<li>make sure content is clearly written and easy to read (hard to apply)
-- writing in second language
-- sometimes assumes shared culture
-- &#8220;Write explicit, clear, simple and positive sentences&#8221;</li>
-<li>Use clear fonts, relative units (better for zooming) and strong contrasts
-- and avoid blinking or moving text at all costs
-- or any moving element</li>
-<li>make browser side JS code accessible
-- most screen readers use JS
-- avoid device dependent events</li>
-<li>design to standards - avoid hacks
-- avoid inline styles, deprecated tags and missing attributes</li>
+<li>provide appropriate validation and errors for forms<ul>
+<li>Django is pretty good, more relevant for JS front end stuff</li>
+<li>use label tag with for attr - <tt class="docutils literal"><span class="pre">&lt;label</span> <span class="pre">for=&quot;name&quot;&gt;Name&lt;/label&gt;&lt;input</span> <span class="pre">name=&quot;name&quot;</span> <span class="pre">...&gt;</span></tt></li>
 </ul>
-<p>Where do we go?
-- learn about impairment and disability
-- listen to people with disabilities (and the variety)
-- guidelines - WCAG, ATAG, UUAG, ARIA
-- try accessibility tools on laptop or smartphone - screen reader, high colour contrast ...
-- validate your web app with WAVE
-- chrome accessibility developer tools
-- provide your skills to accessibility organisations</p>
-<p>Comments and Questions
-- Designers - get out of my way - eg restrict zoom with viewport setting
-- is there a cmd line tool to validate, so it can be used in unit tests
-- don&#8217;t build a second version - allow skipping info</p>
+</li>
+<li>appropriate link description to links<ul>
+<li>screen reader will collect links on page and read to user without surrounding context</li>
+<li>Bad - <tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;/articles&quot;&gt;Read</span> <span class="pre">all</span> <span class="pre">articles`&lt;/a&gt;</span></tt></li>
+<li>Better - <tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;/articles&quot;&gt;Read</span> <span class="pre">all</span> <span class="pre">articles&lt;/a&gt;</span></tt></li>
+</ul>
+</li>
+<li>caption and transcripts for audio and video</li>
+<li>accessibility for non-html content (eg PDF)<ul>
+<li>same guidelines as web, when building in Word (or whatever)</li>
+</ul>
+</li>
+<li>allow users to skip repetitive elements on the page<ul>
+<li><tt class="docutils literal"><span class="pre">&lt;a</span> <span class="pre">href=&quot;#content&quot;</span> <span class="pre">class=&quot;hidden-except-screen-readers&quot;&gt;Skip</span> <span class="pre">to</span> <span class="pre">main</span> <span class="pre">content&lt;/a&gt;</span></tt></li>
+</ul>
+</li>
+<li>Do not rely on colour alone to convey info<ul>
+<li>bad - <tt class="docutils literal"><span class="pre">&lt;span</span> <span class="pre">class=&quot;label</span> <span class="pre">green&quot;&gt;&lt;/span&gt;</span></tt></li>
+<li>good - <tt class="docutils literal"><span class="pre">&lt;span</span> <span class="pre">class=&quot;label</span> <span class="pre">green&quot;&gt;some</span> <span class="pre">label&lt;/span&gt;</span></tt></li>
+</ul>
+</li>
+<li>make sure content is clearly written and easy to read (hard to apply)<ul>
+<li>writing in second language</li>
+<li>sometimes assumes shared culture</li>
+<li>&#8220;Write explicit, clear, simple and positive sentences&#8221;</li>
+</ul>
+</li>
+<li>Use clear fonts, relative units (better for zooming) and strong contrasts<ul>
+<li>and avoid blinking or moving text at all costs</li>
+<li>or any moving element</li>
+</ul>
+</li>
+<li>make browser side JS code accessible<ul>
+<li>most screen readers use JS</li>
+<li>avoid device dependent events</li>
+</ul>
+</li>
+<li>design to standards - avoid hacks<ul>
+<li>avoid inline styles, deprecated tags and missing attributes</li>
+</ul>
+</li>
+</ul>
+<p>Where do we go?</p>
+<ul class="simple">
+<li>learn about impairment and disability</li>
+<li>listen to people with disabilities (and the variety)</li>
+<li>guidelines - WCAG, ATAG, UUAG, ARIA</li>
+<li>try accessibility tools on laptop or smartphone - screen reader, high colour contrast ...</li>
+<li>validate your web app with WAVE</li>
+<li>chrome accessibility developer tools</li>
+<li>provide your skills to accessibility organisations</li>
+</ul>
+<p>Comments and Questions</p>
+<ul class="simple">
+<li>Designers - get out of my way - eg restrict zoom with viewport setting</li>
+<li>is there a cmd line tool to validate, so it can be used in unit tests</li>
+<li>don&#8217;t build a second version - allow skipping info</li>
+</ul>
 </div>
 </div>
 

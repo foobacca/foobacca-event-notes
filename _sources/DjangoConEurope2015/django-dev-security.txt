@@ -40,6 +40,7 @@ Can introduce remote code execution
 But the above aren't default, and settings doc has warnings
 
 Django forms are also good
+
 - apple app id allowed dropbox credentials to be lost
 
 https://www.ponycheckup.com/ - does automatic checks
@@ -55,6 +56,7 @@ Common Issues
 - https - essential for sensitive data - eg login details
 - plain http - no integrity - could have stuff added, or replaced
 - proper https
+
   - enable for entire site
   - redirect all users to https, enable HSTS
   - set the secure flag on cookies
@@ -77,6 +79,7 @@ Common Issues
 - see one file, then guess path of another file
 - SECURE_SSL_REDIRECT - doesn't help
 - properly
+
     - ideally different storage, different domain
     - at least do strict check on filetype, extension, mime type
     - access control - serve through Django (slow) OR use x-sendfile to tell webserver to serve file

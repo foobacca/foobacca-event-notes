@@ -71,11 +71,13 @@
 <ul class="simple">
 <li>docker push/pull</li>
 <li>hub.docker.com has various images ready to go - redis, django, postgres</li>
-<li>images would in layers
-- debian 8
-- python 3.4
-- django (python 3)
-- mysite v1</li>
+<li>images would in layers<ul>
+<li>debian 8</li>
+<li>python 3.4</li>
+<li>django (python 3)</li>
+<li>mysite v1</li>
+</ul>
+</li>
 <li>docker file</li>
 </ul>
 <div class="highlight-none"><div class="highlight"><pre>FROM django:python3-onbuild
@@ -88,9 +90,10 @@ COPY localfs to docker
 </div>
 <div class="section" id="create-docker-ised-django-project">
 <h2>Create docker-ised django project<a class="headerlink" href="#create-docker-ised-django-project" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-shell"><pre>docker build -t mydjangoimage
+<div class="highlight-bash"><div class="highlight"><pre>docker build -t mydjangoimage
 docker run ... django-admin.py startproject mysite .
-docker run ... python manage.py runserver 0.0.0.0:8000</pre>
+docker run ... python manage.py runserver 0.0.0.0:8000
+</pre></div>
 </div>
 </div>
 <div class="section" id="django-compose">

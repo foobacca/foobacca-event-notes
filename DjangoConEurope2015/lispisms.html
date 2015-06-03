@@ -77,15 +77,19 @@
 <li>every change is temporary, applied only down the call chain - think with statement</li>
 <li>then each piece of code can be reasoned about</li>
 </ul>
-<p>Local change is the norm in Lisp
-- example, and equivalent in python
-- but python likes mutables and objects - managing bindings is not enough
-- obvious problem is that code inside can still change object state
-- solution: make objects immutable
-- what if we need to change just part of the object
-- solution: special syntax for attribute change</p>
-<p>lispism library
-- special object called <tt class="docutils literal"><span class="pre">D</span></tt></p>
+<p>Local change is the norm in Lisp</p>
+<ul class="simple">
+<li>example, and equivalent in python</li>
+<li>but python likes mutables and objects - managing bindings is not enough</li>
+<li>obvious problem is that code inside can still change object state</li>
+<li>solution: make objects immutable</li>
+<li>what if we need to change just part of the object</li>
+<li>solution: special syntax for attribute change</li>
+</ul>
+<p>lispism library</p>
+<ul class="simple">
+<li>special object called <tt class="docutils literal"><span class="pre">D</span></tt></li>
+</ul>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">D</span><span class="o">.</span><span class="n">let</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="k">print</span> <span class="n">D</span><span class="o">.</span><span class="n">a</span>
     <span class="n">D</span><span class="o">.</span><span class="n">let</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
@@ -94,21 +98,25 @@
 </div>
 <p>Builtin containers are replaced by immutables - eg list -&gt; tuple</p>
 <p>Freezing</p>
-<p>Limitations
-- freezing can be worked around, but will avoid mistaken changes
-- can&#8217;t control C extensions
-- generators - yield inside let breaks the contract
-- <tt class="docutils literal"><span class="pre">__dict__</span></tt> access is a problem (plan to fix it)</p>
+<p>Limitations</p>
+<ul class="simple">
+<li>freezing can be worked around, but will avoid mistaken changes</li>
+<li>can&#8217;t control C extensions</li>
+<li>generators - yield inside let breaks the contract</li>
+<li><tt class="docutils literal"><span class="pre">__dict__</span></tt> access is a problem (plan to fix it)</li>
+</ul>
 <p>Future</p>
 <ul class="simple">
 <li>threading</li>
 <li>use MacroPy macros for better sub-object control</li>
-<li>implement lisp restarts
-- separate What from How in error handling
-- code detects error handles it, but can&#8217;t make decision
-- higher code sets map of extension -&gt; action label
-- low level code lists action labels, and actions for each case
-- intermediate code knows nothing</li>
+<li>implement lisp restarts<ul>
+<li>separate What from How in error handling</li>
+<li>code detects error handles it, but can&#8217;t make decision</li>
+<li>higher code sets map of extension -&gt; action label</li>
+<li>low level code lists action labels, and actions for each case</li>
+<li>intermediate code knows nothing</li>
+</ul>
+</li>
 </ul>
 </div>
 

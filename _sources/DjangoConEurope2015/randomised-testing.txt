@@ -18,9 +18,11 @@ slides -
 Why is it so great?
 
 - **lots** of randomised data
+
   - say name is string, email, number
   - come up with 2000 customers!
   - if fail, work down to simplest string with bug (eg ! mark)
+
 - can deal with complex data types - eg Django Models
 - works with pytest, unittest - just a library
 
@@ -36,8 +38,10 @@ pip install hypothesis hypothesis-django
 Example
 
 - StockSubscription model
+
   - fields: symbol, last notified, NotificationsPerDay
   - methods - ``__str__``, next_notification_time
+
 - tests - use hypothesis version of models, TestCase, and ``given``
 - given decorator - tells hypothesis type of fields, in combination with hypothesis.strategies.integers
 - hypothesis finds a falsifying example (0 values -> divide by 0)

@@ -62,4 +62,7 @@ Day 3
    write-view
    randomised-testing
    ageing-code
+   lookups-transforms
+   user-testing
+   project-templates
    lightning-day3

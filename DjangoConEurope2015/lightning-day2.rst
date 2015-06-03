@@ -110,6 +110,7 @@ BDD with goat
 -------------
 
 Ilja, cuescience
+slides and code - https://github.com/cuescience/djangocon2015-goat
 
 - BDD - behave lib - test written in natural language
 - type annotations - use python 3 - but types specified twise

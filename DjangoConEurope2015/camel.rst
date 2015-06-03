@@ -2,6 +2,7 @@ CAMEL, the Cardiff Maths e-learning project
 ===========================================
 
 Dafydd Evans
+slides - https://speakerdeck.com/dimbyd/the-cardiff-maths-e-learning-project
 
 - 1 person project for now
 - CArdiff Maths E Learning project -> CAMEL

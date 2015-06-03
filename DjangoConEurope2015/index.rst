@@ -58,4 +58,8 @@ Day 3
 .. toctree::
    :maxdepth: 2
 
+   net-terrors
+   write-view
+   randomised-testing
+   ageing-code
    lightning-day3

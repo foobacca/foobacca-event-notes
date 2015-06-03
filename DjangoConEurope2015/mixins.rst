@@ -3,6 +3,7 @@ Demystifying mixins with Django
 
 Ana Balica
 @anabalica
+slides - http://www.slideshare.net/AnaBalica/djangocon2015-demystifying-mixins-with-django
 
 - mixins controlled way to add to your classes
 - NOT a special python construct - just ordinary python class

@@ -71,4 +71,5 @@ Day 3
    restful-apis
    mixins
    knives
+   conformity
    lightning-day3

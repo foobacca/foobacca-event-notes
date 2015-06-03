@@ -67,4 +67,8 @@ Day 3
    lookups-transforms
    user-testing
    project-templates
+   cms
+   restful-apis
+   mixins
+   knives
    lightning-day3

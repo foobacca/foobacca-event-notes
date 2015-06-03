@@ -11,6 +11,8 @@ DjangoCon Europe 2015
 
 * Videos of talks at http://www.youtube.com/user/DjangoConTV
 
+* Django for Social Good had a gathering, and started google group
+
 Django Con Europe
 =================
 

@@ -17,7 +17,7 @@ dynamically scoped variables (DSV)
 - answer: Globals are evil! toe code to system, value change unpredictably
 - so use thread locals
 - but there's more to Evil than being harmful
-- globals are ***ing convenient
+- globals are really ``*@&$`` ing convenient
 - we prefer not to pass connections into every QuerySet
 - settings can be accessed everywhere
 

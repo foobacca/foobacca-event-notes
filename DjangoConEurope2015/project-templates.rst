@@ -2,6 +2,7 @@ Project templates - alternatives and tools
 ==========================================
 
 Emmanuelle Delescolle
+slides - http://slides.com/emma_be/django-project-templates-and-more#/
 
 What does a Django project look like?
 

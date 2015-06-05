@@ -4,7 +4,7 @@ Hypothesis, randomised testing for Django
 Rae Knowler
 @raeknowler
 CKAN, Symfony, Django
-slides - 
+slides - https://speakerdeck.com/bellisk/hypothesis-randomised-testing-for-django
 
 @drmaciver - hypothesis author
 @sinister_katze - fuzzy, loves catching bugs

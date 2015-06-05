@@ -2,6 +2,7 @@ How to write a view
 ===================
 
 David Winterbottom
+slides - https://speakerdeck.com/codeinthehole/how-to-write-a-view
 
 Views give you a lot of freedom - can lead to WTF moments
 

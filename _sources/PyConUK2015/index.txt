@@ -1,5 +1,5 @@
 =============
-PyCon UK 2013
+PyCon UK 2015
 =============
 
 * Location: Coventry, UK
@@ -24,8 +24,8 @@ Many slides have been posted at http://pyconuk.net/PostConf
 Some people posted links to slide on twitter for talks I didn't go to, so I've collected them here:
 
 * `technical leadership`_
-* `making python computations faster`_ 
-  
+* `making python computations faster`_
+
 And the slides and notes for my talk `OOD Rules`_
 
 .. _`technical leadership`: http://www.owencampbell.me.uk/docs/pyconuk2015.pdf

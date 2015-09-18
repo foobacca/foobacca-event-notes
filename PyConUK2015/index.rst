@@ -29,5 +29,5 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 And the slides and notes for my talk `OOD Rules`_
 
 .. _`technical leadership`: http://www.owencampbell.me.uk/docs/pyconuk2015.pdf
-.. _`making pyhon computations faster`: http://www.slideshare.net/Russel_Winder/making-python-computations-fast
+.. _`making python computations faster`: http://www.slideshare.net/Russel_Winder/making-python-computations-fast
 .. _`OOD Rules`: https://github.com/foobacca/ood-rules

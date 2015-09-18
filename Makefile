@@ -6,7 +6,7 @@ SPHINXOPTS       =
 SPHINXBUILD      = sphinx-build
 PAPER            =
 BUILDDIR         = _build
-GH_PAGES_SOURCES = conf.py Makefile index.rst PyConUK2013 DjangoConEurope2013 DjangoConEurope2015 DjangoWeekend2014
+GH_PAGES_SOURCES = conf.py Makefile index.rst PyConUK2013 DjangoConEurope2013 DjangoConEurope2015 DjangoWeekend2014 PyConUK2015
 
 # User-friendly check for sphinx-build
 ifeq ($(shell which $(SPHINXBUILD) >/dev/null 2>&1; echo $$?), 1)

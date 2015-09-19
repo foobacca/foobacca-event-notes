@@ -3,6 +3,9 @@ Asking About Gender
 
 @kitation
 
+https://slidr.io/kitation/asking-about-gender-pyconuk-version
+
+Genderbread person
 http://itspronouncedmetrosexual.com/wp-content/uploads/2015/03/Genderbread-Person-3.3.jpg
 
 Title:

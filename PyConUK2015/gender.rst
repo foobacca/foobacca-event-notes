@@ -1,0 +1,32 @@
+Asking About Gender
+===================
+
+@kitation
+
+Title:
+
+- Mr, Mrs, Ms, Miss, Mx, Dr, Other
+- No legal requirement to have a title
+
+Or just have field for full name including title
+
+Pronoun (if/required)
+
+- He/His
+- She/Hers
+- Zie/Zir
+- Xe/Xer
+
+Gender:
+
+- Do you have to ask?
+- ideally free text
+- radio buttons: Male, Female, Non-binary, prefer not to say
+
+Dear Sir/Madam ? Just "Hello"?  Dear Customer?
+
+http://nonbinary.org
+http://nonbinary.co.uk
+
+askingaboutgender@gmail.com
+askingaboutgender.tumblr.com

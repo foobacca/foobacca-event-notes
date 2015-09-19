@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Find More Bugs &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="PyCon UK 2015" href="index.html" />
+    <link rel="prev" title="Asking About Gender" href="gender.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="gender.html" title="Asking About Gender"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">PyCon UK 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="find-more-bugs">
+<h1>Find More Bugs<a class="headerlink" href="#find-more-bugs" title="Permalink to this headline">¶</a></h1>
+<p>David MacIver
+&#64;drmaciver</p>
+<p><a class="reference external" href="https://bit.ly/finding-more-bugs-pycon-uk">https://bit.ly/finding-more-bugs-pycon-uk</a></p>
+<div class="section" id="your-software-has-bugs">
+<h2>Your software has bugs<a class="headerlink" href="#your-software-has-bugs" title="Permalink to this headline">¶</a></h2>
+<p>NASA takes bugs very seriously - the cost of bugs is very high, so they invest a lot in testing
+Also medical software and avionics</p>
+<p>Most web stuff - bugs are embarrassing, but not critical</p>
+</div>
+<div class="section" id="your-users-should-not-be-your-qa-team">
+<h2>Your users should not be your QA team<a class="headerlink" href="#your-users-should-not-be-your-qa-team" title="Permalink to this headline">¶</a></h2>
+<p>Bug test cases - I did a thing, I expected this, this happened
+But most users don&#8217;t know how to communicate bugs
+Or they use bugs to make money from you</p>
+</div>
+<div class="section" id="so-what-do-you-do">
+<h2>So what do you do?<a class="headerlink" href="#so-what-do-you-do" title="Permalink to this headline">¶</a></h2>
+<p>Make it cheaper to find bugs
+Users as QA - there are many many users - testing is very parallelisable
+Computers are faster than people, so use them</p>
+</div>
+<div class="section" id="hypothesis">
+<h2>hypothesis<a class="headerlink" href="#hypothesis" title="Permalink to this headline">¶</a></h2>
+<p>inspired by QuickCheck (Haskell</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">hypothesis</span> <span class="kn">import</span> <span class="n">given</span>
+<span class="kn">import</span> <span class="nn">hypothesis.strategies</span> <span class="kn">as</span> <span class="nn">st</span>
+
+<span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">xs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+
+<span class="nd">@given</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">lists</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">floats</span><span class="p">()))</span>
+<span class="k">def</span> <span class="nf">test_mean</span><span class="p">(</span><span class="n">xs</span><span class="p">):</span>
+    <span class="n">mean</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This finds division by zero error and shows you the input that gives the error</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="nd">@given</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">lists</span><span class="p">(</span><span class="n">st</span><span class="o">.</span><span class="n">floats</span><span class="p">()))</span>
+<span class="k">def</span> <span class="nf">test_mean</span><span class="p">(</span><span class="n">xs</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">xs</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="nb">max</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span> <span class="ow">and</span> <span class="n">m</span> <span class="o">&gt;=</span> <span class="nb">min</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Can say the empty list is not valid</p>
+<div class="code python highlight-python"><div class="highlight"><pre>@given(st.lists(st.floats()) min_size=1)
+</pre></div>
+</div>
+<p>Can say the list cannot contain <tt class="docutils literal"><span class="pre">nan</span></tt> or infinity</p>
+<div class="code python highlight-python"><div class="highlight"><pre><span class="n">assume</span><span class="p">(</span><span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="ow">or</span> <span class="n">math</span><span class="o">.</span><span class="n">isinf</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">xs</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>More issues - slightly odd floating point edge case issues</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Find More Bugs</a><ul>
+<li><a class="reference internal" href="#your-software-has-bugs">Your software has bugs</a></li>
+<li><a class="reference internal" href="#your-users-should-not-be-your-qa-team">Your users should not be your QA team</a></li>
+<li><a class="reference internal" href="#so-what-do-you-do">So what do you do?</a></li>
+<li><a class="reference internal" href="#hypothesis">hypothesis</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="gender.html"
+                        title="previous chapter">Asking About Gender</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/PyConUK2015/find-more-bugs.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="gender.html" title="Asking About Gender"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >PyCon UK 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

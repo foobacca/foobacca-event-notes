@@ -34,6 +34,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `transducers through python`_ companion blog posts
 * `the silent C in STEM`_
 * `resilient data pipelines with docker and docker-compose`_
+* `asking about gender`_
 * `finding more bugs`_
 
 And the slides and notes for my talk `OOD Rules`_
@@ -46,3 +47,4 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`the silent C in STEM`: https://docs.google.com/presentation/d/1NhsKZOWx--3kAAGnkUvzxxa2-Nwgzpq_9_aXoPEnbYc/edit#slide=id.p62
 .. _`resilient data pipelines with docker and docker-compose`: http://www.slideshare.net/heerensh/pyconuk2015
 .. _`finding more bugs`: https://bit.ly/finding-more-bugs-pycon-uk
+.. _`asking about gender`: https://slidr.io/kitation/asking-about-gender-pyconuk-version

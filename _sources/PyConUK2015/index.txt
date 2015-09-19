@@ -38,6 +38,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `asking about gender`_
 * `finding more bugs`_
 * `managing mocks`_
+* `testing and async`_
 
 And the slides and notes for my talk `OOD Rules`_
 
@@ -51,3 +52,4 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`finding more bugs`: https://bit.ly/finding-more-bugs-pycon-uk
 .. _`asking about gender`: https://slidr.io/kitation/asking-about-gender-pyconuk-version
 .. _`managing mocks`: http://slides.com/helenst/managingmocks2015#/
+.. _`testing and async`: https://github.com/jamesbroadhead/pyconuk2015-testing_and_async

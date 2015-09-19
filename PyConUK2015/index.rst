@@ -19,6 +19,7 @@ These are the notes I've taken during the talks.  If the speaker gave a link to 
    landing-comet
    gender
    find-more-bugs
+   build-right-thing
 
 
 Slides for other talks

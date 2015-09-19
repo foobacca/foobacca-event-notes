@@ -39,6 +39,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `finding more bugs`_
 * `managing mocks`_
 * `testing and async`_
+* `dispel pytest magic`_ and `dispel code`_
 
 And the slides and notes for my talk `OOD Rules`_
 
@@ -53,3 +54,5 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`asking about gender`: https://slidr.io/kitation/asking-about-gender-pyconuk-version
 .. _`managing mocks`: http://slides.com/helenst/managingmocks2015#/
 .. _`testing and async`: https://github.com/jamesbroadhead/pyconuk2015-testing_and_async
+.. _`dispel pytest magic`: http://bit.ly/dispel-pytest
+.. _`dispel code`: https://github.com/oinopion/dispel

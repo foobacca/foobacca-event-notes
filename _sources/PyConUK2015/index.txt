@@ -41,6 +41,12 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `testing and async`_
 * `dispel pytest magic`_ and `dispel code`_
 
+Lightning talks
+
+* `analysing Edinburgh Fringe jokes`_
+* `pyjokes talk`_ and `pyjokes repo`_
+* `python and shell tips`_
+
 And the slides and notes for my talk `OOD Rules`_
 
 .. _`deep dive into python import hooks`: https://kragniz.eu/pyconuk-2015.pdf
@@ -56,3 +62,8 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`testing and async`: https://github.com/jamesbroadhead/pyconuk2015-testing_and_async
 .. _`dispel pytest magic`: http://bit.ly/dispel-pytest
 .. _`dispel code`: https://github.com/oinopion/dispel
+
+.. _`analysing Edinburgh Fringe jokes`: https://github.com/drvinceknight/EdinburghFringeJokes/blob/master/nlp-of-jokes.ipynb
+.. _`pyjokes talk`: https://speakerdeck.com/bennuttall/pyjokes
+.. _`pyjokes repo`: https://github.com/pyjokes/pyjokes
+.. _`python and shell tips`: http://bjwebb.co.uk/paste/presentation.html

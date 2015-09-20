@@ -23,6 +23,8 @@ These are the notes I've taken during the talks.  If the speaker gave a link to 
    imposter
    simplicity
    data-science
+   cms-testing
+   ladder-to-python3
 
 Slides for other talks
 ----------------------
@@ -47,6 +49,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `Python and PostgreSQL, a Wonderful Wedding`_
 * `Tit-for-tat-and-the-axelrod-library`_
 * `Simplicity is a feature`_
+* `Testing Django Applications`_
 
 Lightning talks
 
@@ -79,3 +82,4 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`Python and PostgreSQL, a Wonderful Wedding`: https://speakerdeck.com/matrixise/python-and-postgresql-a-wonderful-wedding-english
 .. _`Tit-for-tat-and-the-axelrod-library`: http://vknight.org/Talks/2015-09-20-Tit-for-tat-and-the-axelrod-library/#/
 .. _`Simplicity is a feature`: https://speakerdeck.com/lukasa/simplicity-is-a-feature
+.. _`Testing Django Applications`: http://nephila.co.uk/talk/testing-apps.html

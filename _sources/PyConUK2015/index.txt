@@ -54,7 +54,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `Ship Data Science Products`_
 * `Testing Django Applications`_
 * `interactive cloud experimentation`_
-* `physical computing with python and raspberry pi`_
+* `Physical computing with Python and Raspberry Pi`_
 * `Data-visualisation with Python and JavaScript`_
 * `With flexibility comes responsibility: Getting schemas around semi-structured data`_
 
@@ -84,7 +84,7 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`dispel code`: https://github.com/oinopion/dispel
 
 .. _`analysing Edinburgh Fringe jokes`: https://github.com/drvinceknight/EdinburghFringeJokes/blob/master/nlp-of-jokes.ipynb
-.. _`pyjokes talk`: https://speakerdeck.com/bennuttall/pyjokes
+.. _`pyjokes talk`: https://speakerdeck.com/bennuttall/the-story-of-pyjokes
 .. _`pyjokes repo`: https://github.com/pyjokes/pyjokes
 .. _`python and shell tips`: http://bjwebb.co.uk/paste/presentation.html
 .. _`Python and PostgreSQL, a Wonderful Wedding`: https://speakerdeck.com/matrixise/python-and-postgresql-a-wonderful-wedding-english
@@ -93,7 +93,7 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`Ship Data Science Products`: https://speakerdeck.com/ianozsvald/ship-data-science-products-pyconuk-2015
 .. _`Testing Django Applications`: http://nephila.co.uk/talk/testing-apps.html
 .. _`interactive cloud experimentation`: http://www.slideshare.net/glestaris/pycon-uk-ice-interactive-cloud-experimentation
-.. _`physical computing with python and raspberry pi`: https://speakerdeck.com/bennuttall/physical-computing-with-python-and-raspberry-pi-pyconuk-2015
+.. _`Physical computing with Python and Raspberry Pi`: https://speakerdeck.com/bennuttall/physical-computing-with-python-and-raspberry-pi-pyconuk-2015
 .. _`Data-visualisation with Python and JavaScript`: http://kyrandale.com/static/talks/reveal.js/index_pydata2015.html#/
 .. _`With flexibility comes responsibility: Getting schemas around semi-structured data`_: https://slideviewer.herokuapp.com/github/konarkmodi/Presentations/blob/master/notebooks/Pycon-UK.ipynb
 .. _`neurodiversity`: http://www.slideshare.net/JohnChandler1/neurodiversity-lightning-talk

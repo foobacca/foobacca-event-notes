@@ -8,6 +8,8 @@ PyCon UK 2015
 Notes from talks
 ----------------
 
+Videos can be viewed on the `pycon uk youtube channel<https://www.youtube.com/channel/UChA9XP_feY1-1oSy2L7acog>`_.
+
 These are the notes I've taken during the talks.  If the speaker gave a link to the slides or talk notes, the link is included.
 
 (Haven't taken so many notes at this conference as I spent some talks writing my talk ...)
@@ -49,13 +51,19 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `Python and PostgreSQL, a Wonderful Wedding`_
 * `Tit-for-tat-and-the-axelrod-library`_
 * `Simplicity is a feature`_
+* `Ship Data Science Products`_
 * `Testing Django Applications`_
+* `interactive cloud experimentation`_
+* `physical computing with python and raspberry pi`_
+* `Data-visualisation with Python and JavaScript`_
+* `With flexibility comes responsibility: Getting schemas around semi-structured data`_
 
 Lightning talks
 
 * `analysing Edinburgh Fringe jokes`_
 * `pyjokes talk`_ and `pyjokes repo`_
 * `python and shell tips`_
+* `neurodiversity`_
 
 And the slides and notes for my talk `OOD Rules`_
 
@@ -82,4 +90,10 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`Python and PostgreSQL, a Wonderful Wedding`: https://speakerdeck.com/matrixise/python-and-postgresql-a-wonderful-wedding-english
 .. _`Tit-for-tat-and-the-axelrod-library`: http://vknight.org/Talks/2015-09-20-Tit-for-tat-and-the-axelrod-library/#/
 .. _`Simplicity is a feature`: https://speakerdeck.com/lukasa/simplicity-is-a-feature
+.. _`Ship Data Science Products`: https://speakerdeck.com/ianozsvald/ship-data-science-products-pyconuk-2015
 .. _`Testing Django Applications`: http://nephila.co.uk/talk/testing-apps.html
+.. _`interactive cloud experimentation`: http://www.slideshare.net/glestaris/pycon-uk-ice-interactive-cloud-experimentation
+.. _`physical computing with python and raspberry pi`: https://speakerdeck.com/bennuttall/physical-computing-with-python-and-raspberry-pi-pyconuk-2015
+.. _`Data-visualisation with Python and JavaScript`: http://kyrandale.com/static/talks/reveal.js/index_pydata2015.html#/
+.. _`With flexibility comes responsibility: Getting schemas around semi-structured data`_: https://slideviewer.herokuapp.com/github/konarkmodi/Presentations/blob/master/notebooks/Pycon-UK.ipynb
+.. _`neurodiversity`: http://www.slideshare.net/JohnChandler1/neurodiversity-lightning-talk

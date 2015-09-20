@@ -50,6 +50,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `Tit-for-tat-and-the-axelrod-library`_
 * `Simplicity is a feature`_
 * `Testing Django Applications`_
+* `Physical computing with Python and Raspberry Pi`_
 
 Lightning talks
 
@@ -76,10 +77,11 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`dispel code`: https://github.com/oinopion/dispel
 
 .. _`analysing Edinburgh Fringe jokes`: https://github.com/drvinceknight/EdinburghFringeJokes/blob/master/nlp-of-jokes.ipynb
-.. _`pyjokes talk`: https://speakerdeck.com/bennuttall/pyjokes
+.. _`pyjokes talk`: https://speakerdeck.com/bennuttall/the-story-of-pyjokes
 .. _`pyjokes repo`: https://github.com/pyjokes/pyjokes
 .. _`python and shell tips`: http://bjwebb.co.uk/paste/presentation.html
 .. _`Python and PostgreSQL, a Wonderful Wedding`: https://speakerdeck.com/matrixise/python-and-postgresql-a-wonderful-wedding-english
 .. _`Tit-for-tat-and-the-axelrod-library`: http://vknight.org/Talks/2015-09-20-Tit-for-tat-and-the-axelrod-library/#/
 .. _`Simplicity is a feature`: https://speakerdeck.com/lukasa/simplicity-is-a-feature
 .. _`Testing Django Applications`: http://nephila.co.uk/talk/testing-apps.html
+.. _`Physical computing with Python and Raspberry Pi`: https://speakerdeck.com/bennuttall/physical-computing-with-python-and-raspberry-pi-pyconuk-2015

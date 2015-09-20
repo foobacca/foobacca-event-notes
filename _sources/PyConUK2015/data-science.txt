@@ -3,6 +3,7 @@ Ship Data Science
 
 @IanOzsvald
 ian.osvald@modelinsight.io
+https://speakerdeck.com/ianozsvald/ship-data-science-products-pyconuk-2015
 
 Company "elevate" - match CVs to jobs
 

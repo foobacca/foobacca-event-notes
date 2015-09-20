@@ -39,6 +39,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `finding more bugs`_
 * `managing mocks`_
 * `testing and async`_
+* `tackling a legacy codebase with (micro)services`_
 * `dispel pytest magic`_ and `dispel code`_
 
 Lightning talks
@@ -61,6 +62,7 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`managing mocks`: http://slides.com/helenst/managingmocks2015#/
 .. _`testing and async`: https://github.com/jamesbroadhead/pyconuk2015-testing_and_async
 .. _`dispel pytest magic`: http://bit.ly/dispel-pytest
+.. _`tackling a legacy codebase with (micro)services`: http://www.slideshare.net/JohnChandler1/tackling-a-legacy-codebase-with-microservices
 .. _`dispel code`: https://github.com/oinopion/dispel
 
 .. _`analysing Edinburgh Fringe jokes`: https://github.com/drvinceknight/EdinburghFringeJokes/blob/master/nlp-of-jokes.ipynb

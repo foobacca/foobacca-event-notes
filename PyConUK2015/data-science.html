@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Ship Data Science &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="PyCon UK 2015" href="index.html" />
+    <link rel="prev" title="Simplicity is a Feature" href="simplicity.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="simplicity.html" title="Simplicity is a Feature"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">PyCon UK 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="ship-data-science">
+<h1>Ship Data Science<a class="headerlink" href="#ship-data-science" title="Permalink to this headline">¶</a></h1>
+<p>&#64;IanOzsvald
+<a class="reference external" href="mailto:ian&#46;osvald&#37;&#52;&#48;modelinsight&#46;io">ian<span>&#46;</span>osvald<span>&#64;</span>modelinsight<span>&#46;</span>io</a></p>
+<p>Company &#8220;elevate&#8221; - match CVs to jobs</p>
+<p>Extract data</p>
+<ul class="simple">
+<li>tools: sql, elasticsearch, numpy, pandas, ...</li>
+</ul>
+<p>Visualising data</p>
+<ul class="simple">
+<li>most data is boring</li>
+<li>requires human curation + detective skills to get good stuff</li>
+<li>prob needs engineer/researcher and business</li>
+<li>tools - bokeh ...</li>
+</ul>
+<p>Extracting data from binary files</p>
+<ul class="simple">
+<li>PDF/PNG data</li>
+<li>tools - textract, Apache Tika, Sovren</li>
+<li>this might take months!</li>
+</ul>
+<p>Augmenting data</p>
+<ul class="simple">
+<li>identify people, sentiment</li>
+<li>tools - opendata, datasift, NLTK, alchemyapi</li>
+</ul>
+<p>machine learning</p>
+<ul class="simple">
+<li>tools: PyMC, scikit learn, statsmodels, sparkit-learn</li>
+<li>deep learning: theano, caffe</li>
+<li>text: spaCy, NTLK</li>
+</ul>
+<p>Delivery - Keep it simple (stupid)</p>
+<ul class="simple">
+<li>we&#8217;re prob not publishing the best result</li>
+<li>debuggability is key</li>
+<li>&#8220;cult of the imperfect&#8221; Watson-Watt</li>
+<li>dumb models + clean data beat other combinations</li>
+</ul>
+<p>Don&#8217;t Kill It!</p>
+<ul class="simple">
+<li>your data is missing, poor, it lies<ul>
+<li>missing data</li>
+<li>log everything - eg segment.io</li>
+<li>make dat quality tools &amp; reports</li>
+<li>Note! More data -&gt; desynchronisation - BBAAADDD!</li>
+</ul>
+</li>
+<li>R&amp;D != Engineering<ul>
+<li>discovery based, iterative, learn from both success and failure</li>
+</ul>
+</li>
+</ul>
+<p>Internal deployment</p>
+<ul class="simple">
+<li>CSVs, reports</li>
+<li>database updates</li>
+<li>IPython Notebook (though note, not secure)</li>
+<li>Bokeh</li>
+</ul>
+<p>Deploying live systems</p>
+<ul class="simple">
+<li>Spyre (locked down cf. ipython notebook)</li>
+<li>Microservices - Docker, Amazon ECS, Flask + Swagger</li>
+</ul>
+<p>Deploying python</p>
+<ul class="simple">
+<li>make python modules (setup.py)</li>
+</ul>
+<div class="code shell highlight-python"><div class="highlight"><pre>python setup.py develop
+</pre></div>
+</div>
+<ul class="simple">
+<li>book: data science and visualisation in python</li>
+</ul>
+<p>Common gotchas</p>
+<ul class="simple">
+<li>mysql utf8 is 3 bytes</li>
+<li>JS months are 0 based</li>
+<li>date times - use ISO 8601</li>
+<li>iOS epoch is 2001</li>
+<li>Windows Excel convert to CP1252</li>
+<li>MongoDB no_timeout_cursor = True</li>
+<li>Github 100MB file limit</li>
+<li>...</li>
+</ul>
+<p>Do you really have big data?</p>
+<ul class="simple">
+<li>amazon has 32 core servers with 244GB RAM</li>
+</ul>
+<p>PyDataLondon meetup</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="simplicity.html"
+                        title="previous chapter">Simplicity is a Feature</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/PyConUK2015/data-science.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="simplicity.html" title="Simplicity is a Feature"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >PyCon UK 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

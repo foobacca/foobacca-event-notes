@@ -1,6 +1,10 @@
 Simplicity is a Feature
 =======================
 
+Cory Benfield
+@Lukasaoz
+https://speakerdeck.com/lukasa/simplicity-is-a-feature
+
 The big take away:
 
 Simplicity is about defaults

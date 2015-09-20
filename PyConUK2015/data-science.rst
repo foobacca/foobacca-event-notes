@@ -65,3 +65,30 @@ Deploying live systems
 
 * Spyre (locked down cf. ipython notebook)
 * Microservices - Docker, Amazon ECS, Flask + Swagger
+
+Deploying python
+
+* make python modules (setup.py)
+
+.. code:: shell
+
+    python setup.py develop
+
+* book: data science and visualisation in python
+
+Common gotchas
+
+* mysql utf8 is 3 bytes
+* JS months are 0 based
+* date times - use ISO 8601
+* iOS epoch is 2001
+* Windows Excel convert to CP1252
+* MongoDB no_timeout_cursor = True
+* Github 100MB file limit
+* ...
+
+Do you really have big data?
+
+* amazon has 32 core servers with 244GB RAM
+
+PyDataLondon meetup

@@ -22,6 +22,7 @@ These are the notes I've taken during the talks.  If the speaker gave a link to 
    build-right-thing
    imposter
    simplicity
+   data-science
 
 Slides for other talks
 ----------------------
@@ -37,12 +38,15 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `the silent C in STEM`_
 * `resilient data pipelines with docker and docker-compose`_
 * `asking about gender`_
+* `accelerate and scale your tests with nodepool`_
 * `finding more bugs`_
 * `managing mocks`_
 * `testing and async`_
 * `tackling a legacy codebase with (micro)services`_
 * `dispel pytest magic`_ and `dispel code`_
 * `Python and PostgreSQL, a Wonderful Wedding`_
+* `Tit-for-tat-and-the-axelrod-library`_
+* `Simplicity is a feature`_
 
 Lightning talks
 
@@ -61,6 +65,7 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`resilient data pipelines with docker and docker-compose`: http://www.slideshare.net/heerensh/pyconuk2015
 .. _`finding more bugs`: https://bit.ly/finding-more-bugs-pycon-uk
 .. _`asking about gender`: https://slidr.io/kitation/asking-about-gender-pyconuk-version
+.. _`accelerate and scale your tests with nodepool`: http://es.slideshare.net/YolandaRobla1/scale-tests-nodepool
 .. _`managing mocks`: http://slides.com/helenst/managingmocks2015#/
 .. _`testing and async`: https://github.com/jamesbroadhead/pyconuk2015-testing_and_async
 .. _`dispel pytest magic`: http://bit.ly/dispel-pytest
@@ -72,3 +77,5 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`pyjokes repo`: https://github.com/pyjokes/pyjokes
 .. _`python and shell tips`: http://bjwebb.co.uk/paste/presentation.html
 .. _`Python and PostgreSQL, a Wonderful Wedding`: https://speakerdeck.com/matrixise/python-and-postgresql-a-wonderful-wedding-english
+.. _`Tit-for-tat-and-the-axelrod-library`: http://vknight.org/Talks/2015-09-20-Tit-for-tat-and-the-axelrod-library/#/
+.. _`Simplicity is a feature`: https://speakerdeck.com/lukasa/simplicity-is-a-feature

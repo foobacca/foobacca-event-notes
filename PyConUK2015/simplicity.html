@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Simplicity is a Feature &mdash; Foobacca Event Notes 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Foobacca Event Notes 1.0 documentation" href="../index.html" />
+    <link rel="up" title="PyCon UK 2015" href="index.html" />
+    <link rel="prev" title="Confessions of a True Imposter (A Survival Guide)" href="imposter.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="imposter.html" title="Confessions of a True Imposter (A Survival Guide)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">PyCon UK 2015</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="simplicity-is-a-feature">
+<h1>Simplicity is a Feature<a class="headerlink" href="#simplicity-is-a-feature" title="Permalink to this headline">¶</a></h1>
+<p>The big take away:</p>
+<div class="section" id="simplicity-is-about-defaults">
+<h2>Simplicity is about defaults<a class="headerlink" href="#simplicity-is-about-defaults" title="Permalink to this headline">¶</a></h2>
+<p>Build your software in library</p>
+<p>Example: multipart http upload</p>
+</div>
+<div class="section" id="levels">
+<h2>3 levels<a class="headerlink" href="#levels" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>low level</li>
+<li>features</li>
+<li>simplicity</li>
+</ul>
+<div class="section" id="low-level-eg-httplib">
+<h3>low level - eg httplib<a class="headerlink" href="#low-level-eg-httplib" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>don&#8217;t try to &#8220;help&#8221; - give user complete control</li>
+<li>to the point of letting people do &#8220;invalid&#8221; stuff</li>
+</ul>
+</div>
+<div class="section" id="feature-level-eg-urllib3">
+<h3>feature level - eg urllib3<a class="headerlink" href="#feature-level-eg-urllib3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>users no semantics of the problem, but don&#8217;t need to understand every detail</li>
+<li>still have quite a bit of control</li>
+<li>only support valid cases</li>
+</ul>
+</div>
+<div class="section" id="simplicity-level-eg-requests">
+<h3>simplicity level - eg requests<a class="headerlink" href="#simplicity-level-eg-requests" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>this should be the default if someone searches how to do something</li>
+<li>does not have to support all valid use cases - 80% is fine, to keep it simple</li>
+<li>lots of defaults, to make it easy for users</li>
+<li>&#8220;do the right thing&#8221;</li>
+<li>allow user to drop to level 2 - requests has an object giving access to urllib3</li>
+<li>can do multipart file load in one logical line!</li>
+</ul>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>80%<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>understand the domain</li>
+<li>see what most users are doing</li>
+<li>solve the problems for most people</li>
+<li>you can&#8217;t make everyone happy all of the time, but you can make some people ecstatic!</li>
+</ul>
+<p>requests like libraries</p>
+<ul class="simple">
+<li>flask is the requests of web serving</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Simplicity is a Feature</a><ul>
+<li><a class="reference internal" href="#simplicity-is-about-defaults">Simplicity is about defaults</a></li>
+<li><a class="reference internal" href="#levels">3 levels</a><ul>
+<li><a class="reference internal" href="#low-level-eg-httplib">low level - eg httplib</a></li>
+<li><a class="reference internal" href="#feature-level-eg-urllib3">feature level - eg urllib3</a></li>
+<li><a class="reference internal" href="#simplicity-level-eg-requests">simplicity level - eg requests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1">80%</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="imposter.html"
+                        title="previous chapter">Confessions of a True Imposter (A Survival Guide)</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/PyConUK2015/simplicity.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="imposter.html" title="Confessions of a True Imposter (A Survival Guide)"
+             >previous</a> |</li>
+        <li><a href="../index.html">Foobacca Event Notes 1.0 documentation</a> &raquo;</li>
+          <li><a href="index.html" >PyCon UK 2015</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Hamish Downer.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

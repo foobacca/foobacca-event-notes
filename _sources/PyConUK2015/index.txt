@@ -20,7 +20,8 @@ These are the notes I've taken during the talks.  If the speaker gave a link to 
    gender
    find-more-bugs
    build-right-thing
-
+   imposter
+   simplicity
 
 Slides for other talks
 ----------------------
@@ -41,6 +42,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `testing and async`_
 * `tackling a legacy codebase with (micro)services`_
 * `dispel pytest magic`_ and `dispel code`_
+* `Python and PostgreSQL, a Wonderful Wedding`_
 
 Lightning talks
 
@@ -69,3 +71,4 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`pyjokes talk`: https://speakerdeck.com/bennuttall/pyjokes
 .. _`pyjokes repo`: https://github.com/pyjokes/pyjokes
 .. _`python and shell tips`: http://bjwebb.co.uk/paste/presentation.html
+.. _`Python and PostgreSQL, a Wonderful Wedding`: https://speakerdeck.com/matrixise/python-and-postgresql-a-wonderful-wedding-english

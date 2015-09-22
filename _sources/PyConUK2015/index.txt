@@ -57,7 +57,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `interactive cloud experimentation`_
 * `Physical computing with Python and Raspberry Pi`_
 * `Data-visualisation with Python and JavaScript`_
-* `With flexibility comes responsibility: Getting schemas around semi-structured data`_
+* `With flexibility comes responsibility Getting schemas around semi-structured data`_
 * `Testing with two failure seeking missiles`_
 * `LanguageCompositionwithRPython`_
 
@@ -100,7 +100,7 @@ And from the education track here is the `minecraft exercise`_.
 .. _`interactive cloud experimentation`: http://www.slideshare.net/glestaris/pycon-uk-ice-interactive-cloud-experimentation
 .. _`Physical computing with Python and Raspberry Pi`: https://speakerdeck.com/bennuttall/physical-computing-with-python-and-raspberry-pi-pyconuk-2015
 .. _`Data-visualisation with Python and JavaScript`: http://kyrandale.com/static/talks/reveal.js/index_pydata2015.html#/
-.. _`With flexibility comes responsibility: Getting schemas around semi-structured data`_: https://slideviewer.herokuapp.com/github/konarkmodi/Presentations/blob/master/notebooks/Pycon-UK.ipynb
+.. _`With flexibility comes responsibility Getting schemas around semi-structured data`_: https://slideviewer.herokuapp.com/github/konarkmodi/Presentations/blob/master/notebooks/Pycon-UK.ipynb
 .. _`neurodiversity`: http://www.slideshare.net/JohnChandler1/neurodiversity-lightning-talk
 .. _`Testing with two failure seeking missiles`: http://tomviner.co.uk/testing-with-two-failure-seeking-missiles-fuzzing-property-based-testing.html
 .. _`LanguageCompositionwithRPython`: http://soft-dev.org/talks/2015/pyconuk15.pdf

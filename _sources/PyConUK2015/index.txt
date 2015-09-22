@@ -44,6 +44,7 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `asking about gender`_
 * `accelerate and scale your tests with nodepool`_
 * `finding more bugs`_
+* `OOD Rules`_ (my talk)
 * `managing mocks`_
 * `testing and async`_
 * `tackling a legacy codebase with (micro)services`_
@@ -57,6 +58,8 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `Physical computing with Python and Raspberry Pi`_
 * `Data-visualisation with Python and JavaScript`_
 * `With flexibility comes responsibility: Getting schemas around semi-structured data`_
+* `Testing with two failure seeking missiles`_
+* `LanguageCompositionwithRPython`_
 
 Lightning talks
 
@@ -65,7 +68,8 @@ Lightning talks
 * `python and shell tips`_
 * `neurodiversity`_
 
-And the slides and notes for my talk `OOD Rules`_
+And from the education track here is the `minecraft exercise`_.
+
 
 .. _`deep dive into python import hooks`: https://kragniz.eu/pyconuk-2015.pdf
 .. _`technical leadership`: http://www.owencampbell.me.uk/docs/pyconuk2015.pdf
@@ -97,3 +101,7 @@ And the slides and notes for my talk `OOD Rules`_
 .. _`Data-visualisation with Python and JavaScript`: http://kyrandale.com/static/talks/reveal.js/index_pydata2015.html#/
 .. _`With flexibility comes responsibility: Getting schemas around semi-structured data`_: https://slideviewer.herokuapp.com/github/konarkmodi/Presentations/blob/master/notebooks/Pycon-UK.ipynb
 .. _`neurodiversity`: http://www.slideshare.net/JohnChandler1/neurodiversity-lightning-talk
+.. _`Testing with two failure seeking missiles`: http://tomviner.co.uk/testing-with-two-failure-seeking-missiles-fuzzing-property-based-testing.html
+.. _`LanguageCompositionwithRPython`: http://soft-dev.org/talks/2015/pyconuk15.pdf
+
+.. _`minecraft exercise`: http://www.stuffaboutcode.com/2015/09/minecraft-game-tutorial-lavatrap-pycon.html

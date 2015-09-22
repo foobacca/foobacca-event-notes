@@ -67,6 +67,7 @@ Lightning talks
 * `pyjokes talk`_ and `pyjokes repo`_
 * `python and shell tips`_
 * `neurodiversity`_
+* `picking moba heroes`_
 
 And from the education track here is the `minecraft exercise`_.
 
@@ -87,11 +88,6 @@ And from the education track here is the `minecraft exercise`_.
 .. _`dispel pytest magic`: http://bit.ly/dispel-pytest
 .. _`tackling a legacy codebase with (micro)services`: http://www.slideshare.net/JohnChandler1/tackling-a-legacy-codebase-with-microservices
 .. _`dispel code`: https://github.com/oinopion/dispel
-
-.. _`analysing Edinburgh Fringe jokes`: https://github.com/drvinceknight/EdinburghFringeJokes/blob/master/nlp-of-jokes.ipynb
-.. _`pyjokes talk`: https://speakerdeck.com/bennuttall/the-story-of-pyjokes
-.. _`pyjokes repo`: https://github.com/pyjokes/pyjokes
-.. _`python and shell tips`: http://bjwebb.co.uk/paste/presentation.html
 .. _`Python and PostgreSQL, a Wonderful Wedding`: https://speakerdeck.com/matrixise/python-and-postgresql-a-wonderful-wedding-english
 .. _`Tit-for-tat-and-the-axelrod-library`: http://vknight.org/Talks/2015-09-20-Tit-for-tat-and-the-axelrod-library/#/
 .. _`Simplicity is a feature`: https://speakerdeck.com/lukasa/simplicity-is-a-feature
@@ -101,8 +97,15 @@ And from the education track here is the `minecraft exercise`_.
 .. _`Physical computing with Python and Raspberry Pi`: https://speakerdeck.com/bennuttall/physical-computing-with-python-and-raspberry-pi-pyconuk-2015
 .. _`Data-visualisation with Python and JavaScript`: http://kyrandale.com/static/talks/reveal.js/index_pydata2015.html#/
 .. _`With flexibility comes responsibility Getting schemas around semi-structured data`_: https://slideviewer.herokuapp.com/github/konarkmodi/Presentations/blob/master/notebooks/Pycon-UK.ipynb
-.. _`neurodiversity`: http://www.slideshare.net/JohnChandler1/neurodiversity-lightning-talk
 .. _`Testing with two failure seeking missiles`: http://tomviner.co.uk/testing-with-two-failure-seeking-missiles-fuzzing-property-based-testing.html
 .. _`LanguageCompositionwithRPython`: http://soft-dev.org/talks/2015/pyconuk15.pdf
+
+.. _`analysing Edinburgh Fringe jokes`: https://github.com/drvinceknight/EdinburghFringeJokes/blob/master/nlp-of-jokes.ipynb
+.. _`pyjokes talk`: https://speakerdeck.com/bennuttall/the-story-of-pyjokes
+.. _`pyjokes repo`: https://github.com/pyjokes/pyjokes
+.. _`python and shell tips`: http://bjwebb.co.uk/paste/presentation.html
+.. _`neurodiversity`: http://www.slideshare.net/JohnChandler1/neurodiversity-lightning-talk
+.. _`picking moba heroes`: http://vknight.org/unpeudemath/code/2015/09/05/picking-a-good-vainglory-jungler-with-game-theory-and-sagemath/
+
 
 .. _`minecraft exercise`: http://www.stuffaboutcode.com/2015/09/minecraft-game-tutorial-lavatrap-pycon.html

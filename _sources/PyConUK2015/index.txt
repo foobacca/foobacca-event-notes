@@ -8,7 +8,7 @@ PyCon UK 2015
 Notes from talks
 ----------------
 
-Videos can be viewed on the `pycon uk youtube channel<https://www.youtube.com/channel/UChA9XP_feY1-1oSy2L7acog>`_.
+Videos can be viewed on the `pycon uk youtube channel`_.
 
 These are the notes I've taken during the talks.  If the speaker gave a link to the slides or talk notes, the link is included.
 
@@ -70,6 +70,7 @@ Lightning talks
 
 And from the education track here is the `minecraft exercise`_.
 
+.. _`pycon uk youtube channel`: https://www.youtube.com/channel/UChA9XP_feY1-1oSy2L7acog
 
 .. _`deep dive into python import hooks`: https://kragniz.eu/pyconuk-2015.pdf
 .. _`technical leadership`: http://www.owencampbell.me.uk/docs/pyconuk2015.pdf

@@ -59,7 +59,8 @@ Some people posted links to slide on twitter for talks I didn't go to, so I've c
 * `Data-visualisation with Python and JavaScript`_
 * `With flexibility comes responsibility Getting schemas around semi-structured data`_
 * `Testing with two failure seeking missiles`_
-* `LanguageCompositionwithRPython`_
+* `Language Composition with RPython`_
+* `What I really want is power`_
 
 Lightning talks
 
@@ -98,7 +99,8 @@ And from the education track here is the `minecraft exercise`_.
 .. _`Data-visualisation with Python and JavaScript`: http://kyrandale.com/static/talks/reveal.js/index_pydata2015.html#/
 .. _`With flexibility comes responsibility Getting schemas around semi-structured data`_: https://slideviewer.herokuapp.com/github/konarkmodi/Presentations/blob/master/notebooks/Pycon-UK.ipynb
 .. _`Testing with two failure seeking missiles`: http://tomviner.co.uk/testing-with-two-failure-seeking-missiles-fuzzing-property-based-testing.html
-.. _`LanguageCompositionwithRPython`: http://soft-dev.org/talks/2015/pyconuk15.pdf
+.. _`Language Composition with RPython`: http://soft-dev.org/talks/2015/pyconuk15.pdf
+.. _`What I really want is power`: https://speakerdeck.com/evildmp/what-i-really-want-is-power
 
 .. _`analysing Edinburgh Fringe jokes`: https://github.com/drvinceknight/EdinburghFringeJokes/blob/master/nlp-of-jokes.ipynb
 .. _`pyjokes talk`: https://speakerdeck.com/bennuttall/the-story-of-pyjokes
